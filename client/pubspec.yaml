@@ -34,3 +34,6 @@ flutter:
           weight: 800
         - asset: assets/fonts/Poppins/Poppins-Black.ttf
           weight: 900
+    - family: Bauhaus
+      fonts:
+        - asset: assets/fonts/Bahaus/Bauhaus-Regular.ttf
