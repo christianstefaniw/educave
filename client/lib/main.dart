@@ -1,6 +1,5 @@
 import 'package:client/screens/auth/login/login.dart';
-import 'package:client/style/theme.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
 void main() {
   runApp(const Educave());
@@ -11,11 +10,14 @@ class Educave extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CupertinoApp(
+    return MaterialApp(
       debugShowCheckedModeBanner: false,
-      theme: AppThemeData.theme,
+      theme: ThemeData(
+        primaryColor: const Color(0xFF0D6EFD),
+        fontFamily: 'Poppins',
+      ),
       home: Container(
-        color: CupertinoColors.white,
+        color: Colors.white,
         child: const SafeArea(
           child: Login(),
         ),
