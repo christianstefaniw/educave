@@ -1,5 +1,8 @@
-import 'package:client/screens/auth/login/login.dart';
+import 'package:client/core/theme/theme.dart';
+import 'package:client/modules/auth/login/login_binding.dart';
+import 'package:client/routes/pages.dart';
 import 'package:flutter/material.dart';
+import 'package:get/route_manager.dart';
 
 void main() {
   runApp(const Educave());
@@ -10,18 +13,11 @@ class Educave extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        primaryColor: const Color(0xFF0D6EFD),
-        fontFamily: 'Poppins',
-      ),
-      home: Container(
-        color: Colors.white,
-        child: const SafeArea(
-          child: Login(),
-        ),
-      ),
+      theme: AppTheme.globalTheme,
+      initialBinding: LoginBindings(),
+      getPages: AppPages.pages,
     );
   }
 }
