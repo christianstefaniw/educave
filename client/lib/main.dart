@@ -1,8 +1,7 @@
-import 'package:client/core/theme/theme.dart';
-import 'package:client/modules/auth/login/login_binding.dart';
-import 'package:client/routes/pages.dart';
 import 'package:flutter/material.dart';
-import 'package:get/route_manager.dart';
+
+import 'core/theme/theme.dart';
+import 'routes/routes.dart';
 
 void main() {
   runApp(const Educave());
@@ -13,11 +12,12 @@ class Educave extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GetMaterialApp(
+    AppRoutes.routes;
+    return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: AppTheme.globalTheme,
-      initialBinding: LoginBindings(),
-      getPages: AppPages.pages,
+      routes: AppRoutes.routes,
+      initialRoute: AppRoutes.names.onBoard,
     );
   }
 }

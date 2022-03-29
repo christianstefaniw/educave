@@ -1,5 +1,6 @@
-import 'package:client/core/theme/theme.dart';
 import 'package:flutter/material.dart';
+
+import '../../../core/theme/theme.dart';
 
 class AuthTextInput extends StatelessWidget {
   final String hintText;

@@ -1,21 +1,14 @@
-import 'package:client/core/validators/email.dart';
-import 'package:client/core/validators/password.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
-class LoginController extends GetxController {
+import '../../../core/validators/email.dart';
+import '../../../core/validators/password.dart';
+
+class LoginController extends ChangeNotifier {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
   final formKey = GlobalKey<FormState>();
 
-  final validationErrors = <String, String?>{}.obs;
-
-  @override
-  void onClose() {
-    emailController.dispose();
-    passwordController.dispose();
-    super.onClose();
-  }
+  Map<String, String?> validationErrors = <String, String?>{};
 
   bool validate() {
     Map<String, String?> errors = {};
@@ -24,7 +17,8 @@ class LoginController extends GetxController {
     errors['password'] = PasswordValidator.run(passwordController.value.text);
 
     if (errors.isNotEmpty) {
-      validationErrors.value = errors;
+      validationErrors = errors;
+      notifyListeners();
       return false;
     }
 
