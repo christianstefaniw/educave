@@ -1,20 +1,20 @@
 import 'package:dio/dio.dart';
 
-import '../../core/constants/api/api_routes.dart';
 import 'api_provider_interface.dart';
+import '../../core/config.dart';
 
 class ApiProvider implements IApiProvider {
-  final Dio dio = Dio(BaseOptions(baseUrl: baseApiPath));
+  final Dio dio = Dio(BaseOptions(baseUrl: Config.baseApiPath));
 
   @override
-  Future get(String path) {
-    // TODO: implement get
-    throw UnimplementedError();
+  Future get(String path) async {
+    Response response = await dio.get(path);
+    return response.data;
   }
 
   @override
-  Future post(String path, {data}) {
-    // TODO: implement post
-    throw UnimplementedError();
+  Future post(String path, {data}) async {
+    Response response = await dio.post(path, data: data);
+    return response.data;
   }
 }

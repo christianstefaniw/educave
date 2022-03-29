@@ -1,3 +1,5 @@
-const _authRoute = '/auth';
+abstract class ApiAuthRoutes {
+  static const _authRoute = '/auth';
 
-const login = '$_authRoute/login';
+  static const login = '$_authRoute/login';
+}

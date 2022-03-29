@@ -1,7 +1,7 @@
+import 'package:client/routes/routes.dart';
 import 'package:flutter/material.dart';
 
-import 'core/theme/app_theme.dart';
-import 'routes/routes.dart';
+import 'core/theme/theme.dart';
 
 void main() {
   runApp(const Educave());
@@ -14,7 +14,7 @@ class Educave extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      theme: globalTheme,
+      theme: themeData,
       routes: appRoutes,
       initialRoute: AppRouteNames.onBoard,
     );

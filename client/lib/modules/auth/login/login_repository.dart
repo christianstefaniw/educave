@@ -1,3 +1,5 @@
+import 'package:client/core/constants/api/auth_routes.dart';
+
 import '../../../data/provider/api_provider_interface.dart';
 import '../../account/account_model.dart';
 import 'login_repository_interface.dart';
@@ -8,7 +10,8 @@ class LoginRepository implements ILoginRepository {
   LoginRepository({required this.client});
 
   @override
-  Future<AccountModel> login(String email, String password) {
-    throw UnimplementedError();
+  Future<AccountModel> login(String email, String password) async {
+    AccountModel account = await client.post(ApiAuthRoutes.login, data: null);
+    return account;
   }
 }
