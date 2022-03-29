@@ -1,6 +1,4 @@
-part of 'routes.dart';
-
-class _AppRouteNames {
-  final login = '/login';
-  final onBoard = '/';
+class AppRouteNames {
+  static const login = '/login';
+  static const onBoard = '/';
 }

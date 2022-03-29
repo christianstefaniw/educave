@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../core/theme/theme.dart';
+import '../../../core/theme/app_theme.dart';
 
 class AuthTextInput extends StatelessWidget {
   final String hintText;
@@ -21,7 +21,7 @@ class AuthTextInput extends StatelessWidget {
       controller: controller,
       decoration: InputDecoration(
         filled: true,
-        fillColor: AppTheme.colors.light,
+        fillColor: AppColors.light,
         hintText: hintText,
         errorText: errorText,
         contentPadding: const EdgeInsets.all(17),

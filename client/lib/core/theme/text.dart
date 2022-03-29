@@ -1,6 +1,8 @@
-part of 'theme.dart';
+import 'package:flutter/material.dart';
 
-class _Text {
-  final pageHeading = TextStyle(
-      color: AppTheme.colors.primary, fontFamily: 'Bauhaus', fontSize: 45);
+import 'colors.dart';
+
+class AppTextTheme {
+  static const pageHeading =
+      TextStyle(color: AppColors.primary, fontFamily: 'Bauhaus', fontSize: 45);
 }

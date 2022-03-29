@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../../core/theme/theme.dart';
+import '../../../core/theme/app_theme.dart';
 import '../../../widgets/cta_button.dart';
 import '../../../widgets/error_text.dart';
 import '../widgets/auth_text_input.dart';
@@ -30,10 +30,10 @@ class Login extends StatelessWidget {
         ),
         child: Column(
           children: <Widget>[
-            Text(
+            const Text(
               'Educave',
               textAlign: TextAlign.center,
-              style: AppTheme.text.pageHeading,
+              style: AppTextTheme.pageHeading,
             ),
             const SizedBox(
               height: 60,

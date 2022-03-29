@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../core/validators/email.dart';
-import '../../../core/validators/password.dart';
+import '../../../core/validators/validators.dart';
 
 class LoginController extends ChangeNotifier {
   final emailController = TextEditingController();
@@ -13,8 +12,8 @@ class LoginController extends ChangeNotifier {
   bool validate() {
     Map<String, String?> errors = {};
 
-    errors['email'] = EmailValidator.run(emailController.value.text);
-    errors['password'] = PasswordValidator.run(passwordController.value.text);
+    errors['email'] = validateEmail(emailController.value.text);
+    errors['password'] = validatePassword(passwordController.value.text);
 
     if (errors.isNotEmpty) {
       validationErrors = errors;

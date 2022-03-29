@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../core/theme/theme.dart';
+import '../core/theme/app_theme.dart';
 
 class ErrorText extends StatelessWidget {
   final String? text;
@@ -11,7 +11,7 @@ class ErrorText extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       text ?? '',
-      style: TextStyle(color: AppTheme.colors.danger),
+      style: const TextStyle(color: AppColors.danger),
     );
   }
 }
