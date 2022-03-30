@@ -1,10 +1,10 @@
-import 'package:client/core/helpers/errors_are_empty.dart';
-import 'package:client/data/provider/api_provider.dart';
-import 'package:client/modules/account/account_model.dart';
-import 'package:client/modules/auth/login/login_repository.dart';
 import 'package:flutter/material.dart';
 
+import '../../../core/helpers/errors_are_empty.dart';
 import '../../../core/validators/validators.dart';
+import '../../../data/provider/api_provider.dart';
+import '../../account/account_model.dart';
+import 'login_repository.dart';
 
 class LoginController extends ChangeNotifier {
   final LoginRepository loginRepository =
@@ -31,12 +31,15 @@ class LoginController extends ChangeNotifier {
     return true;
   }
 
-  void login() async {
+  /// Return true if logged in, false if not
+  Future<AccountModel?> login() async {
     if (!validate()) {
-      return;
+      return null;
     }
 
     AccountModel account = await loginRepository.login(
         emailController.text, passwordController.text);
+
+    return account;
   }
 }
