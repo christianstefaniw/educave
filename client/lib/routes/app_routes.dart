@@ -1,13 +1,13 @@
-import 'package:client/modules/app/app_control.dart';
-import 'package:client/modules/calendar/calendar_page.dart';
-import 'package:client/modules/groups/groups_page.dart';
-import 'package:client/modules/home/home_screen.dart';
-import 'package:client/modules/posts/screens/create_post.dart';
-import 'package:client/modules/profile/profile_page.dart';
 import 'package:flutter/material.dart';
 
+import '../modules/app/app_control.dart';
 import '../modules/auth/login/login_screen.dart';
+import '../modules/calendar/calendar_page.dart';
+import '../modules/create_post/screens/create_post.dart';
+import '../modules/groups/groups_page.dart';
+import '../modules/home/home_screen.dart';
 import '../modules/onboard/onboard_control.dart';
+import '../modules/profile/profile_page.dart';
 import 'route_names.dart';
 import 'routes.dart';
 

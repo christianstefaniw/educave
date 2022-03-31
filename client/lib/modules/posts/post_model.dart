@@ -1,9 +1,9 @@
-class AccountModel {
+class PostModel {
   late String email;
 
-  AccountModel({required this.email});
+  PostModel({required this.email});
 
-  AccountModel.fromJson(Map<String, dynamic> json) {
+  PostModel.fromJson(Map<String, dynamic> json) {
     email = json['email'];
   }
 

@@ -1,8 +1,8 @@
-import 'package:flutter/material.dart';
+import 'package:client/core/types/controller.dart';
 
 import 'account_model.dart';
 
-class AccountController extends ChangeNotifier {
+class AccountController extends Controller {
   AccountModel? _account;
 
   AccountModel? get account => _account;
