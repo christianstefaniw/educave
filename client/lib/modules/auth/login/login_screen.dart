@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../../core/theme/theme.dart';
 import '../../../routes/routes.dart';
 import '../../../widgets/cta_button.dart';
 import '../../../widgets/error_text.dart';
@@ -33,10 +32,10 @@ class Login extends StatelessWidget {
         ),
         child: Column(
           children: <Widget>[
-            const Text(
+            Text(
               'Educave',
               textAlign: TextAlign.center,
-              style: AppTextTheme.pageHeading,
+              style: Theme.of(context).textTheme.headline1,
             ),
             const SizedBox(
               height: 60,

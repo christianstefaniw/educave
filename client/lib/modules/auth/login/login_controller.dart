@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../core/helpers/errors_are_empty.dart';
 import '../../../core/validators/validators.dart';
-import '../../../data/provider/api_provider.dart';
+import '../../../data/providers/api_provider.dart';
 import '../../account/account_model.dart';
 import 'login_repository.dart';
 
