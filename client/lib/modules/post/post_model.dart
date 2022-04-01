@@ -1,15 +1,19 @@
 class PostModel {
-  late String email;
+  late String _id;
 
-  PostModel({required this.email});
+  PostModel({required String id}) {
+    _id = id;
+  }
+
+  String get id => _id;
 
   PostModel.fromJson(Map<String, dynamic> json) {
-    email = json['email'];
+    _id = json['id'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
-    data['email'] = email;
+    data['id'] = _id;
     return data;
   }
 }

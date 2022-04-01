@@ -1,31 +1,21 @@
 import 'package:client/core/strategies/fetch_posts/from_recent.dart';
-import 'package:client/modules/posts/post_model.dart';
 
-import '../../core/interfaces/post_handler.dart';
-import '../../core/types/controller.dart';
+import '../../core/interfaces/with_posts.dart';
 import '../../data/providers/api_provider.dart';
-import '../posts/posts_repository.dart';
+import '../../data/repositories/posts_repository.dart';
+import '../post/post_model.dart';
 
-class HomeController extends Controller implements PostHandler {
+import '../../core/types/controller.dart';
+
+class HomeController extends Controller implements WithPosts {
   final _postsRepository = PostsRepository(client: ApiProvider());
-  late List<PostModel> _posts;
 
   HomeController() {
     _postsRepository.setFetchPostsStrategy(FromRecent());
   }
 
   @override
-  List<PostModel> get posts => _posts;
-
-  @override
-  Future<void> likePost(String id) async {
-    await _postsRepository.like(id);
-    notifyListeners();
-  }
-
-  @override
-  Future<void> fetchPosts() async {
-    _posts = await _postsRepository.posts();
-    notifyListeners();
+  Future<List<PostModel>> posts() async {
+    return await _postsRepository.posts();
   }
 }

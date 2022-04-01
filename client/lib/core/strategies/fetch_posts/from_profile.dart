@@ -1,6 +1,6 @@
 import 'package:flutter/foundation.dart';
 
-import '../../../modules/posts/post_model.dart';
+import '../../../modules/post/post_model.dart';
 import 'fetch_posts_strategy.dart';
 
 class FromProfile extends FetchPostsStrategy {
@@ -10,7 +10,7 @@ class FromProfile extends FetchPostsStrategy {
     return await Future.delayed(
       const Duration(seconds: 2),
       () => [
-        PostModel(email: 'test@gmail.com'),
+        PostModel(id: '2'),
       ],
     );
   }
