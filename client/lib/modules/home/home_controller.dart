@@ -24,7 +24,8 @@ class HomeController extends Controller implements PostHandler {
   }
 
   @override
-  Future<void> retrievePosts() async {
+  Future<void> fetchPosts() async {
+    _posts = await _postsRepository.posts();
     notifyListeners();
   }
 }

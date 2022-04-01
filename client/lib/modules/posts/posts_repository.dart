@@ -12,7 +12,7 @@ class PostsRepository implements IPostsRepository {
   PostsRepository({required this.client});
 
   @override
-  Future<List<PostModel>> fetchPosts() async {
+  Future<List<PostModel>> posts() async {
     return _fetchPostsStrategy.execute();
   }
 

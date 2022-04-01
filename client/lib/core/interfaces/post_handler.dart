@@ -4,5 +4,5 @@ abstract class PostHandler {
   List<PostModel> get posts;
 
   Future<void> likePost(String id);
-  Future<void> retrievePosts();
+  Future<void> fetchPosts();
 }

@@ -3,6 +3,6 @@ import 'package:client/modules/posts/post_model.dart';
 
 abstract class IPostsRepository {
   void setFetchPostsStrategy(FetchPostsStrategy strategy);
-  Future<List<PostModel>> fetchPosts();
+  Future<List<PostModel>> posts();
   Future<void> like(String id);
 }
