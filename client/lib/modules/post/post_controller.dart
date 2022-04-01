@@ -1,16 +1,15 @@
-import 'package:client/modules/post/post_model.dart';
-
 import '../../core/types/controller.dart';
 import '../../data/providers/api_provider.dart';
+import 'post_model.dart';
 import 'post_repository.dart';
 
 class PostController extends Controller {
-  final PostModel model;
+  final PostModel _model;
   final _postRepository = PostRepository(client: ApiProvider());
 
-  PostController(this.model);
+  PostController(PostModel model) : _model = model;
 
   Future<void> likePost() async {
-    await _postRepository.like(model.id);
+    await _postRepository.like(_model.id);
   }
 }

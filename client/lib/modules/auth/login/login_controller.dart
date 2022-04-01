@@ -11,19 +11,21 @@ class LoginController extends Controller {
   final LoginRepository _loginRepository =
       LoginRepository(client: ApiProvider());
 
-  final emailController = TextEditingController();
-  final passwordController = TextEditingController();
-  final formKey = GlobalKey<FormState>();
+  final _emailController = TextEditingController();
+  final _passwordController = TextEditingController();
 
   Map<String, String?> _validationErrors = <String, String?>{};
 
   Map<String, String?> get validationErrors => _validationErrors;
 
+  TextEditingController get emailController => _emailController;
+  TextEditingController get passwordController => _passwordController;
+
   bool validate() {
     Map<String, String?> errors = {};
 
-    errors['email'] = validateEmail(emailController.text);
-    errors['password'] = validatePassword(passwordController.text);
+    errors['email'] = validateEmail(_emailController.text);
+    errors['password'] = validatePassword(_passwordController.text);
 
     if (!errorsAreEmpty(errors)) {
       _validationErrors = errors;
@@ -41,7 +43,7 @@ class LoginController extends Controller {
     }
 
     AccountModel account = await _loginRepository.login(
-        emailController.text, passwordController.text);
+        _emailController.text, _passwordController.text);
 
     return account;
   }

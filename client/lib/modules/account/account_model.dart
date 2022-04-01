@@ -1,15 +1,13 @@
 class AccountModel {
-  late String email;
+  final String _email;
 
-  AccountModel({required this.email});
+  AccountModel({required String email}) : _email = email;
 
-  AccountModel.fromJson(Map<String, dynamic> json) {
-    email = json['email'];
-  }
+  AccountModel.fromJson(Map<String, dynamic> json) : _email = json['email'];
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
-    data['email'] = email;
+    data['email'] = _email;
     return data;
   }
 }

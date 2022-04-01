@@ -41,7 +41,6 @@ class Login extends StatelessWidget {
               height: 60,
             ),
             Form(
-              key: controller.formKey,
               child: Column(
                 children: <Widget>[
                   AuthTextInput(
