@@ -11,7 +11,7 @@ class FromProfile extends FetchPostsStrategy {
     return await Future.delayed(
       const Duration(seconds: 2),
       () => [
-        PostModel(id: '2'),
+        PostModel(id: '2', likes: 0),
       ],
     );
   }

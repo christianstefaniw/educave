@@ -11,7 +11,7 @@ class FromRecent implements FetchPostsStrategy {
     return await Future.delayed(
       const Duration(seconds: 2),
       () => [
-        PostModel(id: '3'),
+        PostModel(id: '3', likes: 0),
       ],
     );
   }

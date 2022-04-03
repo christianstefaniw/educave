@@ -11,7 +11,7 @@ class FromGroup extends FetchPostsStrategy {
     return await Future.delayed(
       const Duration(seconds: 2),
       () => [
-        PostModel(id: '1'),
+        PostModel(id: '1', likes: 0),
       ],
     );
   }

@@ -3,10 +3,19 @@ import 'post_repository_interface.dart';
 
 class PostRepository implements IPostRepository {
   final IApiProvider _client;
-  PostRepository({required IApiProvider client}) : _client = client;
+  final String _id;
+
+  PostRepository({required IApiProvider client, required String id})
+      : _client = client,
+        _id = id;
 
   @override
-  Future<void> like(String id) async {
+  Future<void> like() async {
+    await _client.get('');
+  }
+
+  @override
+  Future<void> unlike() async {
     await _client.get('');
   }
 }

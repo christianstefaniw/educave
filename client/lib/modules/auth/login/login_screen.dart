@@ -19,7 +19,11 @@ class Login extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller = Provider.of<LoginController>(context);
-    final accountController = Provider.of<AccountController>(context);
+    final accountController =
+        Provider.of<AccountController>(context, listen: false);
+
+    final emailController = TextEditingController();
+    final passwordController = TextEditingController();
 
     return Scaffold(
       body: Container(
@@ -44,7 +48,7 @@ class Login extends StatelessWidget {
               child: Column(
                 children: <Widget>[
                   AuthTextInput(
-                    controller: controller.emailController,
+                    controller: emailController,
                     hintText: 'Email',
                     errorText: controller.validationErrors['email'],
                   ),
@@ -52,7 +56,7 @@ class Login extends StatelessWidget {
                     height: 15,
                   ),
                   AuthTextInput(
-                    controller: controller.passwordController,
+                    controller: passwordController,
                     hintText: 'Password',
                     errorText: controller.validationErrors['password'],
                   ),
@@ -61,7 +65,8 @@ class Login extends StatelessWidget {
                   ),
                   CtaButton(
                     onPressed: () async {
-                      final account = await controller.login();
+                      final account = await controller.login(
+                          emailController.text, passwordController.text);
                       if (account == null) return;
                       accountController.setAccount(account);
                       Navigator.pushReplacementNamed(

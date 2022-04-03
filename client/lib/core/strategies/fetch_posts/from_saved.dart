@@ -11,7 +11,7 @@ class FromSaved extends FetchPostsStrategy {
     return await Future.delayed(
       const Duration(seconds: 2),
       () => [
-        PostModel(id: '4'),
+        PostModel(id: '4', likes: 0),
       ],
     );
   }

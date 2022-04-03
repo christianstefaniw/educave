@@ -1,3 +1,4 @@
 abstract class IPostRepository {
-  Future<void> like(String id);
+  Future<void> like();
+  Future<void> unlike();
 }

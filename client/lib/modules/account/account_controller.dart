@@ -3,9 +3,9 @@ import 'package:client/core/types/controller.dart';
 import 'account_model.dart';
 
 class AccountController extends Controller {
-  AccountModel? _account;
+  late AccountModel _account;
 
-  AccountModel? get account => _account;
+  AccountModel get account => _account;
 
   void setAccount(AccountModel account) {
     _account = account;
