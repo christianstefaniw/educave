@@ -1,3 +1,4 @@
+import 'package:client/modules/app/app_bars/app_bars.dart';
 import 'package:flutter/material.dart';
 
 import '../calendar/calendar_page.dart';
@@ -16,9 +17,29 @@ class _AppControlState extends State<AppControl> {
   final PageController _myPage = PageController(initialPage: 0);
 
   @override
+  void dispose() {
+    _myPage.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
+    int page = 0;
+    if (_myPage.hasClients) page = _myPage.page!.toInt();
+
     return Scaffold(
+      appBar: appBars[page],
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      body: PageView(
+        controller: _myPage,
+        children: const <Widget>[
+          Home(),
+          Groups(),
+          Calendar(),
+          Profile(),
+        ],
+        physics: const NeverScrollableScrollPhysics(),
+      ),
       bottomNavigationBar: BottomAppBar(
         child: SizedBox(
           height: 50,
@@ -28,7 +49,8 @@ class _AppControlState extends State<AppControl> {
                 child: IconButton(
                   iconSize: 34,
                   icon: Icon(
-                      _myPage.page == 0 ? Icons.home : Icons.home_outlined),
+                    page == 0 ? Icons.home : Icons.home_outlined,
+                  ),
                   splashColor: Colors.transparent,
                   highlightColor: Colors.transparent,
                   onPressed: () {
@@ -41,8 +63,7 @@ class _AppControlState extends State<AppControl> {
               Expanded(
                 child: IconButton(
                   iconSize: 35,
-                  icon: Icon(
-                      _myPage.page == 1 ? Icons.people : Icons.people_outline),
+                  icon: Icon(page == 1 ? Icons.people : Icons.people_outline),
                   splashColor: Colors.transparent,
                   highlightColor: Colors.transparent,
                   onPressed: () {
@@ -63,7 +84,7 @@ class _AppControlState extends State<AppControl> {
               Expanded(
                 child: IconButton(
                   iconSize: 27,
-                  icon: Icon(_myPage.page == 2
+                  icon: Icon(page == 2
                       ? Icons.calendar_today
                       : Icons.calendar_today_outlined),
                   splashColor: Colors.transparent,
@@ -78,8 +99,7 @@ class _AppControlState extends State<AppControl> {
               Expanded(
                 child: IconButton(
                   iconSize: 28,
-                  icon: Icon(
-                      _myPage.page == 3 ? Icons.circle : Icons.circle_outlined),
+                  icon: Icon(page == 3 ? Icons.circle : Icons.circle_outlined),
                   splashColor: Colors.transparent,
                   highlightColor: Colors.transparent,
                   onPressed: () {
@@ -92,16 +112,6 @@ class _AppControlState extends State<AppControl> {
             ],
           ),
         ),
-      ),
-      body: PageView(
-        controller: _myPage,
-        children: const <Widget>[
-          Home(),
-          Groups(),
-          Calendar(),
-          Profile(),
-        ],
-        physics: const NeverScrollableScrollPhysics(),
       ),
       floatingActionButton: Padding(
         padding: const EdgeInsets.only(top: 22),

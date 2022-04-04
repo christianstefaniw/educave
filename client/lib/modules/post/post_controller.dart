@@ -23,4 +23,6 @@ class PostController extends Controller {
     _model.removeLike();
     notifyListeners();
   }
+
+  PostModel get post => _model;
 }

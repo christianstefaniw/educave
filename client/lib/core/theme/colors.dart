@@ -9,4 +9,5 @@ abstract class AppColors {
   static const warning = Color(0xffFFC107);
   static const dark = Color(0xff198754);
   static const light = Color(0xffE8E8E8);
+  static const muted = Color(0xff868686);
 }
