@@ -1,88 +1,82 @@
 class PostModel {
-  final String _id;
-  final String _username;
-  final String _profilePic;
-  final String _content;
-  final String _postedIn;
-  final DateTime _dateTime;
-  final int _commentCount;
-  final int _shareCount;
+  // dont need getters on these fields for now, tied to the controller
+  // may need to change in the near future
+  final String id;
+  final String username;
+  final String profilePic;
+  final String content;
+  final String postedIn;
+  final DateTime dateTime;
+  final int commentCount;
+  final int shareCount; // this will have to be mutable at some point
   int _likeCount;
-  bool _saved;
+  bool _isLiked;
+  bool _isSaved;
 
   PostModel({
-    required String id,
-    required String username,
-    required String profilePic,
-    required String content,
-    required String postedIn,
-    required DateTime dateTime,
-    required int commentCount,
-    required int shareCount,
+    required this.id,
+    required this.username,
+    required this.profilePic,
+    required this.content,
+    required this.postedIn,
+    required this.dateTime,
+    required this.commentCount,
+    required this.shareCount,
     required int likeCount,
-    required bool saved,
-  })  : _id = id,
-        _username = username,
-        _profilePic = profilePic,
-        _content = content,
-        _postedIn = postedIn,
-        _dateTime = dateTime,
-        _commentCount = commentCount,
-        _shareCount = shareCount,
-        _saved = saved,
-        _likeCount = likeCount;
+    required bool isLiked,
+    required bool isSaved,
+  })  : _likeCount = likeCount,
+        _isLiked = isLiked,
+        _isSaved = isSaved;
 
-  String get id => _id;
-  String get username => _username;
-  String get profilePic => _profilePic;
-  String get content => _content;
-  String get postedIn => _postedIn;
-  DateTime get dateTime => _dateTime;
-  int get commentCount => _commentCount;
-  int get shareCount => _shareCount;
   int get likeCount => _likeCount;
-  bool get saved => _saved;
+  bool get isLiked => _isLiked;
+  bool get isSaved => _isSaved;
 
-  void addLike() {
+  void like() {
     _likeCount++;
+    _isLiked = true;
   }
 
-  void removeLike() {
+  void unlike() {
     _likeCount--;
+    _isLiked = false;
   }
 
   void save() {
-    _saved = true;
+    _isSaved = true;
   }
 
   void unsave() {
-    _saved = false;
+    _isSaved = false;
   }
 
   PostModel.fromJson(Map<String, dynamic> json)
-      : _id = json['id'],
-        _username = json['username'],
-        _profilePic = json['profilePic'],
-        _content = json['content'],
-        _postedIn = json['postedIn'],
-        _dateTime = json['dateTime'],
-        _commentCount = json['commentCount'],
-        _shareCount = json['shareCount'],
-        _saved = json['saved'],
-        _likeCount = json['_likeCount'];
+      : id = json['id'],
+        username = json['username'],
+        profilePic = json['profilePic'],
+        content = json['content'],
+        postedIn = json['postedIn'],
+        dateTime = json['dateTime'],
+        commentCount = json['commentCount'],
+        shareCount = json['shareCount'],
+        _likeCount = json['likeCount'],
+        _isLiked = json['isLiked'],
+        _isSaved = json['isSaved'];
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
-    data['id'] = _id;
-    data['username'] = _username;
-    data['profilePic'] = _profilePic;
-    data['content'] = _content;
-    data['postedIn'] = _postedIn;
-    data['dateTime'] = _dateTime;
-    data['commentCount'] = _commentCount;
-    data['shareCount'] = _shareCount;
-    data['saved'] = _saved;
-    data['_likeCount'] = _likeCount;
+    data['id'] = id;
+    data['username'] = username;
+    data['profilePic'] = profilePic;
+    data['content'] = content;
+    data['postedIn'] = postedIn;
+    data['dateTime'] = dateTime;
+    data['commentCount'] = commentCount;
+    data['shareCount'] = shareCount;
+    data['likeCount'] = _likeCount;
+    data['isLiked'] = _isLiked;
+    data['isSaved'] = _isSaved;
     return data;
   }
 }

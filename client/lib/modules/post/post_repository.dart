@@ -11,11 +11,21 @@ class PostRepository implements IPostRepository {
 
   @override
   Future<void> like() async {
-    await _client.get('');
+    // await _client.get('');
   }
 
   @override
   Future<void> unlike() async {
-    await _client.get('');
+    // await _client.get('');
+  }
+
+  @override
+  Future<void> save() async {
+    // await _client.get('');
+  }
+
+  @override
+  Future<void> unsave() async {
+    // await _client.get('');
   }
 }
