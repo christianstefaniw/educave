@@ -1,14 +1,16 @@
+import 'features/image.dart';
+import 'features/post_feature.dart';
+import 'features/text.dart';
+
 class PostModel {
-  // dont need getters on these fields for now, tied to the controller
-  // may need to change in the near future
   final String id;
   final String username;
   final String profilePic;
-  final String content;
   final String postedIn;
   final DateTime dateTime;
   final int commentCount;
-  final int shareCount; // this will have to be mutable at some point
+  final List<PostFeature> features;
+
   int _likeCount;
   bool _isLiked;
   bool _isSaved;
@@ -17,11 +19,10 @@ class PostModel {
     required this.id,
     required this.username,
     required this.profilePic,
-    required this.content,
     required this.postedIn,
     required this.dateTime,
     required this.commentCount,
-    required this.shareCount,
+    required this.features,
     required int likeCount,
     required bool isLiked,
     required bool isSaved,
@@ -55,28 +56,43 @@ class PostModel {
       : id = json['id'],
         username = json['username'],
         profilePic = json['profilePic'],
-        content = json['content'],
         postedIn = json['postedIn'],
         dateTime = json['dateTime'],
         commentCount = json['commentCount'],
-        shareCount = json['shareCount'],
+        features = _featuresFromJson(json['features']),
         _likeCount = json['likeCount'],
         _isLiked = json['isLiked'],
         _isSaved = json['isSaved'];
+
+  static List<PostFeature> _featuresFromJson(Map<String, dynamic> json) {
+    List<PostFeature> features = [];
+    json['image'] ? features.add(ImageFeature(json['image'])) : null;
+    json['text'] ? features.add(TextFeature(json['text'])) : null;
+    return features;
+  }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
     data['id'] = id;
     data['username'] = username;
     data['profilePic'] = profilePic;
-    data['content'] = content;
     data['postedIn'] = postedIn;
     data['dateTime'] = dateTime;
     data['commentCount'] = commentCount;
-    data['shareCount'] = shareCount;
+    data['features'] = _featuresToJson();
     data['likeCount'] = _likeCount;
     data['isLiked'] = _isLiked;
     data['isSaved'] = _isSaved;
     return data;
+  }
+
+  List<Map<String, String>> _featuresToJson() {
+    List<Map<String, String>> featuresAsJson = [];
+
+    for (PostFeature feature in features) {
+      featuresAsJson.add(<String, String>{feature.type: feature.content});
+    }
+
+    return featuresAsJson;
   }
 }

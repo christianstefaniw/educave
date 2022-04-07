@@ -6,11 +6,21 @@ import '../post/post_model.dart';
 import '../post/post_widget.dart';
 import 'home_controller.dart';
 
-class Home extends StatelessWidget {
+class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
 
   @override
+  State<Home> createState() => _HomeState();
+}
+
+class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
+  @override
+  bool get wantKeepAlive => true;
+
+  @override
   Widget build(BuildContext context) {
+    super.build(context);
+
     final controller = Provider.of<HomeController>(context);
 
     return FutureBuilder<List<PostModel>>(

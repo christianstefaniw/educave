@@ -1,5 +1,8 @@
+import 'package:flutter/material.dart';
+
 import '../../core/types/controller.dart';
 import '../../data/providers/api_provider.dart';
+import 'features/post_feature.dart';
 import 'post_model.dart';
 import 'post_repository.dart';
 import 'post_repository_interface.dart';
@@ -14,14 +17,14 @@ class PostController extends Controller {
 
   String get username => _model.username;
   String get profilePic => _model.profilePic;
-  String get content => _model.content;
   String get postedIn => _model.postedIn;
   DateTime get dateTime => _model.dateTime;
   int get commentCount => _model.commentCount;
-  int get shareCount => _model.shareCount;
   int get likeCount => _model.likeCount;
   bool get isLiked => _model.isLiked;
   bool get isSaved => _model.isSaved;
+
+  List<PostFeature> get features => _model.features;
 
   Future<void> like() async {
     await _postRepository.like();

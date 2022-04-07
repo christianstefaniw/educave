@@ -1,10 +1,10 @@
-import 'package:client/modules/app/app_bars/app_bars.dart';
 import 'package:flutter/material.dart';
 
 import '../calendar/calendar_page.dart';
 import '../groups/groups_page.dart';
 import '../home/home_screen.dart';
 import '../profile/profile_page.dart';
+import 'app_bars/app_bars.dart';
 
 class AppControl extends StatefulWidget {
   const AppControl({Key? key}) : super(key: key);
