@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../post/post_controller.dart';
-import '../post/post_model.dart';
-import '../post/post_widget.dart';
+import '../post/posts_widget.dart';
 import 'home_controller.dart';
 
 class Home extends StatefulWidget {
@@ -23,23 +21,29 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
 
     final controller = Provider.of<HomeController>(context);
 
-    return FutureBuilder<List<PostModel>>(
-      future: controller.posts(),
-      builder: (BuildContext context, AsyncSnapshot<List<PostModel>> snapshot) {
-        if (snapshot.hasData) {
-          return ListView.builder(
-            itemCount: snapshot.data!.length,
-            itemBuilder: (context, index) {
-              return ChangeNotifierProvider(
-                create: (context) => PostController(snapshot.data![index]),
-                child: const Post(),
-              );
-            },
-          );
-        } else {
-          return const Text('Loading');
-        }
-      },
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 7.0),
+      child: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            FutureBuilder<List<dynamic>>(
+              future: Future.wait([controller.posts(), controller.stories()]),
+              builder: (BuildContext context,
+                  AsyncSnapshot<List<dynamic>> snapshot) {
+                if (snapshot.hasData) {
+                  return Posts(
+                    snapshot.data![0],
+                    stories: snapshot.data![1],
+                  );
+                } else {
+                  return const Text('loading');
+                }
+              },
+            ),
+          ],
+        ),
+      ),
     );
   }
 }

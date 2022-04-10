@@ -4,7 +4,7 @@ import 'package:provider/provider.dart';
 import '../../../routes/routes.dart';
 import '../../../widgets/cta_button.dart';
 import '../../../widgets/error_text.dart';
-import '../../account/account_controller.dart';
+import '../../user/user_controller.dart';
 import '../widgets/auth_text_input.dart';
 import 'login_controller.dart';
 
@@ -19,8 +19,7 @@ class Login extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller = Provider.of<LoginController>(context);
-    final accountController =
-        Provider.of<AccountController>(context, listen: false);
+    final userController = Provider.of<UserController>(context, listen: false);
 
     final emailController = TextEditingController();
     final passwordController = TextEditingController();
@@ -68,7 +67,7 @@ class Login extends StatelessWidget {
                       final account = await controller.login(
                           emailController.text, passwordController.text);
                       if (account == null) return;
-                      accountController.setAccount(account);
+                      userController.setAccount(account);
                       Navigator.pushReplacementNamed(
                           context, AppRouteNames.home);
                     },

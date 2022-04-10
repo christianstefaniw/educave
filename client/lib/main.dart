@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import 'core/theme/theme.dart';
-import 'modules/account/account_controller.dart';
+import 'modules/user/user_controller.dart';
 import 'routes/routes.dart';
 
 void main() {
@@ -16,8 +16,7 @@ class Educave extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider<AccountController>(
-            create: (_) => AccountController())
+        ChangeNotifierProvider<UserController>(create: (_) => UserController())
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,

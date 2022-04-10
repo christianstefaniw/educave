@@ -10,7 +10,7 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) {
     return AppBar(
       backgroundColor: Colors.white,
-      elevation: 2,
+      elevation: 1,
       title: Text(
         'Educave',
         style: Theme.of(context).textTheme.headline3,

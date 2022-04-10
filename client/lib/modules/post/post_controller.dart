@@ -1,5 +1,3 @@
-import 'package:flutter/material.dart';
-
 import '../../core/types/controller.dart';
 import '../../data/providers/api_provider.dart';
 import 'features/post_feature.dart';
@@ -7,7 +5,7 @@ import 'post_model.dart';
 import 'post_repository.dart';
 import 'post_repository_interface.dart';
 
-class PostController extends Controller {
+class PostController with Controller {
   final PostModel _model;
   final IPostRepository _postRepository;
 

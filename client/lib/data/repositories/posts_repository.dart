@@ -11,7 +11,7 @@ class PostsRepository implements IPostsRepository {
 
   @override
   Future<List<PostModel>> posts() async {
-    return _fetchPostsStrategy.execute(_client);
+    return await _fetchPostsStrategy.execute(_client);
   }
 
   @override

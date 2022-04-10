@@ -19,10 +19,10 @@ class _PostState extends State<Post> {
   Widget build(BuildContext context) {
     final controller = Provider.of<PostController>(context);
 
-    return Container(
-      padding: const EdgeInsets.all(13),
+    return Padding(
+      padding: const EdgeInsets.only(left: 17.0, right: 17.0, top: 8.0),
       child: Column(
-        children: <Widget>[
+        children: [
           Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
@@ -70,13 +70,15 @@ class _PostState extends State<Post> {
             ),
           ),
           Container(
-            margin: const EdgeInsets.symmetric(vertical: 5),
+            margin: const EdgeInsets.only(bottom: 5, top: 14),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: <Widget>[
                 Row(
                   children: [
                     IconButton(
+                      constraints: const BoxConstraints(),
+                      padding: EdgeInsets.zero,
                       onPressed: controller.isLiked
                           ? controller.unlike
                           : controller.like,
@@ -89,23 +91,37 @@ class _PostState extends State<Post> {
                             )
                           : const Icon(Icons.favorite_outline),
                     ),
-                    Text(controller.likeCount.toString()),
+                    Container(
+                      margin: const EdgeInsets.only(left: 11),
+                      child: Text(
+                        controller.likeCount.toString(),
+                      ),
+                    ),
                   ],
                 ),
                 Row(
                   children: [
                     IconButton(
+                      constraints: const BoxConstraints(),
+                      padding: EdgeInsets.zero,
                       onPressed: () {},
                       iconSize: 23,
                       splashRadius: 1,
                       icon: const Icon(Icons.chat_bubble_outline),
                     ),
-                    Text(controller.commentCount.toString()),
+                    Container(
+                      margin: const EdgeInsets.only(left: 11),
+                      child: Text(
+                        controller.commentCount.toString(),
+                      ),
+                    ),
                   ],
                 ),
                 Row(
                   children: [
                     IconButton(
+                      constraints: const BoxConstraints(),
+                      padding: EdgeInsets.zero,
                       onPressed: () {},
                       splashRadius: 1,
                       iconSize: 25,
@@ -114,6 +130,8 @@ class _PostState extends State<Post> {
                   ],
                 ),
                 IconButton(
+                  constraints: const BoxConstraints(),
+                  padding: EdgeInsets.zero,
                   onPressed:
                       controller.isSaved ? controller.unsave : controller.save,
                   splashRadius: 1,
@@ -127,7 +145,6 @@ class _PostState extends State<Post> {
               ],
             ),
           ),
-          const Divider()
         ],
       ),
     );

@@ -1,7 +1,8 @@
-import 'package:client/modules/app/app_control.dart';
-import 'package:client/modules/home/home_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+
+import '../app/app_control.dart';
+import '../home/home_controller.dart';
 
 class OnBoardControl extends StatelessWidget {
   const OnBoardControl({Key? key}) : super(key: key);

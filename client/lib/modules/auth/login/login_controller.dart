@@ -2,11 +2,11 @@ import '../../../core/helpers/errors_are_empty.dart';
 import '../../../core/types/controller.dart';
 import '../../../core/validators/validators.dart';
 import '../../../data/providers/api_provider.dart';
-import '../../account/account_model.dart';
+import '../../user/account_model.dart';
 import 'login_repository.dart';
 import 'login_repository_interface.dart';
 
-class LoginController extends Controller {
+class LoginController with Controller {
   final ILoginRepository _loginRepository =
       LoginRepository(client: ApiProvider());
 
