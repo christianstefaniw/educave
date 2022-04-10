@@ -1,7 +1,7 @@
-import '../../core/strategies/fetch_stories/fetch_stories_strategy.dart';
 import '../../data/providers/api_provider_interface.dart';
 import 'stories_repository_interface.dart';
 import 'story_model.dart';
+import 'strategies/fetch_stories_strategy.dart';
 
 class StoriesRepository implements IStoriesRepository {
   final IApiProvider _client;

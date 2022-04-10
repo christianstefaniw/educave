@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../post/post_controller.dart';
+import '../post/post_model.dart';
+import '../post/post_widget.dart';
 import '../stories/story_model.dart';
 import '../stories/widgets/preview/stories_preview.dart';
-import 'post_controller.dart';
-import 'post_model.dart';
-import 'post_widget.dart';
 
 class Posts extends StatelessWidget {
   final List<PostModel> _posts;

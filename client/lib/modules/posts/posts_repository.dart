@@ -1,7 +1,7 @@
-import '../../core/strategies/fetch_posts/fetch_posts_strategy.dart';
-import '../../modules/post/post_model.dart';
-import '../providers/api_provider_interface.dart';
+import '../../../data/providers/api_provider_interface.dart';
+import '../post/post_model.dart';
 import 'posts_repository_interface.dart';
+import 'strategies/fetch_posts_strategy.dart';
 
 class PostsRepository implements IPostsRepository {
   final IApiProvider _client;

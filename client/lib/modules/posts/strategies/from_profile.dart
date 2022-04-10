@@ -1,12 +1,12 @@
-import '../../../data/providers/api_provider_interface.dart';
-import '../../../modules/post/features/text.dart';
-import '../../../modules/post/post_model.dart';
+import '../../../../data/providers/api_provider_interface.dart';
+import '../../post/features/text.dart';
+import '../../post/post_model.dart';
 import 'fetch_posts_strategy.dart';
 
-class FromSaved extends FetchPostsStrategy {
+class FromProfile extends FetchPostsStrategy {
   @override
   Future<List<PostModel>> execute(IApiProvider client) async {
-    print('from saved');
+    print('from profile');
     return await Future.delayed(
       const Duration(seconds: 2),
       () => [

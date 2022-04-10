@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../post/posts_widget.dart';
+import '../posts/posts_widget.dart';
 import 'home_controller.dart';
 
 class Home extends StatefulWidget {
@@ -20,29 +20,17 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
     super.build(context);
 
     final controller = Provider.of<HomeController>(context);
+    controller.loadPostsAndStories();
 
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 7.0),
       child: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            FutureBuilder<List<dynamic>>(
-              future: Future.wait([controller.posts(), controller.stories()]),
-              builder: (BuildContext context,
-                  AsyncSnapshot<List<dynamic>> snapshot) {
-                if (snapshot.hasData) {
-                  return Posts(
-                    snapshot.data![0],
-                    stories: snapshot.data![1],
-                  );
-                } else {
-                  return const Text('loading');
-                }
-              },
-            ),
-          ],
-        ),
+        child: controller.postsAndStoriesLoaded
+            ? Posts(
+                controller.posts!,
+                stories: controller.stories!,
+              )
+            : const Text('loading'),
       ),
     );
   }

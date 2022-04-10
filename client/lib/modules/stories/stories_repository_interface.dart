@@ -1,5 +1,5 @@
-import '../../core/strategies/fetch_stories/fetch_stories_strategy.dart';
 import 'story_model.dart';
+import 'strategies/fetch_stories_strategy.dart';
 
 abstract class IStoriesRepository {
   Future<List<StoryModel>> stories();

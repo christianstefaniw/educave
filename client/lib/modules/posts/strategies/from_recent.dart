@@ -1,7 +1,7 @@
-import '../../../data/providers/api_provider_interface.dart';
-import '../../../modules/post/features/image.dart';
-import '../../../modules/post/features/text.dart';
-import '../../../modules/post/post_model.dart';
+import '../../../../data/providers/api_provider_interface.dart';
+import '../../post/features/image.dart';
+import '../../post/features/text.dart';
+import '../../post/post_model.dart';
 import 'fetch_posts_strategy.dart';
 
 class FromRecent implements FetchPostsStrategy {
