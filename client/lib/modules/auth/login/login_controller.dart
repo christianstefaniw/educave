@@ -1,41 +1,21 @@
-import '../../../core/helpers/errors_are_empty.dart';
 import '../../../core/types/controller.dart';
-import '../../../core/validators/validators.dart';
-import '../../../data/providers/api_provider.dart';
 import '../../user/account_model.dart';
-import 'login_repository.dart';
-import 'login_repository_interface.dart';
+import 'login_service_interface.dart';
 
 class LoginController with Controller {
-  final ILoginRepository _loginRepository =
-      LoginRepository(client: ApiProvider());
+  final ILoginService _service;
 
-  Map<String, String?> _validationErrors = <String, String?>{};
+  LoginController(this._service);
 
-  Map<String, String?> get validationErrors => _validationErrors;
-
-  bool validate(String email, String password) {
-    Map<String, String?> errors = {};
-
-    errors['email'] = validateEmail(email);
-    errors['password'] = validatePassword(password);
-
-    if (!errorsAreEmpty(errors)) {
-      _validationErrors = errors;
-      notifyListeners();
-      return false;
-    }
-
-    return true;
-  }
+  Map<String, String?> get validationErrors => _service.validationErrors;
 
   Future<AccountModel?> login(String email, String password) async {
-    if (!validate(email, password)) {
+    if (!_service.validate(email, password)) {
+      notifyListeners();
       return null;
     }
 
-    AccountModel account = await _loginRepository.login(email, password);
-
+    AccountModel? account = await _service.login(email, password);
     return account;
   }
 }

@@ -1,7 +1,5 @@
-import '../../data/providers/api_provider.dart';
 import 'features/post_feature.dart';
 import 'post_model.dart';
-import 'post_repository.dart';
 import 'post_repository_interface.dart';
 import 'post_service_interface.dart';
 
@@ -9,9 +7,7 @@ class PostService implements IPostService {
   final PostModel _model;
   final IPostRepository _repository;
 
-  PostService(this._model)
-      : _repository = PostRepository(client: ApiProvider(), id: _model.id);
-
+  PostService(this._model, this._repository);
   @override
   String get username => _model.username;
 
