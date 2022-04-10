@@ -1,50 +1,40 @@
 import '../../core/types/controller.dart';
-import '../../data/providers/api_provider.dart';
 import 'features/post_feature.dart';
-import 'post_model.dart';
-import 'post_repository.dart';
-import 'post_repository_interface.dart';
+import 'post_service.dart';
 
 class PostController with Controller {
-  final PostModel _model;
-  final IPostRepository _postRepository;
+  final PostService _service;
 
-  PostController(PostModel model)
-      : _model = model,
-        _postRepository = PostRepository(client: ApiProvider(), id: model.id);
+  PostController(this._service);
 
-  String get username => _model.username;
-  String get profilePic => _model.profilePic;
-  String get postedIn => _model.postedIn;
-  DateTime get dateTime => _model.dateTime;
-  int get commentCount => _model.commentCount;
-  int get likeCount => _model.likeCount;
-  bool get isLiked => _model.isLiked;
-  bool get isSaved => _model.isSaved;
+  String get username => _service.model.username;
+  String get profilePic => _service.model.profilePic;
+  String get postedIn => _service.model.postedIn;
+  DateTime get dateTime => _service.model.dateTime;
+  int get commentCount => _service.model.commentCount;
+  int get likeCount => _service.model.likeCount;
+  bool get isLiked => _service.model.isLiked;
+  bool get isSaved => _service.model.isSaved;
 
-  List<PostFeature> get features => _model.features;
+  List<PostFeature> get features => _service.model.features;
 
   Future<void> like() async {
-    await _postRepository.like();
-    _model.like();
+    await _service.like();
     notifyListeners();
   }
 
   Future<void> unlike() async {
-    await _postRepository.unlike();
-    _model.unlike();
+    await _service.unlike();
     notifyListeners();
   }
 
   Future<void> save() async {
-    await _postRepository.save();
-    _model.save();
+    await _service.save();
     notifyListeners();
   }
 
   Future<void> unsave() async {
-    await _postRepository.unsave();
-    _model.unsave();
+    await _service.like();
     notifyListeners();
   }
 }

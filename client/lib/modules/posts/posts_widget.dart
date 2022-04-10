@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 
 import '../post/post_controller.dart';
 import '../post/post_model.dart';
+import '../post/post_service.dart';
 import '../post/post_widget.dart';
 import '../stories/story_model.dart';
 import '../stories/widgets/preview/stories_preview.dart';
@@ -22,7 +23,7 @@ class Posts extends StatelessWidget {
       itemCount: _posts.length,
       itemBuilder: (context, index) {
         return ChangeNotifierProvider(
-          create: (context) => PostController(_posts[index]),
+          create: (context) => PostController(PostService(_posts[index])),
           child: Column(
             children: [
               if (index == 1 && _stories != null) ...[
