@@ -3,33 +3,47 @@ import 'features/post_feature.dart';
 import 'features/text.dart';
 
 class PostModel {
-  final String id;
-  final String username;
-  final String profilePic;
-  final String postedIn;
-  final DateTime dateTime;
-  final int commentCount;
-  final List<PostFeature> features;
+  final String _id;
+  final String _username;
+  final String _profilePic;
+  final String _postedIn;
+  final DateTime _dateTime;
+  final int _commentCount;
+  final List<PostFeature> _features;
 
   int _likeCount;
   bool _isLiked;
   bool _isSaved;
 
   PostModel({
-    required this.id,
-    required this.username,
-    required this.profilePic,
-    required this.postedIn,
-    required this.dateTime,
-    required this.commentCount,
-    required this.features,
+    required String id,
+    required String username,
+    required String profilePic,
+    required String postedIn,
+    required DateTime dateTime,
+    required int commentCount,
+    required List<PostFeature> features,
     required int likeCount,
     required bool isLiked,
     required bool isSaved,
-  })  : _likeCount = likeCount,
+  })  : _id = id,
+        _username = username,
+        _profilePic = profilePic,
+        _postedIn = postedIn,
+        _dateTime = dateTime,
+        _commentCount = commentCount,
+        _features = features,
+        _likeCount = likeCount,
         _isLiked = isLiked,
         _isSaved = isSaved;
 
+  String get id => _id;
+  String get username => _username;
+  String get profilePic => _profilePic;
+  String get postedIn => _postedIn;
+  DateTime get dateTime => _dateTime;
+  int get commentCount => _commentCount;
+  List<PostFeature> get features => _features;
   int get likeCount => _likeCount;
   bool get isLiked => _isLiked;
   bool get isSaved => _isSaved;
@@ -53,13 +67,13 @@ class PostModel {
   }
 
   PostModel.fromJson(Map<String, dynamic> json)
-      : id = json['id'],
-        username = json['username'],
-        profilePic = json['profilePic'],
-        postedIn = json['postedIn'],
-        dateTime = json['dateTime'],
-        commentCount = json['commentCount'],
-        features = _featuresFromJson(json['features']),
+      : _id = json['id'],
+        _username = json['username'],
+        _profilePic = json['profilePic'],
+        _postedIn = json['postedIn'],
+        _dateTime = json['dateTime'],
+        _commentCount = json['commentCount'],
+        _features = _featuresFromJson(json['features']),
         _likeCount = json['likeCount'],
         _isLiked = json['isLiked'],
         _isSaved = json['isSaved'];
@@ -73,12 +87,12 @@ class PostModel {
 
   Map<String, dynamic> toJson() {
     Map<String, dynamic> data = <String, dynamic>{};
-    data['id'] = id;
-    data['username'] = username;
-    data['profilePic'] = profilePic;
-    data['postedIn'] = postedIn;
-    data['dateTime'] = dateTime;
-    data['commentCount'] = commentCount;
+    data['id'] = _id;
+    data['username'] = _username;
+    data['profilePic'] = _profilePic;
+    data['postedIn'] = _postedIn;
+    data['dateTime'] = _dateTime;
+    data['commentCount'] = _commentCount;
     data['features'] = _featuresToJson();
     data['likeCount'] = _likeCount;
     data['isLiked'] = _isLiked;
@@ -89,7 +103,7 @@ class PostModel {
   List<Map<String, String>> _featuresToJson() {
     List<Map<String, String>> featuresAsJson = [];
 
-    for (PostFeature feature in features) {
+    for (PostFeature feature in _features) {
       featuresAsJson.add(<String, String>{feature.type: feature.content});
     }
 

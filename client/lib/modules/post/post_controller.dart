@@ -1,22 +1,21 @@
 import '../../core/types/controller.dart';
 import 'features/post_feature.dart';
-import 'post_service.dart';
+import 'post_service_interface.dart';
 
 class PostController with Controller {
-  final PostService _service;
+  final IPostService _service;
 
   PostController(this._service);
 
-  String get username => _service.model.username;
-  String get profilePic => _service.model.profilePic;
-  String get postedIn => _service.model.postedIn;
-  DateTime get dateTime => _service.model.dateTime;
-  int get commentCount => _service.model.commentCount;
-  int get likeCount => _service.model.likeCount;
-  bool get isLiked => _service.model.isLiked;
-  bool get isSaved => _service.model.isSaved;
-
-  List<PostFeature> get features => _service.model.features;
+  String get username => _service.username;
+  String get profilePic => _service.profilePic;
+  String get postedIn => _service.postedIn;
+  DateTime get dateTime => _service.dateTime;
+  int get commentCount => _service.commentCount;
+  int get likeCount => _service.likeCount;
+  bool get isLiked => _service.isLiked;
+  bool get isSaved => _service.isSaved;
+  List<PostFeature> get features => _service.features;
 
   Future<void> like() async {
     await _service.like();

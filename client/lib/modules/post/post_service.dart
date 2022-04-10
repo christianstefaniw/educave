@@ -1,33 +1,65 @@
-import 'package:client/modules/post/post_repository.dart';
-
 import '../../data/providers/api_provider.dart';
+import 'features/post_feature.dart';
 import 'post_model.dart';
+import 'post_repository.dart';
 import 'post_repository_interface.dart';
+import 'post_service_interface.dart';
 
-class PostService {
-  final PostModel model;
+class PostService implements IPostService {
+  final PostModel _model;
   final IPostRepository _repository;
 
-  PostService(this.model)
-      : _repository = PostRepository(client: ApiProvider(), id: model.id);
+  PostService(this._model)
+      : _repository = PostRepository(client: ApiProvider(), id: _model.id);
 
+  @override
+  String get username => _model.username;
+
+  @override
+  String get profilePic => _model.profilePic;
+
+  @override
+  String get postedIn => _model.postedIn;
+
+  @override
+  DateTime get dateTime => _model.dateTime;
+
+  @override
+  int get commentCount => _model.commentCount;
+
+  @override
+  int get likeCount => _model.likeCount;
+
+  @override
+  bool get isLiked => _model.isLiked;
+
+  @override
+  bool get isSaved => _model.isSaved;
+
+  @override
+  List<PostFeature> get features => _model.features;
+
+  @override
   Future<void> like() async {
     await _repository.like();
-    model.like();
+    _model.like();
   }
 
+  @override
   Future<void> unlike() async {
     await _repository.unlike();
-    model.unlike();
+    _model.unlike();
   }
 
+  @override
   Future<void> save() async {
     await _repository.save();
-    model.save();
+    _model.save();
   }
 
+  @override
   Future<void> unsave() async {
     await _repository.unsave();
-    model.unsave();
+    _model.unsave();
   }
 }
