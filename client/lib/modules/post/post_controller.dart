@@ -33,7 +33,7 @@ class PostController with Controller {
   }
 
   Future<void> unsave() async {
-    await _service.like();
+    await _service.unsave();
     notifyListeners();
   }
 }

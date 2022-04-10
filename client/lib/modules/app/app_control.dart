@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../calendar/calendar_page.dart';
-import '../groups/groups_page.dart';
+import '../groups/groups_control.dart';
 import '../home/home_screen.dart';
 import '../profile/profile_page.dart';
 import 'app_bars/app_bars.dart';
@@ -34,7 +34,7 @@ class _AppControlState extends State<AppControl> {
         controller: _myPage,
         children: const <Widget>[
           Home(),
-          Groups(),
+          GroupsControl(),
           Calendar(),
           Profile(),
         ],

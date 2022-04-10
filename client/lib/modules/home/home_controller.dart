@@ -1,21 +1,24 @@
 import '../../core/types/controller.dart';
 import '../post/post_model.dart';
+import '../posts/posts_service_interface.dart';
+import '../stories/stories_service_interface.dart';
 import '../stories/story_model.dart';
-import 'home_service_interface.dart';
 
 class HomeController with Controller {
-  final IHomeService _service;
+  final IPostsService _postsService;
+  final IStoriesService _storiesService;
 
-  HomeController(this._service);
+  HomeController(this._postsService, this._storiesService);
 
-  List<PostModel>? get posts => _service.posts;
-  List<StoryModel>? get stories => _service.stories;
+  List<PostModel>? get posts => _postsService.posts;
+  List<StoryModel>? get stories => _storiesService.stories;
 
   Future<void> loadPostsAndStories() async {
-    await _service.loadPostsAndStories();
+    await _postsService.loadPosts();
+    await _storiesService.loadStories();
     notifyListeners();
   }
 
   bool get postsAndStoriesLoaded =>
-      _service.posts != null && _service.stories != null;
+      _postsService.posts != null && _storiesService.stories != null;
 }

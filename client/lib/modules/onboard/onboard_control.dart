@@ -3,14 +3,13 @@ import 'package:provider/provider.dart';
 
 import '../../data/providers/api_provider.dart';
 import '../app/app_control.dart';
-import '../auth/login/login_controller.dart';
-import '../auth/login/login_repository.dart';
-import '../auth/login/login_screen.dart';
-import '../auth/login/login_service.dart';
 import '../home/home_controller.dart';
-import '../home/home_service.dart';
 import '../posts/posts_repository.dart';
+import '../posts/posts_service.dart';
+import '../posts/strategies/from_recent.dart' as fetch_posts;
 import '../stories/stories_repository.dart';
+import '../stories/stories_service.dart';
+import '../stories/strategies/from_recent.dart' as fetch_stories;
 
 class OnBoardControl extends StatelessWidget {
   const OnBoardControl({Key? key}) : super(key: key);
@@ -28,9 +27,17 @@ class OnBoardControl extends StatelessWidget {
       providers: [
         ChangeNotifierProvider(
           create: (_) => HomeController(
-            HomeService(
-              PostsRepository(client: ApiProvider()),
-              StoriesRepository(client: ApiProvider()),
+            PostsService(
+              PostsRepository(
+                ApiProvider(),
+                fetchStrategy: fetch_posts.FromRecent(),
+              ),
+            ),
+            StoriesService(
+              StoriesRepository(
+                ApiProvider(),
+                fetchStrategy: fetch_stories.FromRecent(),
+              ),
             ),
           ),
         ),
