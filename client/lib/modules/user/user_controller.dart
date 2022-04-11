@@ -1,6 +1,5 @@
 import '../../core/types/controller.dart';
 import 'account_model.dart';
-import 'user_service.dart';
 import 'user_service_interface.dart';
 
 class UserController with Controller {

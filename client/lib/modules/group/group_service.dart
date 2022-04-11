@@ -5,14 +5,12 @@ import 'group_service_interface.dart';
 class GroupService implements IGroupService {
   final IGroupRepository _repository;
   final GroupModel _model;
-  final String _userId;
 
-  GroupService(this._model, this._repository, {required String userId})
-      : _userId = userId;
+  GroupService(this._model, this._repository);
 
   @override
   Future<void> join() async {
-    await _repository.join(_userId);
+    await _repository.join();
     _model.join();
   }
 }

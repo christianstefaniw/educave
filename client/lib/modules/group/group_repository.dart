@@ -8,7 +8,7 @@ class GroupRepository implements IGroupRepository {
   GroupRepository(this._client, {required String groupId}) : _groupId = groupId;
 
   @override
-  Future<void> join(String userId) async {
+  Future<void> join() async {
     // await _client.get('');
   }
 }

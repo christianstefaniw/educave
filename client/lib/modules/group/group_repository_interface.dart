@@ -1,3 +1,3 @@
 abstract class IGroupRepository {
-  Future<void> join(String userId);
+  Future<void> join();
 }
