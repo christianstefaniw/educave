@@ -8,9 +8,7 @@ class OnBoardControl extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     /*return ChangeNotifierProvider(
-      create: (_) => LoginController(
-        LoginService(LoginRepository(client: ApiProvider())),
-      ),
+      create: (_) => LoginController(),
       child: const Login(),
     );
     */

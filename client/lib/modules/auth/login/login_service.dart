@@ -1,15 +1,15 @@
 import '../../../core/helpers/errors_are_empty.dart';
 import '../../../core/validators/validators.dart';
+import '../../../data/providers/api_provider.dart';
 import '../../user/account_model.dart';
+import 'login_repository.dart';
 import 'login_repository_interface.dart';
 import 'login_service_interface.dart';
 
 class LoginService implements ILoginService {
-  final ILoginRepository _repository;
+  final ILoginRepository _repository = LoginRepository(ApiProvider());
 
   Map<String, String?> _validationErrors = <String, String?>{};
-
-  LoginService(this._repository);
 
   @override
   Map<String, String?> get validationErrors => _validationErrors;
