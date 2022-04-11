@@ -21,6 +21,7 @@ class HomeController with Controller {
   List<StoryModel>? get stories => _storiesService.stories;
 
   Future<void> loadPostsAndStories() async {
+    if (postsAndStoriesLoaded) return;
     await _postsService.loadPosts();
     await _storiesService.loadStories();
     notifyListeners();
