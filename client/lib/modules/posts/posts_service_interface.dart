@@ -5,4 +5,6 @@ abstract class IPostsService {
   List<PostModel>? get posts;
 
   Future<void> loadPosts();
+
+  void setFetchPostsStrategy(FetchPostsStrategy strategy);
 }

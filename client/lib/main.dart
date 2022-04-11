@@ -3,7 +3,6 @@ import 'package:provider/provider.dart';
 
 import 'core/theme/theme.dart';
 import 'modules/user/user_controller.dart';
-import 'modules/user/user_service.dart';
 import 'routes/routes.dart';
 
 void main() {
@@ -18,9 +17,7 @@ class Educave extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider<UserController>(
-          create: (_) => UserController(
-            UserService(),
-          ),
+          create: (_) => UserController(),
         )
       ],
       child: MaterialApp(

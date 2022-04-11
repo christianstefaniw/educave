@@ -5,13 +5,17 @@ import 'strategies/fetch_groups_strategy.dart';
 
 class GroupsRepository implements IGroupsRepository {
   final IApiProvider _client;
-  final FetchGroupsStrategy _fetchStrategy;
+  late FetchGroupsStrategy _fetchStrategy;
 
-  GroupsRepository(this._client, {required FetchGroupsStrategy fetchStrategy})
-      : _fetchStrategy = fetchStrategy;
+  GroupsRepository(this._client);
 
   @override
   Future<List<GroupModel>> groups() async {
     return _fetchStrategy.execute(_client);
+  }
+
+  @override
+  void setFetchGroupsStrategy(FetchGroupsStrategy strategy) {
+    _fetchStrategy = strategy;
   }
 }

@@ -5,13 +5,17 @@ import 'strategies/fetch_stories_strategy.dart';
 
 class StoriesRepository implements IStoriesRepository {
   final IApiProvider _client;
-  final FetchStoriesStrategy _fetchStoriesStrategy;
+  late FetchStoriesStrategy _fetchStrategy;
 
-  StoriesRepository(this._client, {required FetchStoriesStrategy fetchStrategy})
-      : _fetchStoriesStrategy = fetchStrategy;
+  StoriesRepository(this._client);
 
   @override
   Future<List<StoryModel>> stories() async {
-    return await _fetchStoriesStrategy.execute(_client);
+    return await _fetchStrategy.execute(_client);
+  }
+
+  @override
+  void setFetchStoriesStrategy(FetchStoriesStrategy strategy) {
+    _fetchStrategy = strategy;
   }
 }

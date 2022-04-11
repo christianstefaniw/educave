@@ -5,13 +5,17 @@ import 'strategies/fetch_posts_strategy.dart';
 
 class PostsRepository implements IPostsRepository {
   final IApiProvider _client;
-  final FetchPostsStrategy _fetchPostsStrategy;
+  late FetchPostsStrategy _fetchStrategy;
 
-  PostsRepository(this._client, {required FetchPostsStrategy fetchStrategy})
-      : _fetchPostsStrategy = fetchStrategy;
+  PostsRepository(this._client);
 
   @override
   Future<List<PostModel>> posts() async {
-    return await _fetchPostsStrategy.execute(_client);
+    return await _fetchStrategy.execute(_client);
+  }
+
+  @override
+  void setFetchPostsStrategy(FetchPostsStrategy strategy) {
+    _fetchStrategy = strategy;
   }
 }

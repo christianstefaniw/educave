@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import '../calendar/calendar_page.dart';
 import '../groups/groups_control.dart';
+import '../home/home_controller.dart';
 import '../home/home_screen.dart';
 import '../profile/profile_page.dart';
 import 'app_bars/app_bars.dart';
@@ -32,11 +34,14 @@ class _AppControlState extends State<AppControl> {
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       body: PageView(
         controller: _myPage,
-        children: const <Widget>[
-          Home(),
-          GroupsControl(),
-          Calendar(),
-          Profile(),
+        children: <Widget>[
+          ChangeNotifierProvider(
+            create: (_) => HomeController(),
+            child: const Home(),
+          ),
+          const GroupsControl(),
+          const Calendar(),
+          const Profile(),
         ],
         physics: const NeverScrollableScrollPhysics(),
       ),
