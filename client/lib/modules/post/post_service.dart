@@ -8,6 +8,7 @@ class PostService implements IPostService {
   final IPostRepository _repository;
 
   PostService(this._model, this._repository);
+
   @override
   String get username => _model.username;
 

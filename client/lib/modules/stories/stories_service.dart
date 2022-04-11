@@ -6,7 +6,9 @@ import 'story_model.dart';
 import 'strategies/fetch_stories_strategy.dart';
 
 class StoriesService implements IStoriesService {
-  final IStoriesRepository _repository = StoriesRepository(ApiProvider());
+  final IStoriesRepository _repository;
+
+  StoriesService(this._repository);
 
   List<StoryModel>? _stories;
 

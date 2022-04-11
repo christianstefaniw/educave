@@ -28,7 +28,7 @@ class Posts extends StatelessWidget {
           create: (context) => PostController(
             PostService(
               _posts[index],
-              PostRepository(client: ApiProvider(), id: _posts[index].id),
+              PostRepository(ApiProvider(), postId: _posts[index].id),
             ),
           ),
           child: Column(

@@ -1,13 +1,13 @@
-import '../../data/providers/api_provider.dart';
 import '../post/post_model.dart';
-import 'posts_repository.dart';
 import 'posts_repository_interface.dart';
 import 'posts_service_interface.dart';
 import 'strategies/fetch_posts_strategy.dart';
 
 class PostsService implements IPostsService {
-  final IPostsRepository _repository = PostsRepository(ApiProvider());
+  final IPostsRepository _repository;
   List<PostModel>? _posts;
+
+  PostsService(this._repository);
 
   @override
   Future<void> loadPosts() async {

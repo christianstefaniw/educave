@@ -1,10 +1,11 @@
 import '../../../core/types/controller.dart';
 import '../../user/account_model.dart';
-import 'login_service.dart';
 import 'login_service_interface.dart';
 
 class LoginController with Controller {
-  final ILoginService _service = LoginService();
+  final ILoginService _service;
+
+  LoginController(this._service);
 
   Map<String, String?> get validationErrors => _service.validationErrors;
 

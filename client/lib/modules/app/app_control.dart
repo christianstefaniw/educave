@@ -1,11 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../../data/providers/api_provider.dart';
 import '../calendar/calendar_page.dart';
 import '../groups/groups_control.dart';
 import '../home/home_controller.dart';
 import '../home/home_screen.dart';
+import '../posts/posts_repository.dart';
+import '../posts/posts_service.dart';
 import '../profile/profile_page.dart';
+import '../stories/stories_repository.dart';
+import '../stories/stories_service.dart';
 import 'app_bars/app_bars.dart';
 
 class AppControl extends StatefulWidget {
@@ -36,7 +41,10 @@ class _AppControlState extends State<AppControl> {
         controller: _myPage,
         children: <Widget>[
           ChangeNotifierProvider(
-            create: (_) => HomeController(),
+            create: (_) => HomeController(
+              PostsService(PostsRepository(ApiProvider())),
+              StoriesService(StoriesRepository(ApiProvider())),
+            ),
             child: const Home(),
           ),
           const GroupsControl(),

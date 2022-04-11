@@ -2,15 +2,13 @@ import '../../data/providers/api_provider_interface.dart';
 import 'group_repository_interface.dart';
 
 class GroupRepository implements IGroupRepository {
-  final String _id;
+  final String _groupId;
   final IApiProvider _client;
 
-  GroupRepository({required String id, required IApiProvider client})
-      : _id = id,
-        _client = client;
+  GroupRepository(this._client, {required String groupId}) : _groupId = groupId;
 
   @override
-  Future<void> joinGroup() async {
+  Future<void> join(String userId) async {
     // await _client.get('');
   }
 }

@@ -1,3 +1,3 @@
 abstract class IGroupService {
-  Future<void> joinGroup();
+  Future<void> join();
 }

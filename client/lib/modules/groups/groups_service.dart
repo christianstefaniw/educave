@@ -6,8 +6,10 @@ import 'groups_service_interface.dart';
 import 'strategies/fetch_groups_strategy.dart';
 
 class GroupsService implements IGroupsService {
-  final IGroupsRepository _repository = GroupsRepository(ApiProvider());
+  final IGroupsRepository _repository;
   List<GroupModel>? _groups;
+
+  GroupsService(this._repository);
 
   @override
   Future<void> loadGroups() async {
