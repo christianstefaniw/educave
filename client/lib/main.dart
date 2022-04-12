@@ -3,7 +3,7 @@ import 'package:provider/provider.dart';
 
 import 'core/theme/theme.dart';
 import 'data/providers/api_provider.dart';
-import 'modules/user/user_controller.dart';
+import 'modules/user/user_vm.dart';
 import 'modules/user/user_repository.dart';
 import 'modules/user/user_service.dart';
 import 'routes/routes.dart';
@@ -19,8 +19,8 @@ class Educave extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider<UserController>(
-          create: (_) => UserController(
+        ChangeNotifierProvider<UserViewModel>(
+          create: (_) => UserViewModel(
             UserService(UserRepository(ApiProvider())),
           ),
         )

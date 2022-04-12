@@ -7,7 +7,7 @@ class MyGroups implements FetchGroupsStrategy {
   Future<List<GroupModel>> execute(IApiProvider client) async {
     print('from my groups');
     return await Future.delayed(
-      const Duration(seconds: 2),
+      const Duration(seconds: 1),
       () => [
         GroupModel(
           id: '1',

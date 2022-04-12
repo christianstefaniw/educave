@@ -1,11 +1,11 @@
-import '../../core/types/controller.dart';
+import '../../core/types/view_model.dart';
 import 'features/post_feature.dart';
 import 'post_service_interface.dart';
 
-class PostController with Controller {
+class PostViewModel with ViewModel {
   final IPostService _service;
 
-  PostController(this._service);
+  PostViewModel(this._service);
 
   String get username => _service.username;
   String get profilePic => _service.profilePic;

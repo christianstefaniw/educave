@@ -5,7 +5,7 @@ import '../../core/helpers/date_time_format.dart';
 import '../../core/theme/theme.dart';
 import 'features/feature_widget_factory.dart';
 import 'features/post_feature.dart';
-import 'post_controller.dart';
+import 'post_vm.dart';
 
 class Post extends StatefulWidget {
   const Post({Key? key}) : super(key: key);
@@ -17,7 +17,7 @@ class Post extends StatefulWidget {
 class _PostState extends State<Post> {
   @override
   Widget build(BuildContext context) {
-    final controller = Provider.of<PostController>(context);
+    final viewModel = Provider.of<PostViewModel>(context);
 
     return Padding(
       padding: const EdgeInsets.only(left: 17.0, right: 17.0, top: 8.0),
@@ -27,16 +27,16 @@ class _PostState extends State<Post> {
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               CircleAvatar(
-                backgroundImage: NetworkImage(controller.profilePic),
+                backgroundImage: NetworkImage(viewModel.profilePic),
               ),
               Container(
                 margin: const EdgeInsets.only(left: 15),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(controller.username),
+                    Text(viewModel.username),
                     Text(
-                      controller.postedIn,
+                      viewModel.postedIn,
                       style: const TextStyle(color: AppColors.muted),
                     )
                   ],
@@ -56,16 +56,14 @@ class _PostState extends State<Post> {
           Container(
             margin: const EdgeInsets.symmetric(vertical: 5),
             child: Column(
-                children: controller.features.map((PostFeature feature) {
+                children: viewModel.features.map((PostFeature feature) {
               return FeatureWidgetFactory(feature);
             }).toList()),
           ),
           SizedBox(
             width: double.infinity,
             child: Text(
-              DateTimeFormat.monthDayYear
-                  .format(controller.dateTime)
-                  .toString(),
+              DateTimeFormat.monthDayYear.format(viewModel.dateTime).toString(),
               style: const TextStyle(color: AppColors.muted),
             ),
           ),
@@ -79,12 +77,11 @@ class _PostState extends State<Post> {
                     IconButton(
                       constraints: const BoxConstraints(),
                       padding: EdgeInsets.zero,
-                      onPressed: controller.isLiked
-                          ? controller.unlike
-                          : controller.like,
+                      onPressed:
+                          viewModel.isLiked ? viewModel.unlike : viewModel.like,
                       splashRadius: 1,
                       iconSize: 23,
-                      icon: controller.isLiked
+                      icon: viewModel.isLiked
                           ? const Icon(
                               Icons.favorite,
                               color: Colors.red,
@@ -94,7 +91,7 @@ class _PostState extends State<Post> {
                     Container(
                       margin: const EdgeInsets.only(left: 11),
                       child: Text(
-                        controller.likeCount.toString(),
+                        viewModel.likeCount.toString(),
                       ),
                     ),
                   ],
@@ -112,7 +109,7 @@ class _PostState extends State<Post> {
                     Container(
                       margin: const EdgeInsets.only(left: 11),
                       child: Text(
-                        controller.commentCount.toString(),
+                        viewModel.commentCount.toString(),
                       ),
                     ),
                   ],
@@ -133,11 +130,11 @@ class _PostState extends State<Post> {
                   constraints: const BoxConstraints(),
                   padding: EdgeInsets.zero,
                   onPressed:
-                      controller.isSaved ? controller.unsave : controller.save,
+                      viewModel.isSaved ? viewModel.unsave : viewModel.save,
                   splashRadius: 1,
                   iconSize: 25,
                   icon: Icon(
-                    controller.isSaved
+                    viewModel.isSaved
                         ? Icons.bookmark
                         : Icons.bookmark_outline_outlined,
                   ),

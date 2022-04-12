@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../data/providers/api_provider.dart';
-import '../post/post_controller.dart';
+import '../post/post_vm.dart';
 import '../post/post_model.dart';
 import '../post/post_repository.dart';
 import '../post/post_service.dart';
@@ -25,7 +25,7 @@ class Posts extends StatelessWidget {
       itemCount: _posts.length,
       itemBuilder: (context, index) {
         return ChangeNotifierProvider(
-          create: (context) => PostController(
+          create: (context) => PostViewModel(
             PostService(
               _posts[index],
               PostRepository(ApiProvider(), postId: _posts[index].id),

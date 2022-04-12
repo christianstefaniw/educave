@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../posts/posts_widget.dart';
-import 'home_controller.dart';
+import 'home_vm.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -12,29 +12,27 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
-  late HomeController _controller;
-
   @override
   bool get wantKeepAlive => true;
 
   @override
   void initState() {
     super.initState();
-    _controller = Provider.of<HomeController>(context);
-    _controller.loadPostsAndStories();
+    Provider.of<HomeViewModel>(context, listen: false).loadPostsAndStories();
   }
 
   @override
   Widget build(BuildContext context) {
     super.build(context);
 
+    final viewModel = Provider.of<HomeViewModel>(context);
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 7.0),
       child: SingleChildScrollView(
-        child: _controller.postsAndStoriesLoaded
+        child: viewModel.postsAndStoriesLoaded
             ? Posts(
-                _controller.posts!,
-                stories: _controller.stories!,
+                viewModel.posts!,
+                stories: viewModel.stories!,
               )
             : const Text('loading'),
       ),

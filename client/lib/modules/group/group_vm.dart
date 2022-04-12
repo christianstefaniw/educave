@@ -1,10 +1,10 @@
-import '../../core/types/controller.dart';
+import '../../core/types/view_model.dart';
 import 'group_service_interface.dart';
 
-class GroupController with Controller {
+class GroupViewModel with ViewModel {
   final IGroupService _service;
 
-  GroupController(this._service);
+  GroupViewModel(this._service);
 
   Future<void> join() async {
     await _service.join();
