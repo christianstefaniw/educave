@@ -12,23 +12,29 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
+  late HomeController _controller;
+
   @override
   bool get wantKeepAlive => true;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = Provider.of<HomeController>(context);
+    _controller.loadPostsAndStories();
+  }
 
   @override
   Widget build(BuildContext context) {
     super.build(context);
 
-    final controller = Provider.of<HomeController>(context);
-    controller.loadPostsAndStories();
-
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 7.0),
       child: SingleChildScrollView(
-        child: controller.postsAndStoriesLoaded
+        child: _controller.postsAndStoriesLoaded
             ? Posts(
-                controller.posts!,
-                stories: controller.stories!,
+                _controller.posts!,
+                stories: _controller.stories!,
               )
             : const Text('loading'),
       ),
