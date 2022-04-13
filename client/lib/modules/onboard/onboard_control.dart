@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../widgets/safearea.dart';
 import '../app/app_control.dart';
 
 class OnBoardControl extends StatelessWidget {
@@ -12,6 +13,8 @@ class OnBoardControl extends StatelessWidget {
       child: const Login(),
     );
     */
-    return const AppControl();
+    return const MySafeArea(
+      child: AppControl(),
+    );
   }
 }

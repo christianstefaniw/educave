@@ -8,7 +8,8 @@ import '../home/home_vm.dart';
 import '../home/home_screen.dart';
 import '../posts/posts_repository.dart';
 import '../posts/posts_service.dart';
-import '../profile/profile_page.dart';
+import '../profile/profile_screen.dart';
+import '../profile/profile_vm.dart';
 import '../stories/stories_repository.dart';
 import '../stories/stories_service.dart';
 import 'app_bars/app_bars.dart';
@@ -35,7 +36,7 @@ class _AppControlState extends State<AppControl> {
     if (_myPage.hasClients) page = _myPage.page!.toInt();
 
     return DefaultTabController(
-      length: 2,
+      length: 5,
       child: Scaffold(
         appBar: appBars[page],
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
@@ -51,7 +52,13 @@ class _AppControlState extends State<AppControl> {
             ),
             const GroupsControl(),
             const Calendar(),
-            const Profile(),
+            ChangeNotifierProvider(
+                create: (_) => ProfileViewModel(
+                      PostsService(
+                        PostsRepository(ApiProvider()),
+                      ),
+                    ),
+                child: const Profile()),
           ],
           physics: const NeverScrollableScrollPhysics(),
         ),

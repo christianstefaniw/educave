@@ -5,7 +5,7 @@ import '../../../data/providers/api_provider.dart';
 import '../../group/group_repository.dart';
 import '../../group/group_service.dart';
 import '../../group/group_vm.dart';
-import '../../group/group_widget.dart';
+import '../../group/group_preview_widget.dart';
 import 'my_groups_vm.dart';
 
 class MyGroups extends StatefulWidget {
@@ -45,7 +45,7 @@ class _MyGroupsState extends State<MyGroups>
                           groupId: viewModel.groups![index].id),
                     ),
                   ),
-                  child: const Group(),
+                  child: const GroupPreview(),
                 );
               }),
             )

@@ -7,4 +7,5 @@ class AppRouteNames {
   static const createPost = '/createPost';
   static const calendar = '/calendar';
   static const profile = '/profile';
+  static const group = '/group';
 }
