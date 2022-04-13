@@ -15,6 +15,12 @@ class GroupService implements IGroupService {
   }
 
   @override
+  Future<void> unjoin() async {
+    await _repository.unjoin();
+    _model.unjoin();
+  }
+
+  @override
   String get groupPic => _model.groupPic;
 
   @override
@@ -28,4 +34,7 @@ class GroupService implements IGroupService {
 
   @override
   int get numPosts => _model.numPosts;
+
+  @override
+  bool get joined => _model.joined;
 }

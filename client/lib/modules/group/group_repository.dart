@@ -11,4 +11,9 @@ class GroupRepository implements IGroupRepository {
   Future<void> join() async {
     // await _client.get('');
   }
+
+  @override
+  Future<void> unjoin() async {
+    // await _client.get('');
+  }
 }

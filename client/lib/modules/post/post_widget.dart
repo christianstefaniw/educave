@@ -89,8 +89,9 @@ class _PostState extends State<Post> {
                             )
                           : const Icon(Icons.favorite_outline),
                     ),
-                    Container(
-                      margin: const EdgeInsets.only(left: 11),
+                    const SizedBox(width: 11),
+                    SizedBox(
+                      width: 27,
                       child: Text(
                         viewModel.likeCount.toString(),
                       ),
@@ -107,8 +108,9 @@ class _PostState extends State<Post> {
                       splashRadius: 1,
                       icon: const Icon(Icons.chat_bubble_outline),
                     ),
-                    Container(
-                      margin: const EdgeInsets.only(left: 11),
+                    const SizedBox(width: 11),
+                    SizedBox(
+                      width: 27,
                       child: Text(
                         viewModel.commentCount.toString(),
                       ),

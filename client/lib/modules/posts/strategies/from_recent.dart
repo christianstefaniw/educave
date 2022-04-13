@@ -23,10 +23,10 @@ class FromRecent implements FetchPostsStrategy {
           ],
           postedIn: 'Coding Club',
           dateTime: DateTime.now(),
-          commentCount: 20,
+          commentCount: 322,
           isSaved: false,
           isLiked: false,
-          likeCount: 83,
+          likeCount: 432,
         ),
         PostModel(
           id: '3',

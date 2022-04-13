@@ -11,9 +11,15 @@ class GroupViewModel with ViewModel {
   String get summary => _service.summary;
   int get numMembers => _service.numMembers;
   int get numPosts => _service.numPosts;
+  bool get joined => _service.joined;
 
   Future<void> join() async {
     await _service.join();
+    notifyListeners();
+  }
+
+  Future<void> unjoin() async {
+    await _service.unjoin();
     notifyListeners();
   }
 }

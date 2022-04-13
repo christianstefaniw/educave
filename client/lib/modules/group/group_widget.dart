@@ -56,13 +56,22 @@ class Group extends StatelessWidget {
                         IconButton(
                           constraints: const BoxConstraints(),
                           padding: EdgeInsets.zero,
-                          onPressed: () {},
+                          onPressed: vm.joined ? vm.unjoin : vm.join,
                           iconSize: 22,
                           splashRadius: 1,
-                          icon: const Icon(Icons.person_outline),
+                          icon: vm.joined
+                              ? const Icon(
+                                  Icons.person,
+                                  color: AppColors.success,
+                                )
+                              : const Icon(Icons.person_outline),
+                        ),
+                        const SizedBox(
+                          width: 9,
                         ),
                         Container(
-                          margin: const EdgeInsets.only(left: 9, top: 2),
+                          padding: const EdgeInsets.only(top: 1),
+                          width: 27,
                           child: Text(
                             vm.numMembers.toString(),
                           ),
@@ -82,10 +91,11 @@ class Group extends StatelessWidget {
                           splashRadius: 1,
                           icon: const Icon(Icons.chat_bubble_outline),
                         ),
-                        Container(
-                          margin: const EdgeInsets.only(left: 9),
+                        const SizedBox(width: 11),
+                        SizedBox(
+                          width: 27,
                           child: Text(
-                            vm.numMembers.toString(),
+                            vm.numPosts.toString(),
                           ),
                         ),
                       ],

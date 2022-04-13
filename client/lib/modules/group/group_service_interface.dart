@@ -4,6 +4,8 @@ abstract class IGroupService {
   String get summary;
   int get numMembers;
   int get numPosts;
+  bool get joined;
 
   Future<void> join();
+  Future<void> unjoin();
 }

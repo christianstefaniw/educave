@@ -16,8 +16,9 @@ class MyGroups implements FetchGroupsStrategy {
               'The official Educave room for Humberside Collegiate Institute',
           groupPic:
               'https://schoolweb.tdsb.on.ca/portals/humbersideci/images/crest03.gif',
-          numMembers: 43,
-          numPosts: 82,
+          joined: false,
+          numMembers: 432,
+          numPosts: 153,
         ),
         GroupModel(
           id: '1',
@@ -26,6 +27,7 @@ class MyGroups implements FetchGroupsStrategy {
               'The official Educave room for Humberside Collegiate Institute',
           groupPic:
               'https://i.pinimg.com/originals/0f/8b/28/0f8b2870896edcde8f6149fe2733faaf.jpg',
+          joined: true,
           numMembers: 43,
           numPosts: 82,
         ),
