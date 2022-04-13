@@ -23,6 +23,7 @@ class StoryPreview extends StatelessWidget {
         Container(
           padding: const EdgeInsets.all(5),
           child: CircleAvatar(
+            backgroundColor: Colors.white,
             radius: 18,
             backgroundImage: NetworkImage(_story.profilePic),
           ),

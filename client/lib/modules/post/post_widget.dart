@@ -27,6 +27,7 @@ class _PostState extends State<Post> {
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               CircleAvatar(
+                backgroundColor: Colors.white,
                 backgroundImage: NetworkImage(viewModel.profilePic),
               ),
               Container(

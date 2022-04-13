@@ -13,4 +13,19 @@ class GroupService implements IGroupService {
     await _repository.join();
     _model.join();
   }
+
+  @override
+  String get groupPic => _model.groupPic;
+
+  @override
+  String get name => _model.name;
+
+  @override
+  String get summary => _model.summary;
+
+  @override
+  int get numMembers => _model.numMembers;
+
+  @override
+  int get numPosts => _model.numPosts;
 }

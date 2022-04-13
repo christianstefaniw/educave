@@ -10,4 +10,5 @@ abstract class AppColors {
   static const dark = Color(0xff198754);
   static const light = Color(0xffE8E8E8);
   static const muted = Color(0xff868686);
+  static const heavyMuted = Color(0xff3F3F3F);
 }

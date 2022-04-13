@@ -1,7 +1,7 @@
-import 'package:client/core/theme/text.dart';
 import 'package:flutter/material.dart';
 
 import 'colors.dart';
+import 'text.dart';
 
 ThemeData themeData = ThemeData(
   colorScheme: const ColorScheme.light().copyWith(
@@ -12,6 +12,7 @@ ThemeData themeData = ThemeData(
   textTheme: TextTheme(
     headline1: const TextStyle(fontSize: 42).merge(AppTextTheme.headingStyle),
     headline3: const TextStyle(fontSize: 34).merge(AppTextTheme.headingStyle),
+    headline5: const TextStyle(fontSize: 17),
   ),
   fontFamily: 'Poppins',
 );
