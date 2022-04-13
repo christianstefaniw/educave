@@ -15,7 +15,7 @@ class GroupPreview extends StatelessWidget {
     return GestureDetector(
       onTap: () => Navigator.of(context).push(
         MaterialPageRoute(
-          builder: (context) => ChangeNotifierProvider<GroupViewModel>.value(
+          builder: (_) => ChangeNotifierProvider<GroupViewModel>.value(
             value: Provider.of<GroupViewModel>(context),
             child: const Group(),
           ),
@@ -59,10 +59,10 @@ class GroupPreview extends StatelessWidget {
                   const SizedBox(
                     height: 15,
                   ),
-                  Row(
-                    children: [
-                      Consumer<GroupViewModel>(builder: (_, vm, __) {
-                        return Row(
+                  Consumer<GroupViewModel>(builder: (_, vm, __) {
+                    return Row(
+                      children: [
+                        Row(
                           children: [
                             IconButton(
                               constraints: const BoxConstraints(),
@@ -88,32 +88,32 @@ class GroupPreview extends StatelessWidget {
                               ),
                             ),
                           ],
-                        );
-                      }),
-                      const SizedBox(
-                        width: 45,
-                      ),
-                      Row(
-                        children: [
-                          IconButton(
-                            constraints: const BoxConstraints(),
-                            padding: EdgeInsets.zero,
-                            onPressed: () {},
-                            iconSize: 18,
-                            splashRadius: 1,
-                            icon: const Icon(Icons.chat_bubble_outline),
-                          ),
-                          const SizedBox(width: 11),
-                          SizedBox(
-                            width: 27,
-                            child: Text(
-                              vm.numPosts.toString(),
+                        ),
+                        const SizedBox(
+                          width: 45,
+                        ),
+                        Row(
+                          children: [
+                            IconButton(
+                              constraints: const BoxConstraints(),
+                              padding: EdgeInsets.zero,
+                              onPressed: () {},
+                              iconSize: 18,
+                              splashRadius: 1,
+                              icon: const Icon(Icons.chat_bubble_outline),
                             ),
-                          ),
-                        ],
-                      ),
-                    ],
-                  )
+                            const SizedBox(width: 11),
+                            SizedBox(
+                              width: 27,
+                              child: Text(
+                                vm.numPosts.toString(),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    );
+                  }),
                 ],
               ),
             ),
