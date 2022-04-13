@@ -11,12 +11,12 @@ class GroupPreview extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final vm = Provider.of<GroupViewModel>(context, listen: false);
-
+    print('built');
     return GestureDetector(
       onTap: () => Navigator.of(context).push(
         MaterialPageRoute(
           builder: (_) => ChangeNotifierProvider<GroupViewModel>.value(
-            value: Provider.of<GroupViewModel>(context),
+            value: Provider.of<GroupViewModel>(context, listen: false),
             child: const Group(),
           ),
         ),
