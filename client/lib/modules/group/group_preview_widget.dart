@@ -11,12 +11,12 @@ class GroupPreview extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final vm = Provider.of<GroupViewModel>(context, listen: false);
-    print('built');
+
     return GestureDetector(
       onTap: () => Navigator.of(context).push(
         MaterialPageRoute(
           builder: (_) => ChangeNotifierProvider<GroupViewModel>.value(
-            value: Provider.of<GroupViewModel>(context, listen: false),
+            value: vm,
             child: const Group(),
           ),
         ),
@@ -25,7 +25,7 @@ class GroupPreview extends StatelessWidget {
         margin: const EdgeInsets.symmetric(vertical: 10),
         padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 15),
         decoration: BoxDecoration(
-          border: Border.all(color: AppColors.light),
+          border: Border.all(color: AppColors.outline),
           borderRadius: const BorderRadius.all(
             Radius.circular(18),
           ),
@@ -62,45 +62,41 @@ class GroupPreview extends StatelessWidget {
                   Consumer<GroupViewModel>(builder: (_, vm, __) {
                     return Row(
                       children: [
-                        Row(
-                          children: [
-                            IconButton(
-                              constraints: const BoxConstraints(),
-                              padding: EdgeInsets.zero,
-                              onPressed: vm.joined ? vm.unjoin : vm.join,
-                              iconSize: 22,
-                              splashRadius: 1,
-                              icon: vm.joined
+                        GestureDetector(
+                          onTap: vm.joined ? vm.unjoin : vm.join,
+                          child: Row(
+                            children: [
+                              vm.joined
                                   ? const Icon(
                                       Icons.person,
+                                      size: 22,
                                       color: AppColors.success,
                                     )
-                                  : const Icon(Icons.person_outline),
-                            ),
-                            const SizedBox(
-                              width: 9,
-                            ),
-                            Container(
-                              padding: const EdgeInsets.only(top: 1),
-                              width: 27,
-                              child: Text(
-                                vm.numMembers.toString(),
+                                  : const Icon(
+                                      Icons.person_outline,
+                                      size: 22,
+                                    ),
+                              const SizedBox(
+                                width: 9,
                               ),
-                            ),
-                          ],
+                              Container(
+                                padding: const EdgeInsets.only(top: 1),
+                                width: 27,
+                                child: Text(
+                                  vm.numMembers.toString(),
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
                         const SizedBox(
                           width: 45,
                         ),
                         Row(
                           children: [
-                            IconButton(
-                              constraints: const BoxConstraints(),
-                              padding: EdgeInsets.zero,
-                              onPressed: () {},
-                              iconSize: 18,
-                              splashRadius: 1,
-                              icon: const Icon(Icons.chat_bubble_outline),
+                            const Icon(
+                              Icons.chat_bubble_outline,
+                              size: 18,
                             ),
                             const SizedBox(width: 11),
                             SizedBox(

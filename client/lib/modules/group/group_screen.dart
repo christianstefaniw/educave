@@ -10,9 +10,17 @@ class Group extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final vm = Provider.of<GroupViewModel>(context);
-    print('ok');
+
     return MySafeArea(
       child: Scaffold(
+        appBar: AppBar(
+          elevation: 0,
+          backgroundColor: Colors.transparent,
+          leading: IconButton(
+            onPressed: () => Navigator.of(context).pop(),
+            icon: const Icon(Icons.arrow_back),
+          ),
+        ),
         body: Column(
           children: [
             ElevatedButton(onPressed: vm.join, child: Text('ok')),

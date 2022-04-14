@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 import 'groups.dart';
 import 'home.dart';
 
-const List<PreferredSizeWidget> appBars = <PreferredSizeWidget>[
-  HomeAppBar(),
+List<PreferredSizeWidget> appBars = <PreferredSizeWidget>[
+  const HomeAppBar(),
   GroupsAppBar(),
-  HomeAppBar(),
-  HomeAppBar(),
+  const HomeAppBar(),
+  const HomeAppBar(),
 ];

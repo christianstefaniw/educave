@@ -39,6 +39,7 @@ class _AppControlState extends State<AppControl> {
       length: 5,
       child: Scaffold(
         appBar: appBars[page],
+        resizeToAvoidBottomInset: false,
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
         body: PageView(
           controller: _myPage,
