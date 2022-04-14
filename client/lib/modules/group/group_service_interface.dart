@@ -1,4 +1,5 @@
 abstract class IGroupService {
+  String get id;
   String get groupPic;
   String get name;
   String get summary;

@@ -2,14 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../data/providers/api_provider.dart';
+import '../account/profile_screen.dart';
 import '../calendar/calendar_page.dart';
-import '../groups/groups_control.dart';
 import '../home/home_vm.dart';
 import '../home/home_screen.dart';
 import '../posts/posts_repository.dart';
 import '../posts/posts_service.dart';
-import '../profile/profile_screen.dart';
-import '../profile/profile_vm.dart';
+import '../search/search_control.dart';
 import '../stories/stories_repository.dart';
 import '../stories/stories_service.dart';
 import 'app_bars/app_bars.dart';
@@ -51,15 +50,9 @@ class _AppControlState extends State<AppControl> {
               ),
               child: const Home(),
             ),
-            const GroupsControl(),
+            const SearchControl(),
             const Calendar(),
-            ChangeNotifierProvider(
-                create: (_) => ProfileViewModel(
-                      PostsService(
-                        PostsRepository(ApiProvider()),
-                      ),
-                    ),
-                child: const Profile()),
+            const Profile(),
           ],
           physics: const NeverScrollableScrollPhysics(),
         ),

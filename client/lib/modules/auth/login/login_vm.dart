@@ -1,5 +1,5 @@
 import '../../../core/types/view_model.dart';
-import '../../user/account_model.dart';
+import '../../account/account_model.dart';
 import 'login_service_interface.dart';
 
 class LoginViewModel with ViewModel {

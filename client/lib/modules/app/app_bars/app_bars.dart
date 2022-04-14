@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-import 'groups.dart';
+import 'search.dart';
 import 'home.dart';
 
 List<PreferredSizeWidget> appBars = <PreferredSizeWidget>[
   const HomeAppBar(),
-  GroupsAppBar(),
+  const SearchAppBar(),
   const HomeAppBar(),
   const HomeAppBar(),
 ];

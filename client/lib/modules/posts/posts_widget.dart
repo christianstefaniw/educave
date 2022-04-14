@@ -39,6 +39,10 @@ class Posts extends StatelessWidget {
               ],
               const Post(),
               const Divider(),
+              if (_posts.length == 1 && _stories != null) ...[
+                StoriesPreview(_stories!),
+                const Divider(),
+              ],
             ],
           ),
         );

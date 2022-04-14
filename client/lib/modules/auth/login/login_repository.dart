@@ -1,5 +1,5 @@
 import '../../../data/providers/api_provider_interface.dart';
-import '../../user/account_model.dart';
+import '../../account/account_model.dart';
 import 'login_repository_interface.dart';
 
 class LoginRepository implements ILoginRepository {

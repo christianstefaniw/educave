@@ -2,10 +2,22 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../widgets/safearea.dart';
+import '../posts/posts_widget.dart';
 import 'group_vm.dart';
 
-class Group extends StatelessWidget {
+class Group extends StatefulWidget {
   const Group({Key? key}) : super(key: key);
+
+  @override
+  State<Group> createState() => _GroupState();
+}
+
+class _GroupState extends State<Group> {
+  @override
+  void initState() {
+    Provider.of<GroupViewModel>(context, listen: false).loadPostsAndStories();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -23,10 +35,11 @@ class Group extends StatelessWidget {
         ),
         body: Column(
           children: [
-            ElevatedButton(onPressed: vm.join, child: Text('ok')),
-            Container(
-              child: Text(vm.name),
-            ),
+            vm.postsAndStoriesLoaded
+                ? Posts(vm.posts!, stories: vm.stories!)
+                : const Center(
+                    child: CircularProgressIndicator(),
+                  )
           ],
         ),
       ),

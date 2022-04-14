@@ -1,6 +1,6 @@
 import '../../../core/helpers/errors_are_empty.dart';
 import '../../../core/validators/validators.dart';
-import '../../user/account_model.dart';
+import '../../account/account_model.dart';
 import 'login_repository_interface.dart';
 import 'login_service_interface.dart';
 

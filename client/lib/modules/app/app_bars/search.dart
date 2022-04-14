@@ -2,17 +2,17 @@ import 'package:flutter/material.dart';
 
 import '../../../core/theme/colors.dart';
 
-class GroupsAppBar extends StatefulWidget implements PreferredSizeWidget {
-  const GroupsAppBar({Key? key}) : super(key: key);
+class SearchAppBar extends StatefulWidget implements PreferredSizeWidget {
+  const SearchAppBar({Key? key}) : super(key: key);
 
   @override
   Size get preferredSize => const Size.fromHeight(kToolbarHeight + 45);
 
   @override
-  State<GroupsAppBar> createState() => _GroupsAppBarState();
+  State<SearchAppBar> createState() => _SearchAppBarState();
 }
 
-class _GroupsAppBarState extends State<GroupsAppBar> {
+class _SearchAppBarState extends State<SearchAppBar> {
   final FocusNode textFocus = FocusNode();
   bool focused = false;
 
@@ -53,7 +53,7 @@ class _GroupsAppBarState extends State<GroupsAppBar> {
                       Icons.search,
                       size: 22,
                     ),
-              hintText: 'Search for a Group',
+              hintText: 'Search for a group/person',
               border: InputBorder.none,
               contentPadding:
                   const EdgeInsets.symmetric(horizontal: 15, vertical: 0),
@@ -76,8 +76,8 @@ class _GroupsAppBarState extends State<GroupsAppBar> {
         isScrollable: true,
         labelColor: Colors.black,
         tabs: [
-          Tab(text: 'My Groups'),
-          Tab(text: 'Top Groups'),
+          Tab(text: 'Groups'),
+          Tab(text: 'People'),
           Tab(text: 'Teams'),
           Tab(text: 'Clubs'),
           Tab(text: 'Classes'),

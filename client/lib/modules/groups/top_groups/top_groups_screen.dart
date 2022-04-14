@@ -6,6 +6,10 @@ import '../../group/group_repository.dart';
 import '../../group/group_service.dart';
 import '../../group/group_vm.dart';
 import '../../group/group_preview_widget.dart';
+import '../../posts/posts_repository.dart';
+import '../../posts/posts_service.dart';
+import '../../stories/stories_repository.dart';
+import '../../stories/stories_service.dart';
 import 'top_groups_vm.dart';
 
 class TopGroups extends StatefulWidget {
@@ -43,6 +47,16 @@ class _TopGroupsState extends State<TopGroups>
                       viewModel.groups![index],
                       GroupRepository(ApiProvider(),
                           groupId: viewModel.groups![index].id),
+                    ),
+                    PostsService(
+                      PostsRepository(
+                        ApiProvider(),
+                      ),
+                    ),
+                    StoriesService(
+                      StoriesRepository(
+                        ApiProvider(),
+                      ),
                     ),
                   ),
                   child: const GroupPreview(),

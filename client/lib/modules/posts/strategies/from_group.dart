@@ -4,11 +4,15 @@ import '../../post/post_model.dart';
 import 'fetch_posts_strategy.dart';
 
 class FromGroup extends FetchPostsStrategy {
+  final String _id;
+
+  FromGroup(this._id);
+
   @override
   Future<List<PostModel>> execute(IApiProvider client) async {
     print('from group');
     return await Future.delayed(
-      const Duration(seconds: 2),
+      const Duration(seconds: 1),
       () => [
         PostModel(
           id: '3',

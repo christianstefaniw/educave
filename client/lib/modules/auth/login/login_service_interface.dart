@@ -1,4 +1,4 @@
-import '../../user/account_model.dart';
+import '../../account/account_model.dart';
 
 abstract class ILoginService {
   Map<String, String?> get validationErrors;
