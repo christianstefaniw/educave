@@ -4,7 +4,7 @@ import '../../core/types/view_model.dart';
 import '../group/group_model.dart';
 import 'groups_service_interface.dart';
 
-class GroupsViewModel with ViewModel {
+abstract class GroupsViewModel with ViewModel {
   @protected
   final IGroupsService groupsService;
 

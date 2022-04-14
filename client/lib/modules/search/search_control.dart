@@ -10,6 +10,9 @@ import '../groups/teams/teams_screen.dart';
 import '../groups/top_groups/top_groups_screen.dart';
 import '../groups/top_groups/top_groups_vm.dart';
 import '../users/all/all_users_screen.dart';
+import '../users/all/all_users_vm.dart';
+import '../users/users_repository.dart';
+import '../users/users_service.dart';
 
 class SearchControl extends StatelessWidget {
   const SearchControl({Key? key}) : super(key: key);
@@ -26,7 +29,16 @@ class SearchControl extends StatelessWidget {
           ),
           child: const TopGroups(),
         ),
-        const AllUsers(),
+        ChangeNotifierProvider(
+          create: (_) => AllUsersViewModel(
+            UsersService(
+              UsersRepository(
+                ApiProvider(),
+              ),
+            ),
+          ),
+          child: const AllUsers(),
+        ),
         const Teams(),
         const Clubs(),
         const Classes(),
