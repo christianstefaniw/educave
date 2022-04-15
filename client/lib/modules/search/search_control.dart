@@ -41,7 +41,10 @@ class SearchControl extends StatelessWidget {
               ),
             ),
           ),
-          child: const TopPosts(),
+          child: Container(
+            margin: const EdgeInsets.only(top: 7),
+            child: const TopPosts(),
+          ),
         ),
         ChangeNotifierProvider(
           create: (_) => AllUsersViewModel(

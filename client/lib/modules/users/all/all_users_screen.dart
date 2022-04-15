@@ -6,6 +6,7 @@ import '../../user/user_preview_widget.dart';
 import '../../user/user_repository.dart';
 import '../../user/user_service.dart';
 import '../../user/user_vm.dart';
+import '../users_widget.dart';
 import 'all_users_vm.dart';
 
 class AllUsers extends StatefulWidget {
@@ -31,22 +32,7 @@ class _AllUsersState extends State<AllUsers>
 
     return Padding(
         padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 15.0),
-        child: vm.usersLoaded
-            ? ListView.builder(
-                itemCount: vm.users!.length,
-                itemBuilder: (context, index) {
-                  return ChangeNotifierProvider(
-                    create: (_) => UserViewModel(
-                      UserService(
-                        UserRepository(ApiProvider()),
-                        vm.users![index],
-                      ),
-                    ),
-                    child: const UserPreview(),
-                  );
-                },
-              )
-            : const Text('loading'));
+        child: vm.usersLoaded ? Users(vm.users!) : const Text('loading'));
   }
 
   @override

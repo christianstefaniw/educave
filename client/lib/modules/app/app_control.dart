@@ -1,16 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
-import '../../data/providers/api_provider.dart';
 import '../account/profile_screen.dart';
 import '../calendar/calendar_page.dart';
-import '../home/home_vm.dart';
 import '../home/home_screen.dart';
-import '../posts/posts_repository.dart';
-import '../posts/posts_service.dart';
 import '../search/search_control.dart';
-import '../stories/stories_repository.dart';
-import '../stories/stories_service.dart';
 import 'app_bars/app_bars.dart';
 
 class AppControl extends StatefulWidget {
@@ -42,17 +35,11 @@ class _AppControlState extends State<AppControl> {
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
         body: PageView(
           controller: _myPage,
-          children: <Widget>[
-            ChangeNotifierProvider(
-              create: (_) => HomeViewModel(
-                PostsService(PostsRepository(ApiProvider())),
-                StoriesService(StoriesRepository(ApiProvider())),
-              ),
-              child: const Home(),
-            ),
-            const SearchControl(),
-            const Calendar(),
-            const Profile(),
+          children: const <Widget>[
+            Home(),
+            SearchControl(),
+            Calendar(),
+            Profile(),
           ],
           physics: const NeverScrollableScrollPhysics(),
         ),
