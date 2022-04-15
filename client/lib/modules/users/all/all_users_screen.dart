@@ -1,11 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../../data/providers/api_provider.dart';
-import '../../user/user_preview_widget.dart';
-import '../../user/user_repository.dart';
-import '../../user/user_service.dart';
-import '../../user/user_vm.dart';
 import '../users_widget.dart';
 import 'all_users_vm.dart';
 

@@ -1,3 +1,5 @@
+import 'group_model.dart';
+
 abstract class IGroupService {
   String get id;
   String get groupPic;

@@ -10,11 +10,12 @@ class AllUsers implements FetchUsersStrategy {
       const Duration(seconds: 1),
       () => [
         UserModel(
-          username: 'Sarah Cameron',
+          username: 'Sarah Cameronnnnnnnnnnnnnnnnn',
           mutualGroups: [
             MutualGroupModel(id: '2', name: 'Coding Club'),
             MutualGroupModel(id: '3', name: 'Engineering Club')
           ],
+          isFollowing: false,
           profilePic:
               'https://e7.pngegg.com/pngimages/122/453/png-clipart-computer-icons-user-profile-avatar-female-profile-heroes-head.png',
         ),
@@ -24,6 +25,7 @@ class AllUsers implements FetchUsersStrategy {
             MutualGroupModel(id: '2', name: 'Coding Club'),
             MutualGroupModel(id: '3', name: 'Engineering Club')
           ],
+          isFollowing: false,
           profilePic:
               'https://e7.pngegg.com/pngimages/122/453/png-clipart-computer-icons-user-profile-avatar-female-profile-heroes-head.png',
         ),
@@ -33,6 +35,7 @@ class AllUsers implements FetchUsersStrategy {
             MutualGroupModel(id: '2', name: 'Coding Club'),
             MutualGroupModel(id: '3', name: 'Engineering Club')
           ],
+          isFollowing: false,
           profilePic:
               'https://e7.pngegg.com/pngimages/122/453/png-clipart-computer-icons-user-profile-avatar-female-profile-heroes-head.png',
         ),
@@ -42,6 +45,7 @@ class AllUsers implements FetchUsersStrategy {
             MutualGroupModel(id: '2', name: 'Coding Club'),
             MutualGroupModel(id: '3', name: 'Engineering Club')
           ],
+          isFollowing: false,
           profilePic:
               'https://e7.pngegg.com/pngimages/122/453/png-clipart-computer-icons-user-profile-avatar-female-profile-heroes-head.png',
         )

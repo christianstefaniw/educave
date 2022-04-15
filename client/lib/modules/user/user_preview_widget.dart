@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:collection/collection.dart';
 
-import '../../core/theme/colors.dart';
+import '../../widgets/cta_button.dart';
 import 'user_vm.dart';
 
 class UserPreview extends StatelessWidget {
@@ -12,35 +13,54 @@ class UserPreview extends StatelessWidget {
     final vm = Provider.of<UserViewModel>(context);
 
     return Container(
-      margin: const EdgeInsets.symmetric(vertical: 5),
-      padding: const EdgeInsets.all(9),
-      decoration: BoxDecoration(
-        border: Border.all(color: AppColors.outline),
-        borderRadius: const BorderRadius.all(
-          Radius.circular(14),
-        ),
-      ),
+      padding: const EdgeInsets.all(4),
       child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          CircleAvatar(
-            radius: 19,
-            backgroundImage: NetworkImage(vm.profilePic),
+          Expanded(
+            child: Row(
+              children: [
+                CircleAvatar(
+                  radius: 17,
+                  backgroundImage: NetworkImage(vm.profilePic),
+                ),
+                const SizedBox(
+                  width: 10,
+                ),
+                Flexible(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        vm.username,
+                        softWrap: false,
+                        overflow: TextOverflow.fade,
+                        style: Theme.of(context).textTheme.headline5,
+                      ),
+                      Text(
+                        vm.mutualGroups
+                            .mapIndexed((i, e) =>
+                                '${e.name}${i == vm.mutualGroups.length - 1 ? '' : ', '}')
+                            .join(),
+                        style: const TextStyle(fontSize: 11),
+                      )
+                    ],
+                  ),
+                ),
+              ],
+            ),
           ),
-          const SizedBox(
-            width: 10,
-          ),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                vm.username,
-                style: Theme.of(context).textTheme.headline5,
-              ),
-              Text(
-                vm.mutualGroups.map((e) => '${e.name}, ').join(),
-                style: const TextStyle(fontSize: 12),
-              )
-            ],
+          Container(
+            margin: const EdgeInsets.only(left: 30),
+            width: 100,
+            height: 32,
+            child: CtaButton(
+              onPressed: vm.isFollowing ? vm.unfollow : vm.follow,
+              text: vm.isFollowing ? 'unfollow' : 'follow',
+              width: double.infinity,
+              bold: false,
+              outlined: vm.isFollowing ? true : false,
+            ),
           ),
         ],
       ),

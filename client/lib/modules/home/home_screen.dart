@@ -31,22 +31,20 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
 
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 7.0),
-      child: SingleChildScrollView(
-        child: ChangeNotifierProvider(
-          create: (_) => RecentPostsViewModel(
-            PostsService(
-              PostsRepository(
-                ApiProvider(),
-              ),
-            ),
-            StoriesService(
-              StoriesRepository(
-                ApiProvider(),
-              ),
+      child: ChangeNotifierProvider(
+        create: (_) => RecentPostsViewModel(
+          PostsService(
+            PostsRepository(
+              ApiProvider(),
             ),
           ),
-          child: const RecentPosts(),
+          StoriesService(
+            StoriesRepository(
+              ApiProvider(),
+            ),
+          ),
         ),
+        child: const RecentPosts(),
       ),
     );
   }

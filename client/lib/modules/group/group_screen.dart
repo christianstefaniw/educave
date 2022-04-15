@@ -11,18 +11,8 @@ import '../stories/stories_repository.dart';
 import '../stories/stories_service.dart';
 import 'group_vm.dart';
 
-class Group extends StatefulWidget {
+class Group extends StatelessWidget {
   const Group({Key? key}) : super(key: key);
-
-  @override
-  State<Group> createState() => _GroupState();
-}
-
-class _GroupState extends State<Group> {
-  @override
-  void initState() {
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {

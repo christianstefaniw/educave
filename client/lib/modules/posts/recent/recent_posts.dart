@@ -24,9 +24,11 @@ class _RecentPostsState extends State<RecentPosts> {
     final viewModel = Provider.of<RecentPostsViewModel>(context);
 
     return viewModel.postsAndStoriesLoaded
-        ? Posts(
-            viewModel.posts!,
-            stories: viewModel.stories!,
+        ? SingleChildScrollView(
+            child: Posts(
+              viewModel.posts!,
+              stories: viewModel.stories!,
+            ),
           )
         : const Text('loading');
   }

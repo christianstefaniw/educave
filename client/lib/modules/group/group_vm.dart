@@ -1,4 +1,5 @@
 import '../../core/types/view_model.dart';
+import 'group_model.dart';
 import 'group_service_interface.dart';
 
 class GroupViewModel with ViewModel {

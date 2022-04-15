@@ -19,8 +19,17 @@ class UserService implements IUserService {
   List<MutualGroupModel> get mutualGroups => _model.mutualGroups;
 
   @override
-  Future<void> follow() async {}
+  bool get isFollowing => _model.isFollowing;
 
   @override
-  Future<void> unfollow() async {}
+  Future<void> follow() async {
+    await _repository.follow();
+    _model.follow();
+  }
+
+  @override
+  Future<void> unfollow() async {
+    await _repository.unfollow();
+    _model.unfollow();
+  }
 }

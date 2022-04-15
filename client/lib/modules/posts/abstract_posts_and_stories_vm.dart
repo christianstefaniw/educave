@@ -7,6 +7,7 @@ import 'posts_service_interface.dart';
 abstract class PostsAndStoriesViewModel with ViewModel {
   final IPostsService _postsService;
   final IStoriesService _storiesService;
+  bool _mounted = true;
 
   PostsAndStoriesViewModel(this._postsService, this._storiesService);
 
@@ -16,7 +17,13 @@ abstract class PostsAndStoriesViewModel with ViewModel {
   Future<void> loadPostsAndStories() async {
     await _postsService.loadPosts();
     await _storiesService.loadStories();
-    notifyListeners();
+    if (_mounted) notifyListeners();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _mounted = false;
   }
 
   bool get postsAndStoriesLoaded =>

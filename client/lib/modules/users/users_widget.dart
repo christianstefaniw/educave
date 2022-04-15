@@ -24,7 +24,12 @@ class Users extends StatelessWidget {
               _users[index],
             ),
           ),
-          child: const UserPreview(),
+          child: Column(
+            children: const [
+              UserPreview(),
+              Divider(),
+            ],
+          ),
         );
       },
     );
