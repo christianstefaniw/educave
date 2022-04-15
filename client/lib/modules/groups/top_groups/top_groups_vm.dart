@@ -1,5 +1,5 @@
 import '../groups_service_interface.dart';
-import '../groups_vm.dart';
+import '../abstract_groups_vm.dart';
 import '../strategies/top_groups.dart';
 
 class TopGroupsViewModel extends GroupsViewModel {

@@ -1,8 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../../data/providers/api_provider.dart';
 import '../../widgets/safearea.dart';
-import '../posts/posts_widget.dart';
+import '../posts/group/group_posts.dart';
+import '../posts/group/group_posts_vm.dart';
+import '../posts/posts_repository.dart';
+import '../posts/posts_service.dart';
+import '../stories/stories_repository.dart';
+import '../stories/stories_service.dart';
 import 'group_vm.dart';
 
 class Group extends StatefulWidget {
@@ -15,7 +21,6 @@ class Group extends StatefulWidget {
 class _GroupState extends State<Group> {
   @override
   void initState() {
-    Provider.of<GroupViewModel>(context, listen: false).loadPostsAndStories();
     super.initState();
   }
 
@@ -35,11 +40,22 @@ class _GroupState extends State<Group> {
         ),
         body: Column(
           children: [
-            vm.postsAndStoriesLoaded
-                ? Posts(vm.posts!, stories: vm.stories!)
-                : const Center(
-                    child: CircularProgressIndicator(),
-                  )
+            ChangeNotifierProvider(
+              create: (_) => GroupPostsViewModel(
+                vm.id,
+                PostsService(
+                  PostsRepository(
+                    ApiProvider(),
+                  ),
+                ),
+                StoriesService(
+                  StoriesRepository(
+                    ApiProvider(),
+                  ),
+                ),
+              ),
+              child: const GroupPosts(),
+            ),
           ],
         ),
       ),
