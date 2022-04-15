@@ -77,6 +77,7 @@ class _SearchAppBarState extends State<SearchAppBar> {
         labelColor: Colors.black,
         tabs: [
           Tab(text: 'Groups'),
+          Tab(text: 'Posts'),
           Tab(text: 'People'),
           Tab(text: 'Teams'),
           Tab(text: 'Clubs'),

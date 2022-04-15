@@ -9,6 +9,10 @@ import '../groups/groups_service.dart';
 import '../groups/teams/teams_screen.dart';
 import '../groups/top_groups/top_groups_screen.dart';
 import '../groups/top_groups/top_groups_vm.dart';
+import '../posts/posts_repository.dart';
+import '../posts/posts_service.dart';
+import '../posts/top/top_posts_screen.dart';
+import '../posts/top/top_posts_vm.dart';
 import '../users/all/all_users_screen.dart';
 import '../users/all/all_users_vm.dart';
 import '../users/users_repository.dart';
@@ -28,6 +32,16 @@ class SearchControl extends StatelessWidget {
             ),
           ),
           child: const TopGroups(),
+        ),
+        ChangeNotifierProvider(
+          create: (_) => TopPostsViewModel(
+            PostsService(
+              PostsRepository(
+                ApiProvider(),
+              ),
+            ),
+          ),
+          child: const TopPosts(),
         ),
         ChangeNotifierProvider(
           create: (_) => AllUsersViewModel(

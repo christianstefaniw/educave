@@ -25,6 +25,8 @@ class _AllUsersState extends State<AllUsers>
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
+
     final vm = Provider.of<AllUsersViewModel>(context);
 
     return Padding(

@@ -35,7 +35,7 @@ class _AppControlState extends State<AppControl> {
     if (_myPage.hasClients) page = _myPage.page!.toInt();
 
     return DefaultTabController(
-      length: 5,
+      length: 6,
       child: Scaffold(
         appBar: appBars[page],
         resizeToAvoidBottomInset: false,
