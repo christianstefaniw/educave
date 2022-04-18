@@ -3,12 +3,11 @@ import 'package:provider/provider.dart';
 
 import '../../data/providers/api_provider.dart';
 import '../../widgets/safearea.dart';
-import '../posts/group/group_posts.dart';
-import '../posts/group/group_posts_vm.dart';
 import '../posts/posts_repository.dart';
 import '../posts/posts_service.dart';
-import '../stories/stories_repository.dart';
-import '../stories/stories_service.dart';
+import '../posts/posts_widget.dart';
+import '../posts/vms/abstract_posts_vm.dart';
+import '../posts/vms/group_posts_vm.dart';
 import 'group_vm.dart';
 
 class Group extends StatelessWidget {
@@ -30,7 +29,7 @@ class Group extends StatelessWidget {
         ),
         body: Column(
           children: [
-            ChangeNotifierProvider(
+            ChangeNotifierProvider<PostsViewModel>(
               create: (_) => GroupPostsViewModel(
                 vm.id,
                 PostsService(
@@ -38,13 +37,8 @@ class Group extends StatelessWidget {
                     ApiProvider(),
                   ),
                 ),
-                StoriesService(
-                  StoriesRepository(
-                    ApiProvider(),
-                  ),
-                ),
               ),
-              child: const GroupPosts(),
+              child: const Posts(),
             ),
           ],
         ),

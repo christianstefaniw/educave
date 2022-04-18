@@ -2,12 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../data/providers/api_provider.dart';
+import '../content/content_screen.dart';
 import '../posts/posts_repository.dart';
 import '../posts/posts_service.dart';
-import '../posts/recent/recent_posts.dart';
-import '../posts/recent/recent_posts_vm.dart';
+import '../posts/vms/abstract_posts_vm.dart';
+import '../posts/vms/recent_posts_vm.dart';
+import '../stories/abstract_stories_vm.dart';
 import '../stories/stories_repository.dart';
 import '../stories/stories_service.dart';
+import '../stories/vms/recent_stories_vm.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -31,20 +34,30 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
 
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 7.0),
-      child: ChangeNotifierProvider(
-        create: (_) => RecentPostsViewModel(
-          PostsService(
-            PostsRepository(
-              ApiProvider(),
+      child: MultiProvider(
+        providers: [
+          ChangeNotifierProvider<PostsViewModel>(
+            create: (_) => RecentPostsViewModel(
+              PostsService(
+                PostsRepository(
+                  ApiProvider(),
+                ),
+              ),
             ),
           ),
-          StoriesService(
-            StoriesRepository(
-              ApiProvider(),
+          ChangeNotifierProvider<StoriesViewModel>(
+            create: (_) => RecentStoriesViewModel(
+              StoriesService(
+                StoriesRepository(
+                  ApiProvider(),
+                ),
+              ),
             ),
           ),
+        ],
+        child: const Content(
+          stories: true,
         ),
-        child: const RecentPosts(),
       ),
     );
   }

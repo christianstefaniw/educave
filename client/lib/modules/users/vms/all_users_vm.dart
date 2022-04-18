@@ -1,6 +1,6 @@
 import '../strategies/all.dart';
 import '../users_service_interface.dart';
-import '../users_vm.dart';
+import '../abstract_users_vm.dart';
 
 class AllUsersViewModel extends UsersViewModel {
   AllUsersViewModel(IUsersService usersService) : super(usersService) {

@@ -2,22 +2,22 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../data/providers/api_provider.dart';
-import '../groups/classes/classes_screen.dart';
-import '../groups/classes/classes_vm.dart';
-import '../groups/clubs/clubs_screen.dart';
-import '../groups/clubs/clubs_vm.dart';
+import '../groups/abstract_groups_vm.dart';
+import '../groups/groups_widget.dart';
+import '../groups/vms/classes_vm.dart';
+import '../groups/vms/clubs_vm.dart';
 import '../groups/groups_repository.dart';
 import '../groups/groups_service.dart';
-import '../groups/teams/teams_screen.dart';
-import '../groups/teams/teams_vm.dart';
-import '../groups/top_groups/top_groups_screen.dart';
-import '../groups/top_groups/top_groups_vm.dart';
+import '../groups/vms/teams_vm.dart';
+import '../groups/vms/top_groups_vm.dart';
 import '../posts/posts_repository.dart';
 import '../posts/posts_service.dart';
-import '../posts/top/top_posts_screen.dart';
-import '../posts/top/top_posts_vm.dart';
-import '../users/all/all_users_screen.dart';
-import '../users/all/all_users_vm.dart';
+import '../posts/posts_widget.dart';
+import '../posts/vms/abstract_posts_vm.dart';
+import '../posts/vms/top_posts_vm.dart';
+import '../users/abstract_users_vm.dart';
+import '../users/users_widget.dart';
+import '../users/vms/all_users_vm.dart';
 import '../users/users_repository.dart';
 import '../users/users_service.dart';
 
@@ -28,15 +28,17 @@ class SearchControl extends StatelessWidget {
   Widget build(BuildContext context) {
     return TabBarView(
       children: [
-        ChangeNotifierProvider(
+        ChangeNotifierProvider<GroupsViewModel>(
           create: (_) => TopGroupsViewModel(
             GroupsService(
-              GroupsRepository(ApiProvider()),
+              GroupsRepository(
+                ApiProvider(),
+              ),
             ),
           ),
-          child: const TopGroups(),
+          child: const Groups(),
         ),
-        ChangeNotifierProvider(
+        ChangeNotifierProvider<PostsViewModel>(
           create: (_) => TopPostsViewModel(
             PostsService(
               PostsRepository(
@@ -46,10 +48,10 @@ class SearchControl extends StatelessWidget {
           ),
           child: Container(
             margin: const EdgeInsets.only(top: 7),
-            child: const TopPosts(),
+            child: const Posts(),
           ),
         ),
-        ChangeNotifierProvider(
+        ChangeNotifierProvider<UsersViewModel>(
           create: (_) => AllUsersViewModel(
             UsersService(
               UsersRepository(
@@ -57,9 +59,9 @@ class SearchControl extends StatelessWidget {
               ),
             ),
           ),
-          child: const AllUsers(),
+          child: const Users(),
         ),
-        ChangeNotifierProvider(
+        ChangeNotifierProvider<GroupsViewModel>(
           create: (_) => TeamsViewModel(
             GroupsService(
               GroupsRepository(
@@ -67,18 +69,19 @@ class SearchControl extends StatelessWidget {
               ),
             ),
           ),
-          child: const Teams(),
+          child: const Groups(),
         ),
-        ChangeNotifierProvider(
-            create: (_) => ClubsViewModel(
-                  GroupsService(
-                    GroupsRepository(
-                      ApiProvider(),
-                    ),
-                  ),
-                ),
-            child: const Clubs()),
-        ChangeNotifierProvider(
+        ChangeNotifierProvider<GroupsViewModel>(
+          create: (_) => ClubsViewModel(
+            GroupsService(
+              GroupsRepository(
+                ApiProvider(),
+              ),
+            ),
+          ),
+          child: const Groups(),
+        ),
+        ChangeNotifierProvider<GroupsViewModel>(
           create: (_) => ClassesViewModel(
             GroupsService(
               GroupsRepository(
@@ -86,7 +89,7 @@ class SearchControl extends StatelessWidget {
               ),
             ),
           ),
-          child: const Classes(),
+          child: const Groups(),
         ),
       ],
     );

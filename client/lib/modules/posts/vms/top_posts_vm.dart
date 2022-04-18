@@ -1,4 +1,4 @@
-import '../abstract_posts_vm.dart';
+import 'abstract_posts_vm.dart';
 import '../posts_service_interface.dart';
 import '../strategies/top.dart';
 

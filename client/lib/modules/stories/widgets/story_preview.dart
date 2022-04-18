@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../story_model.dart';
+import '../story_model.dart';
 
 class StoryPreview extends StatelessWidget {
   final StoryModel _story;

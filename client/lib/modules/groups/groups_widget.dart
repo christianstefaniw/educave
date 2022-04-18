@@ -2,32 +2,54 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../data/providers/api_provider.dart';
-import '../group/group_model.dart';
 import '../group/group_preview_widget.dart';
 import '../group/group_repository.dart';
 import '../group/group_service.dart';
 import '../group/group_vm.dart';
+import 'abstract_groups_vm.dart';
 
-class Groups extends StatelessWidget {
-  final List<GroupModel> _groups;
+class Groups extends StatefulWidget {
+  const Groups({Key? key}) : super(key: key);
 
-  const Groups(this._groups, {Key? key}) : super(key: key);
+  @override
+  State<Groups> createState() => _GroupsState();
+}
+
+class _GroupsState extends State<Groups> with AutomaticKeepAliveClientMixin {
+  @override
+  void initState() {
+    Provider.of<GroupsViewModel>(context, listen: false).loadGroups();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-      itemCount: _groups.length,
-      itemBuilder: ((context, index) {
-        return ChangeNotifierProvider(
-          create: (_) => GroupViewModel(
-            GroupService(
-              _groups[index],
-              GroupRepository(ApiProvider(), groupId: _groups[index].id),
+    super.build(context);
+
+    final vm = Provider.of<GroupsViewModel>(context);
+
+    if (vm.groupsLoaded) {
+      return ListView.builder(
+        itemCount: vm.groups!.length,
+        itemBuilder: ((context, index) {
+          return ChangeNotifierProvider(
+            create: (_) => GroupViewModel(
+              GroupService(
+                vm.groups![index],
+                GroupRepository(ApiProvider()),
+              ),
             ),
-          ),
-          child: const GroupPreview(),
-        );
-      }),
-    );
+            child: const GroupPreview(),
+          );
+        }),
+      );
+    } else {
+      return const Center(
+        child: CircularProgressIndicator(),
+      );
+    }
   }
+
+  @override
+  bool get wantKeepAlive => true;
 }

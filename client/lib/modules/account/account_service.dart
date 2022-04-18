@@ -1,6 +1,4 @@
-import '../../data/providers/api_provider.dart';
 import 'account_model.dart';
-import 'account_repository.dart';
 import 'account_repository_interface.dart';
 import 'account_service_interface.dart';
 

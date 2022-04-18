@@ -21,7 +21,11 @@ class Educave extends StatelessWidget {
       providers: [
         ChangeNotifierProvider<AccountViewModel>(
           create: (_) => AccountViewModel(
-            AccountService(AccountRepository(ApiProvider())),
+            AccountService(
+              AccountRepository(
+                ApiProvider(),
+              ),
+            ),
           ),
         )
       ],

@@ -2,51 +2,57 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../data/providers/api_provider.dart';
-import '../post/post_vm.dart';
-import '../post/post_model.dart';
 import '../post/post_repository.dart';
 import '../post/post_service.dart';
+import '../post/post_vm.dart';
 import '../post/post_widget.dart';
-import '../stories/story_model.dart';
-import '../stories/widgets/preview/stories_preview.dart';
+import 'vms/abstract_posts_vm.dart';
 
-class Posts extends StatelessWidget {
-  final List<PostModel> _posts;
-  final List<StoryModel>? _stories;
-  const Posts(this._posts, {List<StoryModel>? stories, Key? key})
-      : _stories = stories,
-        super(key: key);
+class Posts extends StatefulWidget {
+  const Posts({Key? key}) : super(key: key);
+
+  @override
+  State<Posts> createState() => _PostsState();
+}
+
+class _PostsState extends State<Posts> with AutomaticKeepAliveClientMixin {
+  @override
+  void initState() {
+    Provider.of<PostsViewModel>(context, listen: false).loadPosts();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-      shrinkWrap: true,
-      physics: const NeverScrollableScrollPhysics(),
-      itemCount: _posts.length,
-      itemBuilder: (context, index) {
-        return ChangeNotifierProvider(
-          create: (context) => PostViewModel(
-            PostService(
-              _posts[index],
-              PostRepository(ApiProvider(), postId: _posts[index].id),
+    super.build(context);
+
+    final vm = Provider.of<PostsViewModel>(context);
+
+    if (vm.postsLoaded) {
+      return ListView.builder(
+        shrinkWrap: true,
+        itemCount: vm.posts!.length,
+        itemBuilder: ((context, index) {
+          return ChangeNotifierProvider(
+            create: (_) => PostViewModel(
+              PostService(
+                vm.posts![index],
+                PostRepository(
+                  ApiProvider(),
+                ),
+              ),
             ),
-          ),
-          child: Column(
-            children: [
-              if (index == 1 && _stories != null) ...[
-                StoriesPreview(_stories!),
-                const Divider(),
-              ],
-              const Post(),
-              const Divider(),
-              if (_posts.length == 1 && _stories != null) ...[
-                StoriesPreview(_stories!),
-                const Divider(),
-              ],
-            ],
-          ),
-        );
-      },
-    );
+            child: const Post(),
+          );
+        }),
+      );
+    } else {
+      return const Center(
+        child: CircularProgressIndicator(),
+      );
+    }
   }
+
+  @override
+  bool get wantKeepAlive => true;
 }
