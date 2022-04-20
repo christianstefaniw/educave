@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../data/providers/api_provider.dart';
+import '../../widgets/persistent_tab.dart';
 import '../groups/abstract_groups_vm.dart';
 import '../groups/groups_widget.dart';
 import '../groups/vms/classes_vm.dart';
@@ -28,68 +29,77 @@ class SearchControl extends StatelessWidget {
   Widget build(BuildContext context) {
     return TabBarView(
       children: [
-        ChangeNotifierProvider<GroupsViewModel>(
-          create: (_) => TopGroupsViewModel(
-            GroupsService(
-              GroupsRepository(
-                ApiProvider(),
+        PersistentTab(
+          child: ChangeNotifierProvider<GroupsViewModel>(
+            create: (_) => TopGroupsViewModel(
+              GroupsService(
+                GroupsRepository(
+                  ApiProvider(),
+                ),
               ),
             ),
+            child: const Groups(),
           ),
-          child: const Groups(),
         ),
-        ChangeNotifierProvider<PostsViewModel>(
-          create: (_) => TopPostsViewModel(
-            PostsService(
-              PostsRepository(
-                ApiProvider(),
+        PersistentTab(
+          child: ChangeNotifierProvider<PostsViewModel>(
+            create: (_) => TopPostsViewModel(
+              PostsService(
+                PostsRepository(
+                  ApiProvider(),
+                ),
               ),
             ),
-          ),
-          child: Container(
-            margin: const EdgeInsets.only(top: 7),
             child: const Posts(),
           ),
         ),
-        ChangeNotifierProvider<UsersViewModel>(
-          create: (_) => AllUsersViewModel(
-            UsersService(
-              UsersRepository(
-                ApiProvider(),
+        PersistentTab(
+          child: ChangeNotifierProvider<UsersViewModel>(
+            create: (_) => AllUsersViewModel(
+              UsersService(
+                UsersRepository(
+                  ApiProvider(),
+                ),
               ),
             ),
+            child: const Users(),
           ),
-          child: const Users(),
         ),
-        ChangeNotifierProvider<GroupsViewModel>(
-          create: (_) => TeamsViewModel(
-            GroupsService(
-              GroupsRepository(
-                ApiProvider(),
+        PersistentTab(
+          child: ChangeNotifierProvider<GroupsViewModel>(
+            create: (_) => TeamsViewModel(
+              GroupsService(
+                GroupsRepository(
+                  ApiProvider(),
+                ),
               ),
             ),
+            child: const Groups(),
           ),
-          child: const Groups(),
         ),
-        ChangeNotifierProvider<GroupsViewModel>(
-          create: (_) => ClubsViewModel(
-            GroupsService(
-              GroupsRepository(
-                ApiProvider(),
+        PersistentTab(
+          child: ChangeNotifierProvider<GroupsViewModel>(
+            create: (_) => ClubsViewModel(
+              GroupsService(
+                GroupsRepository(
+                  ApiProvider(),
+                ),
               ),
             ),
+            child: const Groups(),
           ),
-          child: const Groups(),
         ),
-        ChangeNotifierProvider<GroupsViewModel>(
-          create: (_) => ClassesViewModel(
-            GroupsService(
-              GroupsRepository(
-                ApiProvider(),
+        PersistentTab(
+          child: ChangeNotifierProvider<GroupsViewModel>(
+            create: (_) => ClassesViewModel(
+              GroupsService(
+                GroupsRepository(
+                  ApiProvider(),
+                ),
               ),
             ),
+            child: const Groups(),
           ),
-          child: const Groups(),
         ),
       ],
     );

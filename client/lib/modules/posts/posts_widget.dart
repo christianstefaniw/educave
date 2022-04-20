@@ -15,7 +15,7 @@ class Posts extends StatefulWidget {
   State<Posts> createState() => _PostsState();
 }
 
-class _PostsState extends State<Posts> with AutomaticKeepAliveClientMixin {
+class _PostsState extends State<Posts> {
   @override
   void initState() {
     Provider.of<PostsViewModel>(context, listen: false).loadPosts();
@@ -24,8 +24,6 @@ class _PostsState extends State<Posts> with AutomaticKeepAliveClientMixin {
 
   @override
   Widget build(BuildContext context) {
-    super.build(context);
-
     final vm = Provider.of<PostsViewModel>(context);
 
     if (vm.postsLoaded) {
@@ -39,10 +37,16 @@ class _PostsState extends State<Posts> with AutomaticKeepAliveClientMixin {
                 vm.posts![index],
                 PostRepository(
                   ApiProvider(),
+                  vm.posts![index].id,
                 ),
               ),
             ),
-            child: const Post(),
+            child: Column(
+              children: const [
+                Post(),
+                Divider(),
+              ],
+            ),
           );
         }),
       );
@@ -52,7 +56,4 @@ class _PostsState extends State<Posts> with AutomaticKeepAliveClientMixin {
       );
     }
   }
-
-  @override
-  bool get wantKeepAlive => true;
 }

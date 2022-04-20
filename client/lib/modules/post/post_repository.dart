@@ -3,8 +3,9 @@ import 'post_repository_interface.dart';
 
 class PostRepository implements IPostRepository {
   final IApiProvider _client;
+  final String _id;
 
-  PostRepository(this._client);
+  PostRepository(this._client, this._id);
 
   @override
   Future<void> like() async {

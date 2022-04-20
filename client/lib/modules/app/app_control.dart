@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../widgets/persistent_tab.dart';
 import '../account/profile_screen.dart';
 import '../calendar/calendar_page.dart';
 import '../home/home_screen.dart';
@@ -36,10 +37,10 @@ class _AppControlState extends State<AppControl> {
         body: PageView(
           controller: _myPage,
           children: const <Widget>[
-            Home(),
-            SearchControl(),
-            Calendar(),
-            Profile(),
+            PersistentTab(child: Home()),
+            PersistentTab(child: SearchControl()),
+            PersistentTab(child: Calendar()),
+            PersistentTab(child: Profile()),
           ],
           physics: const NeverScrollableScrollPhysics(),
         ),

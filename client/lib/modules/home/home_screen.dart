@@ -12,26 +12,11 @@ import '../stories/stories_repository.dart';
 import '../stories/stories_service.dart';
 import '../stories/vms/recent_stories_vm.dart';
 
-class Home extends StatefulWidget {
+class Home extends StatelessWidget {
   const Home({Key? key}) : super(key: key);
 
   @override
-  State<Home> createState() => _HomeState();
-}
-
-class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
-  @override
-  bool get wantKeepAlive => true;
-
-  @override
-  void initState() {
-    super.initState();
-  }
-
-  @override
   Widget build(BuildContext context) {
-    super.build(context);
-
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 7.0),
       child: MultiProvider(
@@ -55,9 +40,7 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
             ),
           ),
         ],
-        child: const Content(
-          stories: true,
-        ),
+        child: const Content(),
       ),
     );
   }

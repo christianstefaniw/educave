@@ -15,7 +15,7 @@ class Groups extends StatefulWidget {
   State<Groups> createState() => _GroupsState();
 }
 
-class _GroupsState extends State<Groups> with AutomaticKeepAliveClientMixin {
+class _GroupsState extends State<Groups> {
   @override
   void initState() {
     Provider.of<GroupsViewModel>(context, listen: false).loadGroups();
@@ -24,8 +24,6 @@ class _GroupsState extends State<Groups> with AutomaticKeepAliveClientMixin {
 
   @override
   Widget build(BuildContext context) {
-    super.build(context);
-
     final vm = Provider.of<GroupsViewModel>(context);
 
     if (vm.groupsLoaded) {
@@ -49,7 +47,4 @@ class _GroupsState extends State<Groups> with AutomaticKeepAliveClientMixin {
       );
     }
   }
-
-  @override
-  bool get wantKeepAlive => true;
 }

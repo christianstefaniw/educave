@@ -13,7 +13,7 @@ class UserPreview extends StatelessWidget {
     final vm = Provider.of<UserViewModel>(context);
 
     return Container(
-      padding: const EdgeInsets.all(4),
+      padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 1),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [

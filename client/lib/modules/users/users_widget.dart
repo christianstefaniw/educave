@@ -15,7 +15,7 @@ class Users extends StatefulWidget {
   State<Users> createState() => _UsersState();
 }
 
-class _UsersState extends State<Users> with AutomaticKeepAliveClientMixin {
+class _UsersState extends State<Users> {
   @override
   void initState() {
     Provider.of<UsersViewModel>(context, listen: false).loadUsers();
@@ -24,28 +24,30 @@ class _UsersState extends State<Users> with AutomaticKeepAliveClientMixin {
 
   @override
   Widget build(BuildContext context) {
-    super.build(context);
     final vm = Provider.of<UsersViewModel>(context);
 
     if (vm.usersLoaded) {
-      return ListView.builder(
-        itemCount: vm.users!.length,
-        itemBuilder: (context, index) {
-          return ChangeNotifierProvider(
-            create: (_) => UserViewModel(
-              UserService(
-                UserRepository(ApiProvider()),
-                vm.users![index],
+      return Padding(
+        padding: const EdgeInsets.only(top: 10.0),
+        child: ListView.builder(
+          itemCount: vm.users!.length,
+          itemBuilder: (context, index) {
+            return ChangeNotifierProvider(
+              create: (_) => UserViewModel(
+                UserService(
+                  UserRepository(ApiProvider()),
+                  vm.users![index],
+                ),
               ),
-            ),
-            child: Column(
-              children: const [
-                UserPreview(),
-                Divider(),
-              ],
-            ),
-          );
-        },
+              child: Column(
+                children: const [
+                  UserPreview(),
+                  Divider(),
+                ],
+              ),
+            );
+          },
+        ),
       );
     } else {
       return const Center(
@@ -53,7 +55,4 @@ class _UsersState extends State<Users> with AutomaticKeepAliveClientMixin {
       );
     }
   }
-
-  @override
-  bool get wantKeepAlive => true;
 }

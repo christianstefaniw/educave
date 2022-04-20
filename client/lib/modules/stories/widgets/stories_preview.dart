@@ -38,9 +38,7 @@ class _StoriesPreviewState extends State<StoriesPreview> {
         ),
       );
     } else {
-      return const Center(
-        child: CircularProgressIndicator(),
-      );
+      return const SizedBox();
     }
   }
 }

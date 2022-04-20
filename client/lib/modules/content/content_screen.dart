@@ -10,9 +10,7 @@ import '../posts/vms/abstract_posts_vm.dart';
 import '../stories/widgets/stories_preview.dart';
 
 class Content extends StatefulWidget {
-  final bool stories;
-
-  const Content({this.stories = false, Key? key}) : super(key: key);
+  const Content({Key? key}) : super(key: key);
 
   @override
   State<Content> createState() => _ContentState();
@@ -31,13 +29,11 @@ class _ContentState extends State<Content> {
 
     if (postsVm.postsLoaded) {
       return ListView.builder(
-        shrinkWrap: true,
-        physics: const NeverScrollableScrollPhysics(),
         itemCount: postsVm.posts!.length,
         itemBuilder: (context, index) {
           return Column(
             children: [
-              if (index == 1 && widget.stories) ...[
+              if (index == 1) ...[
                 const StoriesPreview(),
                 const Divider(),
               ],
@@ -47,13 +43,14 @@ class _ContentState extends State<Content> {
                     postsVm.posts![index],
                     PostRepository(
                       ApiProvider(),
+                      postsVm.posts![index].id,
                     ),
                   ),
                 ),
                 child: const Post(),
               ),
               const Divider(),
-              if (postsVm.posts!.length == 1 && widget.stories) ...[
+              if (postsVm.posts!.length == 1) ...[
                 const StoriesPreview(),
                 const Divider(),
               ],
@@ -62,7 +59,9 @@ class _ContentState extends State<Content> {
         },
       );
     } else {
-      return const SizedBox();
+      return const Center(
+        child: CircularProgressIndicator(),
+      );
     }
   }
 }
