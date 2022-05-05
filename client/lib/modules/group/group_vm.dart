@@ -1,5 +1,4 @@
 import '../../core/types/view_model.dart';
-import 'group_model.dart';
 import 'group_service_interface.dart';
 
 class GroupViewModel with ViewModel {
@@ -9,6 +8,7 @@ class GroupViewModel with ViewModel {
 
   String get id => _service.id;
   String get groupPic => _service.groupPic;
+  String get backgroundPic => _service.backgroundPic;
   String get name => _service.name;
   String get summary => _service.summary;
   int get numMembers => _service.numMembers;

@@ -4,6 +4,14 @@ import 'api_provider_interface.dart';
 import '../../core/config.dart';
 
 class ApiProvider implements IApiProvider {
+  static final ApiProvider _singleton = ApiProvider._internal();
+
+  factory ApiProvider() {
+    return _singleton;
+  }
+
+  ApiProvider._internal();
+
   final Dio _dio = Dio(BaseOptions(baseUrl: Config.baseApiPath));
 
   @override

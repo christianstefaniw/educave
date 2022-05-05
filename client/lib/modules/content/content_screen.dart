@@ -10,7 +10,8 @@ import '../posts/vms/abstract_posts_vm.dart';
 import '../stories/widgets/stories_preview.dart';
 
 class Content extends StatefulWidget {
-  const Content({Key? key}) : super(key: key);
+  final Widget? leading;
+  const Content({this.leading, Key? key}) : super(key: key);
 
   @override
   State<Content> createState() => _ContentState();
@@ -29,39 +30,44 @@ class _ContentState extends State<Content> {
 
     if (postsVm.postsLoaded) {
       return ListView.builder(
+        padding: EdgeInsets.zero,
         itemCount: postsVm.posts!.length,
         itemBuilder: (context, index) {
-          return Column(
-            children: [
-              if (index == 1) ...[
-                const StoriesPreview(),
-                const Divider(),
-              ],
-              ChangeNotifierProvider(
-                create: (_) => PostViewModel(
-                  PostService(
-                    postsVm.posts![index],
-                    PostRepository(
-                      ApiProvider(),
-                      postsVm.posts![index].id,
+          return Container(
+            color: Colors.white,
+            child: Column(
+              children: [
+                if (widget.leading != null && index == 0) ...[
+                  widget.leading!,
+                ],
+                if (index == 1) ...[
+                  const StoriesPreview(),
+                  const Divider(),
+                ],
+                ChangeNotifierProvider(
+                  create: (_) => PostViewModel(
+                    PostService(
+                      postsVm.posts![index],
+                      PostRepository(
+                        ApiProvider(),
+                        postsVm.posts![index].id,
+                      ),
                     ),
                   ),
+                  child: const Post(),
                 ),
-                child: const Post(),
-              ),
-              const Divider(),
-              if (postsVm.posts!.length == 1) ...[
-                const StoriesPreview(),
                 const Divider(),
+                if (postsVm.posts!.length == 1) ...[
+                  const StoriesPreview(),
+                  const Divider(),
+                ],
               ],
-            ],
+            ),
           );
         },
       );
     } else {
-      return const Center(
-        child: CircularProgressIndicator(),
-      );
+      return const SizedBox();
     }
   }
 }

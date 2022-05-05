@@ -16,7 +16,7 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
         margin: const EdgeInsets.only(bottom: 10),
         child: Text(
           'Educave',
-          style: Theme.of(context).textTheme.headline3,
+          style: Theme.of(context).textTheme.headline2,
         ),
       ),
     );

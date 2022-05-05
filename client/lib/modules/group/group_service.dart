@@ -27,6 +27,9 @@ class GroupService implements IGroupService {
   String get groupPic => _model.groupPic;
 
   @override
+  String get backgroundPic => _model.backgroundPic;
+
+  @override
   String get name => _model.name;
 
   @override
