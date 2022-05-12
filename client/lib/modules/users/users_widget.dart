@@ -50,9 +50,7 @@ class _UsersState extends State<Users> {
         ),
       );
     } else {
-      return const Center(
-        child: CircularProgressIndicator(),
-      );
+      return const SizedBox();
     }
   }
 }

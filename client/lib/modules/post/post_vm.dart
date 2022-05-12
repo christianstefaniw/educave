@@ -17,23 +17,24 @@ class PostViewModel with ViewModel {
   bool get isSaved => _service.isSaved;
   List<PostFeature> get features => _service.features;
 
-  Future<void> like() async {
-    await _service.like();
+  void like() {
+    var res = _service.like();
+    notifyListeners();
+    // if ((await res) is fail) then
+  }
+
+  void unlike() {
+    _service.unlike();
     notifyListeners();
   }
 
-  Future<void> unlike() async {
-    await _service.unlike();
+  void save() {
+    _service.save();
     notifyListeners();
   }
 
-  Future<void> save() async {
-    await _service.save();
-    notifyListeners();
-  }
-
-  Future<void> unsave() async {
-    await _service.unsave();
+  void unsave() {
+    _service.unsave();
     notifyListeners();
   }
 }

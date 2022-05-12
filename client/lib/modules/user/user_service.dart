@@ -23,13 +23,13 @@ class UserService implements IUserService {
 
   @override
   Future<void> follow() async {
-    await _repository.follow();
     _model.follow();
+    await _repository.follow();
   }
 
   @override
   Future<void> unfollow() async {
-    await _repository.unfollow();
     _model.unfollow();
+    await _repository.unfollow();
   }
 }

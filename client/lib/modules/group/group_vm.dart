@@ -15,13 +15,13 @@ class GroupViewModel with ViewModel {
   int get numPosts => _service.numPosts;
   bool get joined => _service.joined;
 
-  Future<void> join() async {
-    await _service.join();
+  void join() {
+    _service.join();
     notifyListeners();
   }
 
-  Future<void> unjoin() async {
-    await _service.unjoin();
+  void unjoin() {
+    _service.unjoin();
     notifyListeners();
   }
 }

@@ -42,9 +42,7 @@ class _GroupsState extends State<Groups> {
         }),
       );
     } else {
-      return const Center(
-        child: CircularProgressIndicator(),
-      );
+      return const SizedBox();
     }
   }
 }

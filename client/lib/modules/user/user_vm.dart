@@ -12,13 +12,13 @@ class UserViewModel with ViewModel {
   List<MutualGroupModel> get mutualGroups => _service.mutualGroups;
   bool get isFollowing => _service.isFollowing;
 
-  Future<void> follow() async {
-    await _service.follow();
+  void follow() {
+    _service.follow();
     notifyListeners();
   }
 
-  Future<void> unfollow() async {
-    await _service.unfollow();
+  void unfollow() {
+    _service.unfollow();
     notifyListeners();
   }
 }

@@ -51,9 +51,7 @@ class _PostsState extends State<Posts> {
         }),
       );
     } else {
-      return const Center(
-        child: CircularProgressIndicator(),
-      );
+      return const SizedBox();
     }
   }
 }

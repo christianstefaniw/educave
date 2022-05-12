@@ -38,25 +38,26 @@ class PostService implements IPostService {
 
   @override
   Future<void> like() async {
-    await _repository.like();
     _model.like();
+    await _repository.like();
+    print('ok');
   }
 
   @override
   Future<void> unlike() async {
-    await _repository.unlike();
     _model.unlike();
+    await _repository.unlike();
   }
 
   @override
   Future<void> save() async {
-    await _repository.save();
     _model.save();
+    await _repository.save();
   }
 
   @override
   Future<void> unsave() async {
-    await _repository.unsave();
     _model.unsave();
+    await _repository.unsave();
   }
 }

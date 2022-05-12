@@ -10,14 +10,14 @@ class GroupService implements IGroupService {
 
   @override
   Future<void> join() async {
-    await _repository.join();
     _model.join();
+    await _repository.join();
   }
 
   @override
   Future<void> unjoin() async {
-    await _repository.unjoin();
     _model.unjoin();
+    await _repository.unjoin();
   }
 
   @override

@@ -9,6 +9,7 @@ class PostRepository implements IPostRepository {
 
   @override
   Future<void> like() async {
+    var l = await Future.delayed(const Duration(seconds: 1), () => []);
     // await _client.get('');
   }
 
