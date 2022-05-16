@@ -20,14 +20,26 @@ class CommentService implements ICommentService {
   }
 
   @override
+  Future<void> unlike() async {
+    _model.unlike();
+    await _commentRepository.unlike();
+  }
+
+  @override
   String get content => _model.content;
 
   @override
-  String get name => _model.name;
+  String get username => _model.username;
 
   @override
   String get profilePic => _model.profilePic;
 
   @override
   int get likeCount => _model.likeCount;
+
+  @override
+  bool get liked => _model.liked;
+
+  @override
+  String get timeSincePost => _model.timeSincePost;
 }

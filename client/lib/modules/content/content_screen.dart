@@ -6,7 +6,7 @@ import '../post/post_repository.dart';
 import '../post/post_service.dart';
 import '../post/post_vm.dart';
 import '../post/post_widget.dart';
-import '../posts/vms/abstract_posts_vm.dart';
+import '../posts/abstract_posts_vm.dart';
 import '../stories/widgets/stories_preview.dart';
 
 class Content extends StatefulWidget {

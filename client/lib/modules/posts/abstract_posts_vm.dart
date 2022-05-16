@@ -1,6 +1,6 @@
-import '../../../core/types/view_model.dart';
-import '../../post/post_model.dart';
-import '../posts_service_interface.dart';
+import '../../core/types/view_model.dart';
+import '../post/post_model.dart';
+import 'posts_service_interface.dart';
 
 abstract class PostsViewModel with ViewModel {
   final IPostsService _service;
@@ -9,8 +9,9 @@ abstract class PostsViewModel with ViewModel {
   PostsViewModel(this._service);
 
   Future<void> loadPosts() async {
+    await _service.loadPosts();
+
     if (_mounted) {
-      await _service.loadPosts();
       notifyListeners();
     }
   }

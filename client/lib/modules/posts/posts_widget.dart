@@ -6,7 +6,7 @@ import '../post/post_repository.dart';
 import '../post/post_service.dart';
 import '../post/post_vm.dart';
 import '../post/post_widget.dart';
-import 'vms/abstract_posts_vm.dart';
+import 'abstract_posts_vm.dart';
 
 class Posts extends StatefulWidget {
   const Posts({Key? key}) : super(key: key);

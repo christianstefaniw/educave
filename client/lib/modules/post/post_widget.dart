@@ -3,6 +3,11 @@ import 'package:provider/provider.dart';
 
 import '../../core/helpers/date_time_format.dart';
 import '../../core/theme/theme.dart';
+import '../../data/providers/api_provider.dart';
+import '../comments/comments_repository.dart';
+import '../comments/comments_service.dart';
+import '../comments/comments_vm.dart';
+import '../comments/comments_widget.dart';
 import 'features/feature_widget_factory.dart';
 import 'features/post_feature.dart';
 import 'post_vm.dart';
@@ -103,7 +108,23 @@ class _PostState extends State<Post> {
                     IconButton(
                       constraints: const BoxConstraints(),
                       padding: EdgeInsets.zero,
-                      onPressed: () {},
+                      onPressed: () {
+                        showModalBottomSheet<void>(
+                          context: context,
+                          builder: (BuildContext context) {
+                            return ChangeNotifierProvider(
+                              create: (_) => CommentsViewModel(
+                                CommentsService(
+                                  CommentsRepository(
+                                    ApiProvider(),
+                                  ),
+                                ),
+                              ),
+                              child: const Comments(),
+                            );
+                          },
+                        );
+                      },
                       iconSize: 23,
                       splashRadius: 1,
                       icon: const Icon(Icons.chat_bubble_outline),

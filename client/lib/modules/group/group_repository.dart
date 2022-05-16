@@ -7,6 +7,9 @@ class GroupRepository implements IGroupRepository {
   GroupRepository(this._client);
 
   @override
+  Future<void> delete() async {}
+
+  @override
   Future<void> join() async {
     // await _client.get('');
   }

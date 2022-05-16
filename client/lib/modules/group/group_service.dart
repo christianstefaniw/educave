@@ -21,6 +21,9 @@ class GroupService implements IGroupService {
   }
 
   @override
+  Future<void> delete() async {}
+
+  @override
   String get id => _model.id;
 
   @override

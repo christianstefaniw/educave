@@ -7,7 +7,7 @@ import '../content/content_screen.dart';
 import '../posts/posts_repository.dart';
 import '../posts/posts_service.dart';
 import '../posts/posts_widget.dart';
-import '../posts/vms/abstract_posts_vm.dart';
+import '../posts/abstract_posts_vm.dart';
 import '../posts/vms/group_posts_vm.dart';
 import '../stories/abstract_stories_vm.dart';
 import '../stories/stories_repository.dart';

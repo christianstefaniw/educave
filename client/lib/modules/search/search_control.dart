@@ -14,7 +14,7 @@ import '../groups/vms/top_groups_vm.dart';
 import '../posts/posts_repository.dart';
 import '../posts/posts_service.dart';
 import '../posts/posts_widget.dart';
-import '../posts/vms/abstract_posts_vm.dart';
+import '../posts/abstract_posts_vm.dart';
 import '../posts/vms/top_posts_vm.dart';
 import '../users/abstract_users_vm.dart';
 import '../users/users_widget.dart';

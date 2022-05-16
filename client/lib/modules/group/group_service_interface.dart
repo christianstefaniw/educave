@@ -10,4 +10,5 @@ abstract class IGroupService {
 
   Future<void> join();
   Future<void> unjoin();
+  Future<void> delete();
 }
