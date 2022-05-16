@@ -15,4 +15,9 @@ class CommentsService implements ICommentsService {
   Future<void> loadComments() async {
     _comments = await _repository.comments();
   }
+
+  @override
+  void addComment(CommentModel comment) {
+    _comments!.add(comment);
+  }
 }

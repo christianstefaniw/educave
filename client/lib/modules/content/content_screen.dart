@@ -24,9 +24,14 @@ class _ContentState extends State<Content> {
     super.initState();
   }
 
+  Widget preLoadStories(BuildContext context) {
+    return const StoriesPreview();
+  }
+
   @override
   Widget build(BuildContext context) {
     final postsVm = Provider.of<PostsViewModel>(context);
+    final stories = preLoadStories(context);
 
     if (postsVm.postsLoaded) {
       return ListView.builder(
@@ -41,7 +46,7 @@ class _ContentState extends State<Content> {
                   widget.leading!,
                 ],
                 if (index == 1) ...[
-                  const StoriesPreview(),
+                  stories,
                   const Divider(),
                 ],
                 ChangeNotifierProvider(
@@ -58,7 +63,7 @@ class _ContentState extends State<Content> {
                 ),
                 const Divider(),
                 if (postsVm.posts!.length == 1) ...[
-                  const StoriesPreview(),
+                  stories,
                   const Divider(),
                 ],
               ],

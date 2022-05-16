@@ -110,17 +110,26 @@ class _PostState extends State<Post> {
                       padding: EdgeInsets.zero,
                       onPressed: () {
                         showModalBottomSheet<void>(
+                          isScrollControlled: true,
                           context: context,
                           builder: (BuildContext context) {
-                            return ChangeNotifierProvider(
-                              create: (_) => CommentsViewModel(
-                                CommentsService(
-                                  CommentsRepository(
-                                    ApiProvider(),
+                            return FractionallySizedBox(
+                              heightFactor: 0.8,
+                              child: Padding(
+                                padding: EdgeInsets.only(
+                                  bottom: MediaQuery.of(context).padding.bottom,
+                                ),
+                                child: ChangeNotifierProvider(
+                                  create: (_) => CommentsViewModel(
+                                    CommentsService(
+                                      CommentsRepository(
+                                        ApiProvider(),
+                                      ),
+                                    ),
                                   ),
+                                  child: const Comments(),
                                 ),
                               ),
-                              child: const Comments(),
                             );
                           },
                         );

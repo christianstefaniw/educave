@@ -18,6 +18,11 @@ class CommentsViewModel with ViewModel {
     }
   }
 
+  void addComment(CommentModel comment) {
+    _service.addComment(comment);
+    notifyListeners();
+  }
+
   bool get commentsLoaded => comments != null;
 
   @override

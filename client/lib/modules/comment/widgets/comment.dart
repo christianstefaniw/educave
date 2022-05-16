@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../core/theme/colors.dart';
-import 'comment_vm.dart';
+import '../../../core/theme/colors.dart';
+import '../comment_vm.dart';
 
 class Comment extends StatelessWidget {
   const Comment({Key? key}) : super(key: key);
