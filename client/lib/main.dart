@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 
 import 'core/theme/theme.dart';
 import 'data/providers/api_provider.dart';
+import 'modules/account/account_model.dart';
 import 'modules/account/account_vm.dart';
 import 'modules/account/account_repository.dart';
 import 'modules/account/account_service.dart';
@@ -22,10 +23,14 @@ class Educave extends StatelessWidget {
         ChangeNotifierProvider<AccountViewModel>(
           create: (_) => AccountViewModel(
             AccountService(
-              AccountRepository(
-                ApiProvider(),
-              ),
-            ),
+                AccountRepository(
+                  ApiProvider(),
+                ),
+                AccountModel(
+                    id: '2',
+                    email: 'christian@uwaterloo.ca',
+                    profilePic:
+                        'https://media-exp1.licdn.com/dms/image/C5603AQHLtS1MARQqOg/profile-displayphoto-shrink_400_400/0/1653073727247?e=1658361600&v=beta&t=NWLMe2E2VwZnFpVktFFlRbQeWS1AAyrAiZoPoPlnt8s')),
           ),
         )
       ],

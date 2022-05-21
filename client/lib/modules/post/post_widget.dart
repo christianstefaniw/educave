@@ -7,7 +7,7 @@ import '../../data/providers/api_provider.dart';
 import '../comments/comments_repository.dart';
 import '../comments/comments_service.dart';
 import '../comments/comments_vm.dart';
-import '../comments/comments_widget.dart';
+import '../comments/widgets/comments.dart';
 import 'features/feature_widget_factory.dart';
 import 'features/post_feature.dart';
 import 'post_vm.dart';
@@ -112,6 +112,9 @@ class _PostState extends State<Post> {
                         showModalBottomSheet<void>(
                           isScrollControlled: true,
                           context: context,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(15.0),
+                          ),
                           builder: (BuildContext context) {
                             return FractionallySizedBox(
                               heightFactor: 0.8,

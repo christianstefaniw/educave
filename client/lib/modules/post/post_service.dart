@@ -40,7 +40,6 @@ class PostService implements IPostService {
   Future<void> like() async {
     _model.like();
     await _repository.like();
-    print('ok');
   }
 
   @override

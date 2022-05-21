@@ -49,20 +49,24 @@ class PostModel {
   bool get isSaved => _isSaved;
 
   void like() {
+    if (_isLiked) return;
     _likeCount++;
     _isLiked = true;
   }
 
   void unlike() {
+    if (!_isLiked) return;
     _likeCount--;
     _isLiked = false;
   }
 
   void save() {
+    if (_isSaved) return;
     _isSaved = true;
   }
 
   void unsave() {
+    if (!_isSaved) return;
     _isSaved = false;
   }
 

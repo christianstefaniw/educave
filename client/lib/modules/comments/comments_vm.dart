@@ -5,10 +5,13 @@ import 'comments_service_interface.dart';
 class CommentsViewModel with ViewModel {
   final ICommentsService _service;
   bool _mounted = true;
+  bool _commentBeingAddedIsValid = false;
 
   CommentsViewModel(this._service);
 
   List<CommentModel>? get comments => _service.comments;
+  bool get commentBeingAddedIsValid => _commentBeingAddedIsValid;
+  bool get commentsLoaded => comments != null;
 
   Future<void> loadComments() async {
     await _service.loadComments();
@@ -18,12 +21,19 @@ class CommentsViewModel with ViewModel {
     }
   }
 
-  void addComment(CommentModel comment) {
-    _service.addComment(comment);
+  void validateCommentDynamically(String content) {
+    _commentBeingAddedIsValid = _service.validateComment(content);
     notifyListeners();
   }
 
-  bool get commentsLoaded => comments != null;
+  void addComment({required String content, required String userId}) {
+    if (!_commentBeingAddedIsValid) {
+      return;
+    }
+    _service.addComment(content, userId);
+    _commentBeingAddedIsValid = false;
+    notifyListeners();
+  }
 
   @override
   void dispose() {

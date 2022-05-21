@@ -8,17 +8,29 @@ import '../../account/account_vm.dart';
 import '../widgets/auth_text_input.dart';
 import 'login_vm.dart';
 
-class Login extends StatelessWidget {
+class Login extends StatefulWidget {
   const Login({Key? key}) : super(key: key);
+
+  @override
+  State<Login> createState() => _LoginState();
+}
+
+class _LoginState extends State<Login> {
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
+
+  @override
+  void dispose() {
+    emailController.dispose();
+    passwordController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
     final viewModel = Provider.of<LoginViewModel>(context);
     final accountViewModel =
         Provider.of<AccountViewModel>(context, listen: false);
-
-    final emailController = TextEditingController();
-    final passwordController = TextEditingController();
 
     return Scaffold(
       body: Container(

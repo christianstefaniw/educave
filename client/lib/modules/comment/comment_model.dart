@@ -36,11 +36,13 @@ class CommentModel {
   String get timeSincePost => _timeSincePost;
 
   void like() {
+    if (_liked) return;
     _likeCount++;
     _liked = true;
   }
 
   void unlike() {
+    if (!_liked) return;
     _likeCount--;
     _liked = false;
   }

@@ -11,4 +11,8 @@ class AccountViewModel with ViewModel {
     _service.setAccount(account);
     notifyListeners();
   }
+
+  String get id => _service.id;
+
+  String get profilePic => _service.profilePic;
 }

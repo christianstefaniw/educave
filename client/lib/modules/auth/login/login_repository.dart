@@ -9,7 +9,8 @@ class LoginRepository implements ILoginRepository {
 
   @override
   Future<AccountModel> login(String email, String password) async {
-    AccountModel account = AccountModel(email: "email", profilePic: 'test');
+    AccountModel account =
+        AccountModel(id: '1', email: "email", profilePic: 'test');
     await _client.get('');
     // AccountModel account = await client.post(ApiAuthRoutes.login, data: null);
     return account;

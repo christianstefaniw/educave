@@ -13,7 +13,9 @@ ThemeData themeData = ThemeData(
     headline1: const TextStyle(fontSize: 42).merge(AppTextTheme.headingStyle),
     headline2: const TextStyle(fontSize: 34).merge(AppTextTheme.headingStyle),
     headline3: const TextStyle(
-        fontSize: 30, fontWeight: FontWeight.bold, color: Colors.black87),
+        fontSize: 30, fontWeight: FontWeight.bold, color: Colors.black),
+    headline4: const TextStyle(
+        fontSize: 18, fontWeight: FontWeight.bold, color: Colors.black),
     headline5: const TextStyle(fontSize: 15),
   ),
   fontFamily: 'Poppins',

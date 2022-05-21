@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../../core/theme/colors.dart';
-import '../comment_vm.dart';
+import '../../core/theme/colors.dart';
+import '../../core/theme/text.dart';
+import 'comment_vm.dart';
 
 class Comment extends StatelessWidget {
   const Comment({Key? key}) : super(key: key);
@@ -12,7 +13,7 @@ class Comment extends StatelessWidget {
     final vm = Provider.of<CommentViewModel>(context);
 
     return Padding(
-      padding: const EdgeInsets.all(13),
+      padding: const EdgeInsets.symmetric(vertical: 13),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -32,8 +33,7 @@ class Comment extends StatelessWidget {
                     Flexible(
                       child: Text.rich(
                         TextSpan(
-                          style: const TextStyle(
-                              fontFamily: 'roboto', letterSpacing: -0.2),
+                          style: AppTextTheme.commentStyle,
                           children: <TextSpan>[
                             TextSpan(
                               text: vm.username,
@@ -57,37 +57,37 @@ class Comment extends StatelessWidget {
                     children: [
                       Text(
                         vm.timeSincePost,
-                        style: const TextStyle(
-                          color: AppColors.muted,
-                          fontFamily: 'roboto',
-                          letterSpacing: -0.2,
-                          fontSize: 13,
+                        style: AppTextTheme.commentStyle.merge(
+                          const TextStyle(
+                            color: AppColors.muted,
+                            fontSize: 13,
+                          ),
                         ),
                       ),
                       GestureDetector(
                         child: Text(
                           '${vm.likeCount} likes',
-                          style: const TextStyle(
-                            color: AppColors.muted,
-                            fontFamily: 'roboto',
-                            letterSpacing: -0.2,
-                            fontWeight: FontWeight.w600,
-                            fontSize: 13,
+                          style: AppTextTheme.commentStyle.merge(
+                            const TextStyle(
+                              color: AppColors.muted,
+                              fontSize: 13,
+                              fontWeight: FontWeight.w600,
+                            ),
                           ),
                         ),
                       ),
                       GestureDetector(
-                        child: const Text(
+                        child: Text(
                           'Reply',
-                          style: TextStyle(
-                            color: AppColors.muted,
-                            fontFamily: 'roboto',
-                            letterSpacing: -0.2,
-                            fontWeight: FontWeight.w600,
-                            fontSize: 13,
+                          style: AppTextTheme.commentStyle.merge(
+                            const TextStyle(
+                              color: AppColors.muted,
+                              fontSize: 13,
+                              fontWeight: FontWeight.w600,
+                            ),
                           ),
                         ),
-                      )
+                      ),
                     ],
                   ),
                 ),
