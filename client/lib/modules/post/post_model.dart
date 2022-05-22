@@ -8,8 +8,8 @@ class PostModel {
   final String _profilePic;
   final String _postedIn;
   final DateTime _dateTime;
-  final int _commentCount;
   final List<PostFeature> _features;
+  final int _commentCount;
 
   int _likeCount;
   bool _isLiked;

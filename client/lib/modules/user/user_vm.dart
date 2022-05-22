@@ -22,7 +22,7 @@ class UserViewModel with ViewModel {
 
   void unfollow() {
     _repository.unfollow();
-    _model.follow();
+    _model.unfollow();
     notifyListeners();
   }
 }

@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import '../../../core/theme/colors.dart';
 import '../../../core/theme/text.dart';
 import '../../account/account_provider.dart';
+import '../../post/post_vm.dart';
 import '../comments_vm.dart';
 
 class AddComment extends StatefulWidget {
@@ -25,7 +26,7 @@ class _AddCommentState extends State<AddComment> {
 
   @override
   Widget build(BuildContext context) {
-    final vm = Provider.of<CommentsViewModel>(context, listen: false);
+    final vm = Provider.of<CommentsViewModel>(context);
     final account = Provider.of<AccountProvider>(context, listen: false);
 
     return Row(
@@ -46,8 +47,10 @@ class _AddCommentState extends State<AddComment> {
                 const TextStyle(fontSize: 15),
               ),
               decoration: InputDecoration(
-                contentPadding:
-                    const EdgeInsets.symmetric(horizontal: 13, vertical: 14),
+                contentPadding: const EdgeInsets.symmetric(
+                  horizontal: 13,
+                  vertical: 14,
+                ),
                 isDense: true,
                 hintText: 'Add a comment',
                 hintStyle: const TextStyle(
@@ -65,7 +68,7 @@ class _AddCommentState extends State<AddComment> {
                     color: AppColors.outline,
                     width: 1,
                   ),
-                  borderRadius: BorderRadius.circular(20),
+                  borderRadius: BorderRadius.circular(30),
                 ),
                 suffixIconConstraints: const BoxConstraints(),
                 suffixIcon: IconButton(

@@ -37,12 +37,12 @@ class CommentModel {
   ) {
     Map<String, String> validationErrors = {};
 
-    final contentError = validateText(content, minLength: 0);
+    final contentError = validateText(content, minLength: 1);
 
     if (contentError != null) validationErrors['content'] = contentError;
 
     if (validationErrors.isNotEmpty) throw validationErrors;
-    print(content);
+
     return CommentModel(
       id: 'id',
       userId: userId,
