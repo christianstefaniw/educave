@@ -11,13 +11,16 @@ class LoginViewModel with ViewModel {
   Map<String, String> get validationErrors => _validationErrors;
 
   Future<AccountModel?> login(String email, String password) async {
+    AccountModel account;
+
     try {
-      final account = AccountModel.create(email, password);
-      return await _repository.login(account);
+      account = AccountModel.create(email, password);
     } catch (e) {
       _validationErrors = e as Map<String, String>;
       notifyListeners();
+      return null;
     }
-    return null;
+
+    return await _repository.login(account);
   }
 }

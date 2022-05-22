@@ -7,7 +7,6 @@ class CommentsViewModel with ViewModel {
 
   bool _mounted = true;
   Map<String, String> _addCommentValidationErrors = {};
-
   List<CommentModel>? _comments;
 
   CommentsViewModel(this._repository);
@@ -20,14 +19,17 @@ class CommentsViewModel with ViewModel {
       String content, String userId, String profilePic, String username) {
     if (_comments == null) return;
 
+    CommentModel newComment;
+
     try {
-      final newComment =
-          CommentModel.create(content, userId, profilePic, username);
-      _repository.addComment(newComment);
-      _comments = [..._comments!, newComment];
+      newComment = CommentModel.create(content, userId, profilePic, username);
     } catch (e) {
       _addCommentValidationErrors = e as Map<String, String>;
+      return;
     }
+
+    _repository.addComment(newComment);
+    _comments = [..._comments!, newComment];
 
     notifyListeners();
   }
