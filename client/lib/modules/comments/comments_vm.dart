@@ -6,24 +6,27 @@ class CommentsViewModel with ViewModel {
   final ICommentsRepository _repository;
 
   bool _mounted = true;
-  Map<String, String> addCommentValidationErrors = {};
+  Map<String, String> _addCommentValidationErrors = {};
 
   List<CommentModel>? _comments;
 
   CommentsViewModel(this._repository);
 
   List<CommentModel>? get comments => _comments;
+  Map<String, String> get addCommentValidationErrors =>
+      _addCommentValidationErrors;
 
   void addComment(
       String content, String userId, String profilePic, String username) {
     if (_comments == null) return;
+
     try {
       final newComment =
           CommentModel.create(content, userId, profilePic, username);
       _repository.addComment(newComment);
       _comments = [..._comments!, newComment];
     } catch (e) {
-      addCommentValidationErrors = e as Map<String, String>;
+      _addCommentValidationErrors = e as Map<String, String>;
     }
 
     notifyListeners();
