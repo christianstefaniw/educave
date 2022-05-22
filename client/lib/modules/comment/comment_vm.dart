@@ -1,30 +1,29 @@
 import '../../core/types/view_model.dart';
-import 'comment_service_interface.dart';
+import 'comment_model.dart';
+import 'comment_repository_interface.dart';
 
 class CommentViewModel with ViewModel {
-  final ICommentService _service;
+  final ICommentRepository _repository;
+  final CommentModel _model;
 
-  CommentViewModel(this._service);
+  CommentViewModel(this._repository, this._model);
 
-  String get username => _service.username;
-  String get profilePic => _service.profilePic;
-  String get content => _service.content;
-  bool get liked => _service.liked;
-  int get likeCount => _service.likeCount;
-  String get timeSincePost => _service.timeSincePost;
+  String get username => _model.username;
+  String get profilePic => _model.profilePic;
+  String get content => _model.content;
+  bool get liked => _model.liked;
+  int get likeCount => _model.likeCount;
+  String get timeSincePost => _model.timeSincePost;
 
   void like() {
-    _service.like();
+    _repository.like();
+    _model.like();
     notifyListeners();
   }
 
   void unlike() {
-    _service.unlike();
-    notifyListeners();
-  }
-
-  void delete() {
-    _service.delete();
+    _repository.unlike();
+    _model.unlike();
     notifyListeners();
   }
 }

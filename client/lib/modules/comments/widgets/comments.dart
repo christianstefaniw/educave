@@ -5,7 +5,6 @@ import 'package:tuple/tuple.dart';
 import '../../../data/providers/api_provider.dart';
 import '../../comment/comment_model.dart';
 import '../../comment/comment_repository.dart';
-import '../../comment/comment_service.dart';
 import '../../comment/comment_vm.dart';
 import '../../comment/comment_widget.dart';
 import 'add_comment.dart';
@@ -31,24 +30,22 @@ class _CommentsState extends State<Comments> {
       padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 13),
       child: Column(
         children: [
-          Selector<CommentsViewModel, Tuple2<List<CommentModel>?, bool>>(
-            selector: (_, vm) => Tuple2(vm.comments, vm.commentsLoaded),
-            builder: ((context, data, child) {
-              if (data.item2) {
+          Selector<CommentsViewModel, List<CommentModel>?>(
+            selector: (_, vm) => vm.comments,
+            builder: ((context, comments, child) {
+              if (comments != null) {
                 return Expanded(
                   child: ListView.builder(
                     shrinkWrap: true,
-                    itemCount: data.item1!.length,
+                    itemCount: comments.length,
                     itemBuilder: ((context, index) {
                       return ChangeNotifierProvider(
                         create: (_) => CommentViewModel(
-                          CommentService(
-                            data.item1![index],
-                            CommentRepository(
-                              data.item1![index].id,
-                              ApiProvider(),
-                            ),
+                          CommentRepository(
+                            comments[index].id,
+                            ApiProvider(),
                           ),
+                          comments[index],
                         ),
                         child: const Comment(),
                       );

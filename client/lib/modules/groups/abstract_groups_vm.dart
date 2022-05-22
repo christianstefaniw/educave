@@ -1,21 +1,20 @@
-import 'package:flutter/foundation.dart';
-
 import '../../core/types/view_model.dart';
 import '../group/group_model.dart';
-import 'groups_service_interface.dart';
+import 'groups_repository_interface.dart';
 
 abstract class GroupsViewModel with ViewModel {
-  @protected
-  final IGroupsService groupsService;
+  final IGroupsRepository repository;
 
-  GroupsViewModel(this.groupsService);
+  List<GroupModel>? _groups;
 
-  List<GroupModel>? get groups => groupsService.groups;
+  GroupsViewModel(this.repository);
+
+  List<GroupModel>? get groups => _groups;
 
   Future<void> loadGroups() async {
-    await groupsService.loadGroups();
+    _groups = await repository.groups();
     notifyListeners();
   }
 
-  bool get groupsLoaded => groups != null;
+  bool get groupsLoaded => _groups != null;
 }

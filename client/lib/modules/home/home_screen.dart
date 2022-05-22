@@ -4,12 +4,10 @@ import 'package:provider/provider.dart';
 import '../../data/providers/api_provider.dart';
 import '../content/content_screen.dart';
 import '../posts/posts_repository.dart';
-import '../posts/posts_service.dart';
 import '../posts/abstract_posts_vm.dart';
 import '../posts/vms/recent_posts_vm.dart';
 import '../stories/abstract_stories_vm.dart';
 import '../stories/stories_repository.dart';
-import '../stories/stories_service.dart';
 import '../stories/vms/recent_stories_vm.dart';
 
 class Home extends StatelessWidget {
@@ -23,19 +21,15 @@ class Home extends StatelessWidget {
         providers: [
           ChangeNotifierProvider<PostsViewModel>(
             create: (_) => RecentPostsViewModel(
-              PostsService(
-                PostsRepository(
-                  ApiProvider(),
-                ),
+              PostsRepository(
+                ApiProvider(),
               ),
             ),
           ),
           ChangeNotifierProvider<StoriesViewModel>(
             create: (_) => RecentStoriesViewModel(
-              StoriesService(
-                StoriesRepository(
-                  ApiProvider(),
-                ),
+              StoriesRepository(
+                ApiProvider(),
               ),
             ),
           ),

@@ -3,7 +3,6 @@ import 'package:provider/provider.dart';
 
 import '../../data/providers/api_provider.dart';
 import '../post/post_repository.dart';
-import '../post/post_service.dart';
 import '../post/post_vm.dart';
 import '../post/post_widget.dart';
 import '../posts/abstract_posts_vm.dart';
@@ -51,13 +50,11 @@ class _ContentState extends State<Content> {
                 ],
                 ChangeNotifierProvider(
                   create: (_) => PostViewModel(
-                    PostService(
-                      postsVm.posts![index],
-                      PostRepository(
-                        ApiProvider(),
-                        postsVm.posts![index].id,
-                      ),
+                    PostRepository(
+                      ApiProvider(),
+                      postsVm.posts![index].id,
                     ),
+                    postsVm.posts![index],
                   ),
                   child: const Post(),
                 ),

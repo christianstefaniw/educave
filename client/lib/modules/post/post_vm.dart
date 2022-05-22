@@ -1,40 +1,45 @@
 import '../../core/types/view_model.dart';
 import 'features/post_feature.dart';
-import 'post_service_interface.dart';
+import 'post_model.dart';
+import 'post_repository_interface.dart';
 
 class PostViewModel with ViewModel {
-  final IPostService _service;
+  final IPostRepository _repository;
+  final PostModel _model;
 
-  PostViewModel(this._service);
+  PostViewModel(this._repository, this._model);
 
-  String get username => _service.username;
-  String get profilePic => _service.profilePic;
-  String get postedIn => _service.postedIn;
-  DateTime get dateTime => _service.dateTime;
-  int get commentCount => _service.commentCount;
-  int get likeCount => _service.likeCount;
-  bool get isLiked => _service.isLiked;
-  bool get isSaved => _service.isSaved;
-  List<PostFeature> get features => _service.features;
+  String get username => _model.username;
+  String get profilePic => _model.profilePic;
+  String get postedIn => _model.postedIn;
+  DateTime get dateTime => _model.dateTime;
+  int get commentCount => _model.commentCount;
+  int get likeCount => _model.likeCount;
+  bool get isLiked => _model.isLiked;
+  bool get isSaved => _model.isSaved;
+  List<PostFeature> get features => _model.features;
 
   void like() {
-    var res = _service.like();
+    _repository.like();
+    _model.like();
     notifyListeners();
-    // if ((await res) is fail) then
   }
 
   void unlike() {
-    _service.unlike();
+    _repository.unlike();
+    _model.unlike();
     notifyListeners();
   }
 
   void save() {
-    _service.save();
+    _repository.save();
+    _model.save();
     notifyListeners();
   }
 
   void unsave() {
-    _service.unsave();
+    _repository.unsave();
+    _model.unsave();
     notifyListeners();
   }
 }

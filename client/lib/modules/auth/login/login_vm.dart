@@ -1,21 +1,23 @@
 import '../../../core/types/view_model.dart';
 import '../../account/account_model.dart';
-import 'login_service_interface.dart';
+import 'login_repository_interface.dart';
 
 class LoginViewModel with ViewModel {
-  final ILoginService _service;
+  final ILoginRepository _repository;
+  Map<String, String> _validationErrors = {};
 
-  LoginViewModel(this._service);
+  LoginViewModel(this._repository);
 
-  Map<String, String?> get validationErrors => _service.validationErrors;
+  Map<String, String> get validationErrors => _validationErrors;
 
   Future<AccountModel?> login(String email, String password) async {
-    if (!_service.validate(email, password)) {
+    try {
+      final account = AccountModel.create(email, password);
+      return await _repository.login(account);
+    } catch (e) {
+      _validationErrors = e as Map<String, String>;
       notifyListeners();
-      return null;
     }
-
-    AccountModel? account = await _service.login(email, password);
-    return account;
+    return null;
   }
 }

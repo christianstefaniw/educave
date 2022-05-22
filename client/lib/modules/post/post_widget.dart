@@ -5,7 +5,6 @@ import '../../core/helpers/date_time_format.dart';
 import '../../core/theme/theme.dart';
 import '../../data/providers/api_provider.dart';
 import '../comments/comments_repository.dart';
-import '../comments/comments_service.dart';
 import '../comments/comments_vm.dart';
 import '../comments/widgets/comments.dart';
 import 'features/feature_widget_factory.dart';
@@ -124,10 +123,8 @@ class _PostState extends State<Post> {
                                 ),
                                 child: ChangeNotifierProvider(
                                   create: (_) => CommentsViewModel(
-                                    CommentsService(
-                                      CommentsRepository(
-                                        ApiProvider(),
-                                      ),
+                                    CommentsRepository(
+                                      ApiProvider(),
                                     ),
                                   ),
                                   child: const Comments(),

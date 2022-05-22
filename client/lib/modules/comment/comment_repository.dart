@@ -8,9 +8,6 @@ class CommentRepository implements ICommentRepository {
   CommentRepository(this._id, this._client);
 
   @override
-  Future<void> delete() async {}
-
-  @override
   Future<void> like() async {}
 
   @override

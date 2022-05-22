@@ -4,7 +4,7 @@ import 'package:provider/provider.dart';
 import '../../../routes/routes.dart';
 import '../../../widgets/cta_button.dart';
 import '../../../widgets/error_text.dart';
-import '../../account/account_vm.dart';
+import '../../account/account_provider.dart';
 import '../widgets/auth_text_input.dart';
 import 'login_vm.dart';
 
@@ -29,8 +29,8 @@ class _LoginState extends State<Login> {
   @override
   Widget build(BuildContext context) {
     final viewModel = Provider.of<LoginViewModel>(context);
-    final accountViewModel =
-        Provider.of<AccountViewModel>(context, listen: false);
+    final accountProvider =
+        Provider.of<AccountProvider>(context, listen: false);
 
     return Scaffold(
       body: Container(
@@ -75,9 +75,9 @@ class _LoginState extends State<Login> {
                       final account = await viewModel.login(
                           emailController.text, passwordController.text);
                       if (account == null) return;
-                      accountViewModel.setAccount(account);
+                      accountProvider.setAccount(account);
                       Navigator.pushReplacementNamed(
-                          context, AppRouteNames.home);
+                          context, AppRouteNames.app);
                     },
                     text: 'Login',
                     padding: const EdgeInsets.symmetric(vertical: 15),

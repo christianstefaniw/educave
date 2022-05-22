@@ -3,7 +3,7 @@ import 'package:provider/provider.dart';
 
 import '../../../core/theme/colors.dart';
 import '../../../core/theme/text.dart';
-import '../../account/account_vm.dart';
+import '../../account/account_provider.dart';
 import '../comments_vm.dart';
 
 class AddComment extends StatefulWidget {
@@ -26,18 +26,12 @@ class _AddCommentState extends State<AddComment> {
   @override
   Widget build(BuildContext context) {
     final vm = Provider.of<CommentsViewModel>(context, listen: false);
-    final commentBeingAddedIsValid = context
-        .select<CommentsViewModel, bool>((vm) => vm.commentBeingAddedIsValid);
-
-    final profilePic =
-        Provider.of<AccountViewModel>(context, listen: false).profilePic;
-
-    final userId = Provider.of<AccountViewModel>(context, listen: false).id;
+    final account = Provider.of<AccountProvider>(context, listen: false);
 
     return Row(
       children: [
         CircleAvatar(
-          backgroundImage: NetworkImage(profilePic),
+          backgroundImage: NetworkImage(account.profilePic),
           radius: 22,
         ),
         const SizedBox(
@@ -48,7 +42,6 @@ class _AddCommentState extends State<AddComment> {
             key: formKey,
             child: TextFormField(
               controller: commentController,
-              onChanged: (text) => vm.validateCommentDynamically(text),
               style: AppTextTheme.commentStyle.merge(
                 const TextStyle(fontSize: 15),
               ),
@@ -80,13 +73,13 @@ class _AddCommentState extends State<AddComment> {
                   constraints: const BoxConstraints(),
                   padding: const EdgeInsets.all(12),
                   splashRadius: 1,
-                  color: commentBeingAddedIsValid
-                      ? Theme.of(context).colorScheme.primary
-                      : AppColors.muted,
+                  color: Theme.of(context).colorScheme.primary,
                   onPressed: () {
                     vm.addComment(
-                      content: commentController.text,
-                      userId: userId,
+                      commentController.text,
+                      account.id,
+                      account.profilePic,
+                      account.name,
                     );
                     commentController.clear();
                   },

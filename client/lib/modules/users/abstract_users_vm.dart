@@ -1,21 +1,20 @@
-import 'package:flutter/foundation.dart';
-
 import '../../core/types/view_model.dart';
 import '../user/user_model.dart';
-import 'users_service_interface.dart';
+import 'users_repository_interface.dart';
 
 abstract class UsersViewModel with ViewModel {
-  @protected
-  final IUsersService usersService;
+  final IUsersRepository _repository;
 
-  UsersViewModel(this.usersService);
+  List<UserModel>? _users;
 
-  List<UserModel>? get users => usersService.users;
+  UsersViewModel(this._repository);
+
+  List<UserModel>? get users => _users;
 
   Future<void> loadUsers() async {
-    await usersService.loadUsers();
+    _users = await _repository.users();
     notifyListeners();
   }
 
-  bool get usersLoaded => users != null;
+  bool get usersLoaded => _users != null;
 }

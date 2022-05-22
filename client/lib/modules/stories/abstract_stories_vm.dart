@@ -1,20 +1,19 @@
-import 'package:flutter/material.dart';
-
 import '../../core/types/view_model.dart';
-import 'stories_service_interface.dart';
+import 'stories_repository_interface.dart';
 import 'story_model.dart';
 
 abstract class StoriesViewModel with ViewModel {
-  @protected
-  final IStoriesService service;
+  final IStoriesRepository _repository;
+
+  List<StoryModel>? _stories;
   bool _mounted = true;
 
-  StoriesViewModel(this.service);
+  StoriesViewModel(this._repository);
 
-  List<StoryModel>? get stories => service.stories;
+  List<StoryModel>? get stories => _stories;
 
   Future<void> loadStories() async {
-    await service.loadStories();
+    _stories = await _repository.stories();
     if (_mounted) notifyListeners();
   }
 
@@ -24,5 +23,5 @@ abstract class StoriesViewModel with ViewModel {
     _mounted = false;
   }
 
-  bool get storiesLoaded => service.stories != null;
+  bool get storiesLoaded => _stories != null;
 }

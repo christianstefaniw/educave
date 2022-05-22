@@ -4,7 +4,6 @@ import 'package:provider/provider.dart';
 import '../../data/providers/api_provider.dart';
 import '../user/user_preview_widget.dart';
 import '../user/user_repository.dart';
-import '../user/user_service.dart';
 import '../user/user_vm.dart';
 import 'abstract_users_vm.dart';
 
@@ -34,10 +33,8 @@ class _UsersState extends State<Users> {
           itemBuilder: (context, index) {
             return ChangeNotifierProvider(
               create: (_) => UserViewModel(
-                UserService(
-                  UserRepository(ApiProvider()),
-                  vm.users![index],
-                ),
+                UserRepository(ApiProvider()),
+                vm.users![index],
               ),
               child: Column(
                 children: const [

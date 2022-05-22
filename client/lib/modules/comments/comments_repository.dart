@@ -8,6 +8,9 @@ class CommentsRepository implements ICommentsRepository {
   CommentsRepository(this._client);
 
   @override
+  Future<void> addComment(CommentModel comment) async {}
+
+  @override
   Future<List<CommentModel>> comments() async {
     return await Future.delayed(
         const Duration(seconds: 1),

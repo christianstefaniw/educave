@@ -4,7 +4,6 @@ import 'package:provider/provider.dart';
 import '../../data/providers/api_provider.dart';
 import '../group/group_preview_widget.dart';
 import '../group/group_repository.dart';
-import '../group/group_service.dart';
 import '../group/group_vm.dart';
 import 'abstract_groups_vm.dart';
 
@@ -32,10 +31,8 @@ class _GroupsState extends State<Groups> {
         itemBuilder: ((context, index) {
           return ChangeNotifierProvider(
             create: (_) => GroupViewModel(
-              GroupService(
-                vm.groups![index],
-                GroupRepository(ApiProvider()),
-              ),
+              GroupRepository(ApiProvider()),
+              vm.groups![index],
             ),
             child: const GroupPreview(),
           );
