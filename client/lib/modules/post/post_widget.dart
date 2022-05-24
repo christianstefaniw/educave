@@ -21,7 +21,7 @@ class Post extends StatefulWidget {
 class _PostState extends State<Post> {
   @override
   Widget build(BuildContext context) {
-    final viewModel = Provider.of<PostViewModel>(context);
+    final vm = Provider.of<PostViewModel>(context);
 
     return Padding(
       padding: const EdgeInsets.only(left: 17.0, right: 17.0, top: 8.0),
@@ -32,16 +32,16 @@ class _PostState extends State<Post> {
             children: [
               CircleAvatar(
                 backgroundColor: Colors.white,
-                backgroundImage: NetworkImage(viewModel.profilePic),
+                backgroundImage: NetworkImage(vm.profilePic),
               ),
               Container(
                 margin: const EdgeInsets.only(left: 15),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(viewModel.username),
+                    Text(vm.username),
                     Text(
-                      viewModel.postedIn,
+                      vm.postedIn,
                       style: const TextStyle(color: AppColors.muted),
                     )
                   ],
@@ -61,14 +61,14 @@ class _PostState extends State<Post> {
           Container(
             margin: const EdgeInsets.symmetric(vertical: 5),
             child: Column(
-                children: viewModel.features.map((PostFeature feature) {
+                children: vm.features.map((PostFeature feature) {
               return FeatureWidgetFactory(feature);
             }).toList()),
           ),
           SizedBox(
             width: double.infinity,
             child: Text(
-              DateTimeFormat.monthDayYear.format(viewModel.dateTime).toString(),
+              DateTimeFormat.monthDayYear.format(vm.dateTime).toString(),
               style: const TextStyle(color: AppColors.muted),
             ),
           ),
@@ -82,11 +82,10 @@ class _PostState extends State<Post> {
                     IconButton(
                       constraints: const BoxConstraints(),
                       padding: EdgeInsets.zero,
-                      onPressed:
-                          viewModel.isLiked ? viewModel.unlike : viewModel.like,
+                      onPressed: vm.isLiked ? vm.unlike : vm.like,
                       splashRadius: 1,
                       iconSize: 23,
-                      icon: viewModel.isLiked
+                      icon: vm.isLiked
                           ? const Icon(
                               Icons.favorite,
                               color: Colors.red,
@@ -97,7 +96,7 @@ class _PostState extends State<Post> {
                     SizedBox(
                       width: 27,
                       child: Text(
-                        viewModel.likeCount.toString(),
+                        vm.likeCount.toString(),
                       ),
                     ),
                   ],
@@ -142,7 +141,7 @@ class _PostState extends State<Post> {
                     SizedBox(
                       width: 27,
                       child: Text(
-                        viewModel.commentCount.toString(),
+                        vm.commentCount.toString(),
                       ),
                     ),
                   ],
@@ -162,12 +161,11 @@ class _PostState extends State<Post> {
                 IconButton(
                   constraints: const BoxConstraints(),
                   padding: EdgeInsets.zero,
-                  onPressed:
-                      viewModel.isSaved ? viewModel.unsave : viewModel.save,
+                  onPressed: vm.isSaved ? vm.unsave : vm.save,
                   splashRadius: 1,
                   iconSize: 25,
                   icon: Icon(
-                    viewModel.isSaved
+                    vm.isSaved
                         ? Icons.bookmark
                         : Icons.bookmark_outline_outlined,
                   ),

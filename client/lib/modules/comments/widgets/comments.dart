@@ -2,12 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../../data/providers/api_provider.dart';
-import '../../comment/comment_model.dart';
+import '../../account/account_provider.dart';
+import '../../add_comment/account_data.dart';
+import '../../add_comment/add_comment_repository.dart';
+import '../../add_comment/add_comment_vm.dart';
 import '../../comment/comment_repository.dart';
 import '../../comment/comment_vm.dart';
 import '../../comment/comment_widget.dart';
 import '../comments_vm.dart';
-import 'add_comment.dart';
+import '../../add_comment/add_comment_widget.dart';
 
 class Comments extends StatefulWidget {
   const Comments({Key? key}) : super(key: key);
@@ -26,6 +29,7 @@ class _CommentsState extends State<Comments> {
   @override
   Widget build(BuildContext context) {
     final vm = Provider.of<CommentsViewModel>(context);
+    final account = Provider.of<AccountProvider>(context, listen: false);
 
     if (vm.comments != null) {
       return Padding(
@@ -38,15 +42,15 @@ class _CommentsState extends State<Comments> {
                 child: ListView.builder(
                   shrinkWrap: true,
                   reverse: true,
-                  itemCount: vm.comments!.length,
+                  itemCount: vm.comments!.getState().length,
                   itemBuilder: ((context, index) {
                     return ChangeNotifierProvider(
                       create: (_) => CommentViewModel(
                         CommentRepository(
-                          vm.comments![index].id,
+                          vm.comments!.getState()[index].id,
                           ApiProvider(),
                         ),
-                        vm.comments![index],
+                        vm.comments!.getState()[index],
                       ),
                       child: const Comment(),
                     );
@@ -57,7 +61,18 @@ class _CommentsState extends State<Comments> {
             const SizedBox(
               height: 10,
             ),
-            const AddComment()
+            ChangeNotifierProvider(
+              create: (_) => AddCommentViewModel(
+                AddCommentRepository(ApiProvider()),
+                comments: vm.comments!,
+                accountCommentData: AccountCommentData(
+                  account.id,
+                  account.profilePic,
+                  account.name,
+                ),
+              ),
+              child: const AddComment(),
+            )
           ],
         ),
       );

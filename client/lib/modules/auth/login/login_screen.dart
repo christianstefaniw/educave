@@ -28,7 +28,7 @@ class _LoginState extends State<Login> {
 
   @override
   Widget build(BuildContext context) {
-    final viewModel = Provider.of<LoginViewModel>(context);
+    final vm = Provider.of<LoginViewModel>(context);
     final accountProvider =
         Provider.of<AccountProvider>(context, listen: false);
 
@@ -57,7 +57,7 @@ class _LoginState extends State<Login> {
                   AuthTextInput(
                     controller: emailController,
                     hintText: 'Email',
-                    errorText: viewModel.validationErrors['email'],
+                    errorText: vm.validationErrors['email'],
                   ),
                   const SizedBox(
                     height: 15,
@@ -65,14 +65,14 @@ class _LoginState extends State<Login> {
                   AuthTextInput(
                     controller: passwordController,
                     hintText: 'Password',
-                    errorText: viewModel.validationErrors['password'],
+                    errorText: vm.validationErrors['password'],
                   ),
                   const SizedBox(
                     height: 40,
                   ),
                   CtaButton(
                     onPressed: () async {
-                      final account = await viewModel.login(
+                      final account = await vm.login(
                           emailController.text, passwordController.text);
                       if (account == null) return;
                       accountProvider.setAccount(account);
@@ -83,7 +83,7 @@ class _LoginState extends State<Login> {
                     padding: const EdgeInsets.symmetric(vertical: 15),
                     width: double.infinity,
                   ),
-                  ErrorText(text: viewModel.validationErrors['error'])
+                  ErrorText(text: vm.validationErrors['error'])
                 ],
               ),
             )

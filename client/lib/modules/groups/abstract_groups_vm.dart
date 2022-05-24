@@ -5,6 +5,7 @@ import 'groups_repository_interface.dart';
 abstract class GroupsViewModel with ViewModel {
   final IGroupsRepository repository;
 
+  bool _mounted = true;
   List<GroupModel>? _groups;
 
   GroupsViewModel(this.repository);
@@ -13,8 +14,17 @@ abstract class GroupsViewModel with ViewModel {
 
   Future<void> loadGroups() async {
     _groups = await repository.groups();
-    notifyListeners();
+
+    if (_mounted) {
+      notifyListeners();
+    }
   }
 
   bool get groupsLoaded => _groups != null;
+
+  @override
+  void dispose() {
+    _mounted = false;
+    super.dispose();
+  }
 }

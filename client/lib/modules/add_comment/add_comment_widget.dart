@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../../core/theme/colors.dart';
-import '../../../core/theme/text.dart';
-import '../../account/account_provider.dart';
-import '../../post/post_vm.dart';
-import '../comments_vm.dart';
+import '../../core/theme/colors.dart';
+import '../../core/theme/text.dart';
+import '../account/account_provider.dart';
+import 'add_comment_vm.dart';
 
 class AddComment extends StatefulWidget {
   const AddComment({Key? key}) : super(key: key);
@@ -26,7 +25,7 @@ class _AddCommentState extends State<AddComment> {
 
   @override
   Widget build(BuildContext context) {
-    final vm = Provider.of<CommentsViewModel>(context);
+    final vm = Provider.of<AddCommentViewModel>(context);
     final account = Provider.of<AccountProvider>(context, listen: false);
 
     return Row(
@@ -42,6 +41,8 @@ class _AddCommentState extends State<AddComment> {
           child: Form(
             key: formKey,
             child: TextFormField(
+              onChanged: (value) =>
+                  vm.validateCommentDynamically(commentController.text),
               controller: commentController,
               style: AppTextTheme.commentStyle.merge(
                 const TextStyle(fontSize: 15),
@@ -76,14 +77,11 @@ class _AddCommentState extends State<AddComment> {
                   constraints: const BoxConstraints(),
                   padding: const EdgeInsets.all(12),
                   splashRadius: 1,
-                  color: Theme.of(context).colorScheme.primary,
+                  color: vm.commentBeingAddedIsValid
+                      ? Theme.of(context).colorScheme.primary
+                      : AppColors.muted,
                   onPressed: () {
-                    vm.addComment(
-                      commentController.text,
-                      account.id,
-                      account.profilePic,
-                      account.name,
-                    );
+                    vm.addComment(commentController.text);
                     commentController.clear();
                   },
                 ),
