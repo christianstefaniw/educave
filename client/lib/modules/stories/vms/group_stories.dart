@@ -7,5 +7,6 @@ class GroupStoriesViewModel extends StoriesViewModel {
   GroupStoriesViewModel(String groupId, IStoriesRepository repository)
       : super(StoriesModel(repository)) {
     repository.setFetchStoriesStrategy(FromGroup(groupId));
+    super.loadStories();
   }
 }

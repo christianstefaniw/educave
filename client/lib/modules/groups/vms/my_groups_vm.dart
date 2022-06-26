@@ -7,5 +7,6 @@ class MyGroupsViewModel extends GroupsViewModel {
   MyGroupsViewModel(IGroupsRepository repository)
       : super(GroupsModel(repository)) {
     repository.setFetchGroupsStrategy(MyGroups());
+    super.loadGroups();
   }
 }

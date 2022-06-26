@@ -7,5 +7,6 @@ class RecentStoriesViewModel extends StoriesViewModel {
   RecentStoriesViewModel(IStoriesRepository repository)
       : super(StoriesModel(repository)) {
     repository.setFetchStoriesStrategy(FromRecent());
+    super.loadStories();
   }
 }

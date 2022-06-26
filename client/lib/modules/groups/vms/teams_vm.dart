@@ -6,5 +6,6 @@ import '../strategies/teams.dart';
 class TeamsViewModel extends GroupsViewModel {
   TeamsViewModel(GroupsRepository repository) : super(GroupsModel(repository)) {
     repository.setFetchGroupsStrategy(Teams());
+    super.loadGroups();
   }
 }

@@ -7,5 +7,6 @@ class UserPostsViewModel extends PostsViewModel {
   UserPostsViewModel(IPostsRepository repository)
       : super(PostsModel(repository)) {
     repository.setFetchPostsStrategy(FromUser());
+    super.loadPosts();
   }
 }

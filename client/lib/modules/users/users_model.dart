@@ -1,5 +1,4 @@
 import '../user/user_model.dart';
-import '../user/user_screen.dart';
 import 'users_repository_interface.dart';
 
 class UsersModel {

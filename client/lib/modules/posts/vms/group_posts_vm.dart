@@ -7,5 +7,6 @@ class GroupPostsViewModel extends PostsViewModel {
   GroupPostsViewModel(String groupId, IPostsRepository repository)
       : super(PostsModel(repository)) {
     repository.setFetchPostsStrategy(FromGroup(groupId));
+    super.loadPosts();
   }
 }

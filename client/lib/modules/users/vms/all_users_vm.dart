@@ -7,5 +7,6 @@ class AllUsersViewModel extends UsersViewModel {
   AllUsersViewModel(IUsersRepository repository)
       : super(UsersModel(repository)) {
     repository.setFetchUsersStrategy(AllUsers());
+    super.loadUsers();
   }
 }

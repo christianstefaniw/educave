@@ -6,7 +6,6 @@ const query = new GraphQLObjectType({
     name: 'Query',
     fields: {
         ...authQueries,
-
     }
 });
 

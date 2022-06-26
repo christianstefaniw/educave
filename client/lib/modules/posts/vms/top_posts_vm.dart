@@ -7,5 +7,6 @@ class TopPostsViewModel extends PostsViewModel {
   TopPostsViewModel(IPostsRepository repository)
       : super(PostsModel(repository)) {
     repository.setFetchPostsStrategy(FromTop());
+    super.loadPosts();
   }
 }

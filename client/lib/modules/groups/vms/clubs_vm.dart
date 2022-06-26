@@ -7,5 +7,6 @@ class ClubsViewModel extends GroupsViewModel {
   ClubsViewModel(IGroupsRepository repository)
       : super(GroupsModel(repository)) {
     repository.setFetchGroupsStrategy(Clubs());
+    super.loadGroups();
   }
 }

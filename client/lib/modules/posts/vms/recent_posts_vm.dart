@@ -7,5 +7,6 @@ class RecentPostsViewModel extends PostsViewModel {
   RecentPostsViewModel(IPostsRepository repository)
       : super(PostsModel(repository)) {
     repository.setFetchPostsStrategy(FromRecent());
+    super.loadPosts();
   }
 }
