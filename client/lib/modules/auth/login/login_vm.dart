@@ -5,22 +5,13 @@ import 'login_model.dart';
 
 class LoginViewModel with ViewModel {
   final LoginModel _model;
-  String? _validationError;
 
   LoginViewModel(this._model);
 
-  String? get validationError => _validationError;
-
-  Future<AccountModel?> login(String email, String password) async {
+  Future<AccountModel> login(String email, String password) async {
     LoginDto loginDto;
 
-    try {
-      loginDto = LoginDto(email, password);
-    } catch (e) {
-      _validationError = e as String;
-      notifyListeners();
-      return null;
-    }
+    loginDto = LoginDto(email, password);
 
     return await _model.login(loginDto);
   }

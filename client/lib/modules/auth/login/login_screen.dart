@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../../../core/util/error.dart';
 import '../../../routes/routes.dart';
 import '../../../widgets/cta_button.dart';
 import '../../../widgets/error_text.dart';
+import '../../account/account_model.dart';
 import '../../account/account_provider.dart';
 import '../widgets/auth_text_input.dart';
 import 'login_vm.dart';
@@ -18,6 +20,7 @@ class Login extends StatefulWidget {
 class _LoginState extends State<Login> {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
+  String? error;
 
   @override
   void dispose() {
@@ -70,18 +73,30 @@ class _LoginState extends State<Login> {
                   ),
                   CtaButton(
                     onPressed: () async {
-                      final account = await vm.login(
-                          emailController.text, passwordController.text);
-                      if (account == null) return;
+                      AccountModel account;
+                      try {
+                        account = await vm.login(
+                          emailController.text,
+                          passwordController.text,
+                        );
+                      } on CustomException catch (e) {
+                        setState(() {
+                          error = e.cause;
+                        });
+                        return;
+                      }
+
                       accountProvider.setAccount(account);
                       Navigator.pushReplacementNamed(
-                          context, AppRouteNames.app);
+                        context,
+                        AppRouteNames.app,
+                      );
                     },
                     text: 'Login',
                     padding: const EdgeInsets.symmetric(vertical: 15),
                     width: double.infinity,
                   ),
-                  ErrorText(text: vm.validationError)
+                  ErrorText(text: error)
                 ],
               ),
             )

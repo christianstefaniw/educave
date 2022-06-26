@@ -13,10 +13,10 @@ const LOGIN = {
     async resolve(_: any, args: any, req: any) {
         const user = await userRepository.findOneBy({ email: args.email });
         if (!user)
-            throw new Error('Invalid email');
+            throw new Error('Account not found');
 
         if (!passwordValid(user.password, args.password))
-            throw new Error('Invalid password');
+            throw new Error('Incorrect password');
 
         req.session.user = user;
         await req.session.save();

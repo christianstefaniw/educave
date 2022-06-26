@@ -1,5 +1,5 @@
-import { IsEmail, IsNotEmpty, Matches, validateOrReject } from "class-validator";
-import { AfterLoad, BaseEntity, BeforeInsert, BeforeUpdate, Column, Entity, PrimaryColumn } from "typeorm";
+import { IsEmail, IsNotEmpty, IsUrl, Matches, validateOrReject } from "class-validator";
+import { AfterLoad, BaseEntity, BeforeInsert, BeforeUpdate, Column, Entity, PrimaryColumn, PrimaryGeneratedColumn } from "typeorm";
 import formatValidationErrors from "../../helpers/format_validation_errors";
 import hashPassword from "../../helpers/hash_password";
 
@@ -8,7 +8,7 @@ class User extends BaseEntity {
     // temp password for detecting password change when updating
     private tempPassword!: string;
 
-    @PrimaryColumn('uuid')
+    @PrimaryGeneratedColumn('uuid')
     id!: string;
 
     @Column()
@@ -26,6 +26,10 @@ class User extends BaseEntity {
     @Column()
     @Matches("^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$", undefined, { message: 'Invalid password' })
     password!: string;
+
+    @Column()
+    @IsUrl()
+    profilePic!: string;
 
     @AfterLoad()
     private loadTempPassword(): void {

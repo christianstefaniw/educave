@@ -1,4 +1,11 @@
 abstract class IApiProvider {
-  Future<dynamic> get(String path);
-  Future<dynamic> post(String path, {dynamic data});
+  Future<Map<String, dynamic>> query(
+    String rawQuery, {
+    Map<String, dynamic>? variables,
+  });
+
+  Future<Map<String, dynamic>> mutate(
+    String rawQuery, {
+    Map<String, dynamic>? variables,
+  });
 }

@@ -19,7 +19,6 @@ redisClient.on('connect', function (err) {
 const sessionOptions = {
     secret: "complex_password_at_least_32_characters_long",
     name: "edusess",
-    store: new RedisStore({ client: redisClient }),
     resave: false,
     saveUninitialized: true,
     cookie: {

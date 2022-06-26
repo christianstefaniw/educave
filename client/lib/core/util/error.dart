@@ -1,7 +1,6 @@
 class CustomException implements Exception {
-  final String _cause;
+  String _cause;
   CustomException(this._cause);
 
-  @override
-  String toString() => _cause;
+  String get cause => _cause;
 }

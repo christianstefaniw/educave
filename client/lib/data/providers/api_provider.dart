@@ -1,10 +1,17 @@
-import 'package:dio/dio.dart';
+import 'package:graphql/client.dart';
 
-import 'api_provider_interface.dart';
 import '../../core/config.dart';
+import '../../core/util/error.dart';
+import 'api_provider_interface.dart';
 
 class ApiProvider implements IApiProvider {
   static final ApiProvider _singleton = ApiProvider._internal();
+  static final GraphQLClient _client = GraphQLClient(
+    cache: GraphQLCache(),
+    link: HttpLink(
+      Config.baseApiPath,
+    ),
+  );
 
   factory ApiProvider() {
     return _singleton;
@@ -12,17 +19,37 @@ class ApiProvider implements IApiProvider {
 
   ApiProvider._internal();
 
-  final Dio _dio = Dio(BaseOptions(baseUrl: Config.baseApiPath));
-
   @override
-  Future get(String path) async {
-    Response response = await _dio.get(path);
-    return response.data;
+  Future<Map<String, dynamic>> query(
+    String rawQuery, {
+    Map<String, dynamic>? variables,
+  }) async {
+    final options = QueryOptions(
+      document: gql(rawQuery),
+      variables: variables ?? {},
+    );
+
+    final response = await _client.query(options);
+    if (response.hasException) {
+      throw CustomException(response.exception!.graphqlErrors[0].message);
+    }
+
+    return response.data!;
   }
 
   @override
-  Future post(String path, {data}) async {
-    Response response = await _dio.post(path, data: data);
-    return response.data;
+  Future<Map<String, dynamic>> mutate(String rawQuery,
+      {Map<String, dynamic>? variables}) async {
+    final options = MutationOptions(
+      document: gql(rawQuery),
+      variables: variables ?? {},
+    );
+
+    final response = await _client.mutate(options);
+    if (response.hasException) {
+      throw CustomException(response.exception!.graphqlErrors[0].message);
+    }
+
+    return response.data!;
   }
 }

@@ -20,7 +20,7 @@ const main = async () => {
                 },
             }));
 
-        app.listen(3001, () => {
+        app.listen(3002, () => {
             console.log("SERVER RUNNING ON PORT 3001");
         });
     });
