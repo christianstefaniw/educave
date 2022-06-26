@@ -4,6 +4,8 @@ import 'package:provider/provider.dart';
 import '../../core/helpers/date_time_format.dart';
 import '../../core/theme/theme.dart';
 import '../../data/providers/api_provider.dart';
+import '../account/account_provider.dart';
+import '../comments/account_data.dart';
 import '../comments/comments_repository.dart';
 import '../comments/comments_vm.dart';
 import '../comments/widgets/comments.dart';
@@ -22,6 +24,7 @@ class _PostState extends State<Post> {
   @override
   Widget build(BuildContext context) {
     final vm = Provider.of<PostViewModel>(context);
+    final account = Provider.of<AccountProvider>(context);
 
     return Padding(
       padding: const EdgeInsets.only(left: 17.0, right: 17.0, top: 8.0),
@@ -124,6 +127,12 @@ class _PostState extends State<Post> {
                                   create: (_) => CommentsViewModel(
                                     CommentsRepository(
                                       ApiProvider(),
+                                      vm.id,
+                                    ),
+                                    accountCommentData: AccountCommentData(
+                                      account.id,
+                                      account.profilePic,
+                                      account.name,
                                     ),
                                   ),
                                   child: const Comments(),

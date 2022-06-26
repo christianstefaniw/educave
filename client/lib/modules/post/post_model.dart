@@ -1,8 +1,10 @@
 import 'features/image.dart';
 import 'features/post_feature.dart';
 import 'features/text.dart';
+import 'post_repository_interface.dart';
 
 class PostModel {
+  final IPostRepository _repository;
   final String _id;
   final String _username;
   final String _profilePic;
@@ -15,7 +17,8 @@ class PostModel {
   bool _isLiked;
   bool _isSaved;
 
-  PostModel({
+  PostModel(
+    this._repository, {
     required String id,
     required String username,
     required String profilePic,
@@ -48,30 +51,35 @@ class PostModel {
   bool get isLiked => _isLiked;
   bool get isSaved => _isSaved;
 
-  void like() {
+  void like() async {
     if (_isLiked) return;
     _likeCount++;
     _isLiked = true;
+    await _repository.like();
   }
 
-  void unlike() {
+  void unlike() async {
     if (!_isLiked) return;
     _likeCount--;
     _isLiked = false;
+    await _repository.unlike();
   }
 
-  void save() {
+  void save() async {
     if (_isSaved) return;
     _isSaved = true;
+    await _repository.save();
   }
 
-  void unsave() {
+  void unsave() async {
     if (!_isSaved) return;
     _isSaved = false;
+    await _repository.unsave();
   }
 
-  PostModel.fromJson(Map<String, dynamic> json)
-      : _id = json['id'],
+  PostModel.fromJson(Map<String, dynamic> json, IPostRepository repository)
+      : _repository = repository,
+        _id = json['id'],
         _username = json['username'],
         _profilePic = json['profilePic'],
         _postedIn = json['postedIn'],

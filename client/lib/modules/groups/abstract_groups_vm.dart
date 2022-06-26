@@ -8,19 +8,20 @@ abstract class GroupsViewModel with ViewModel {
   bool _mounted = true;
   List<GroupModel>? _groups;
 
-  GroupsViewModel(this.repository);
+  GroupsViewModel(this.repository) {
+    _loadGroups();
+  }
 
   List<GroupModel>? get groups => _groups;
+  bool get groupsLoaded => _groups != null;
 
-  Future<void> loadGroups() async {
+  Future<void> _loadGroups() async {
     _groups = await repository.groups();
 
     if (_mounted) {
       notifyListeners();
     }
   }
-
-  bool get groupsLoaded => _groups != null;
 
   @override
   void dispose() {

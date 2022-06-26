@@ -7,19 +7,8 @@ import '../user/user_repository.dart';
 import '../user/user_vm.dart';
 import 'abstract_users_vm.dart';
 
-class Users extends StatefulWidget {
+class Users extends StatelessWidget {
   const Users({Key? key}) : super(key: key);
-
-  @override
-  State<Users> createState() => _UsersState();
-}
-
-class _UsersState extends State<Users> {
-  @override
-  void initState() {
-    Provider.of<UsersViewModel>(context, listen: false).loadUsers();
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +22,6 @@ class _UsersState extends State<Users> {
           itemBuilder: (context, index) {
             return ChangeNotifierProvider(
               create: (_) => UserViewModel(
-                UserRepository(ApiProvider()),
                 vm.users![index],
               ),
               child: Column(

@@ -1,7 +1,9 @@
 import '../../../../data/providers/api_provider_interface.dart';
+import '../../../data/providers/api_provider.dart';
 import '../../post/features/image.dart';
 import '../../post/features/text.dart';
 import '../../post/post_model.dart';
+import '../../post/post_repository.dart';
 import 'fetch_posts_strategy.dart';
 
 class FromRecent implements FetchPostsStrategy {
@@ -12,6 +14,7 @@ class FromRecent implements FetchPostsStrategy {
       const Duration(seconds: 1),
       () => [
         PostModel(
+          PostRepository(ApiProvider()),
           id: '3',
           username: 'Sarah Cameron',
           profilePic:
@@ -29,6 +32,7 @@ class FromRecent implements FetchPostsStrategy {
           likeCount: 432,
         ),
         PostModel(
+          PostRepository(ApiProvider()),
           id: '3',
           username: 'Sarah Cameron',
           profilePic:
@@ -47,6 +51,7 @@ class FromRecent implements FetchPostsStrategy {
           likeCount: 83,
         ),
         PostModel(
+          PostRepository(ApiProvider()),
           id: '3',
           username: 'Sarah Cameron',
           profilePic:
@@ -64,6 +69,7 @@ class FromRecent implements FetchPostsStrategy {
           likeCount: 83,
         ),
         PostModel(
+          PostRepository(ApiProvider()),
           id: '3',
           username: 'Sarah Cameron',
           profilePic:
@@ -81,6 +87,7 @@ class FromRecent implements FetchPostsStrategy {
           likeCount: 83,
         ),
         PostModel(
+          PostRepository(ApiProvider()),
           id: '3',
           username: 'Sarah Cameron',
           profilePic:

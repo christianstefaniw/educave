@@ -1,22 +1,27 @@
+import '../../data/providers/api_provider.dart';
 import '../../data/providers/api_provider_interface.dart';
 import '../comment/comment_model.dart';
+import '../comment/comment_repository.dart';
 import 'comments_repository_interface.dart';
 
 class CommentsRepository implements ICommentsRepository {
   final IApiProvider _client;
+  final String _postId;
 
-  CommentsRepository(this._client);
+  CommentsRepository(this._client, this._postId);
 
   @override
   Future<void> addComment(CommentModel comment) async {}
 
   @override
   Future<List<CommentModel>> comments() async {
+    const id = '1';
     return await Future.delayed(
         const Duration(seconds: 1),
         () => [
               CommentModel(
-                id: '1',
+                CommentRepository(ApiProvider()),
+                id: id,
                 userId: '1',
                 username: 'Bob Smith',
                 profilePic:
@@ -27,7 +32,8 @@ class CommentsRepository implements ICommentsRepository {
                 liked: false,
               ),
               CommentModel(
-                id: '1',
+                CommentRepository(ApiProvider()),
+                id: id,
                 userId: '1',
                 username: 'Bob Smith',
                 profilePic:

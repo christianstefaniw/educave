@@ -1,12 +1,15 @@
 import '../group/mutual_group_model.dart';
+import 'user_repository_interface.dart';
 
 class UserModel {
+  final IUserRepository _repository;
   final String _profilePic;
   final String _username;
   final List<MutualGroupModel> _mutualGroups;
   bool _isFollowing;
 
-  UserModel({
+  UserModel(
+    this._repository, {
     required String profilePic,
     required String username,
     required List<MutualGroupModel> mutualGroups,
@@ -16,8 +19,9 @@ class UserModel {
         _mutualGroups = mutualGroups,
         _isFollowing = isFollowing;
 
-  UserModel.fromJson(Map<String, dynamic> json)
-      : _profilePic = json['profilePic'],
+  UserModel.fromJson(Map<String, dynamic> json, IUserRepository repository)
+      : _repository = repository,
+        _profilePic = json['profilePic'],
         _username = json['username'],
         _mutualGroups = json['mutualGroups'],
         _isFollowing = json['isFollowing'];
@@ -27,12 +31,18 @@ class UserModel {
   List<MutualGroupModel> get mutualGroups => _mutualGroups;
   bool get isFollowing => _isFollowing;
 
-  void follow() {
-    if (!_isFollowing) _isFollowing = true;
+  void follow() async {
+    if (_isFollowing) return;
+
+    _isFollowing = true;
+    await _repository.follow();
   }
 
-  void unfollow() {
-    if (_isFollowing) _isFollowing = false;
+  void unfollow() async {
+    if (!_isFollowing) return;
+
+    _isFollowing = false;
+    await _repository.unfollow();
   }
 
   Map<String, dynamic> toJson() {

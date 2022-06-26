@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 
 import '../../widgets/persistent_tab.dart';
-import '../account/profile_screen.dart';
+import '../account/account_page.dart';
 import '../calendar/calendar_page.dart';
 import '../home/home_screen.dart';
 import '../search/search_control.dart';
+import '../user/user_screen.dart';
 import 'app_bars/app_bars.dart';
 
 class AppControl extends StatefulWidget {
@@ -40,7 +41,7 @@ class _AppControlState extends State<AppControl> {
             PersistentTab(child: Home()),
             PersistentTab(child: SearchControl()),
             PersistentTab(child: Calendar()),
-            PersistentTab(child: Profile()),
+            PersistentTab(child: Account()),
           ],
           physics: const NeverScrollableScrollPhysics(),
         ),

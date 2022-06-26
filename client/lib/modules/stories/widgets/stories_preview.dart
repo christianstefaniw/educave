@@ -4,19 +4,8 @@ import 'package:provider/provider.dart';
 import '../abstract_stories_vm.dart';
 import 'story_preview.dart';
 
-class StoriesPreview extends StatefulWidget {
+class StoriesPreview extends StatelessWidget {
   const StoriesPreview({Key? key}) : super(key: key);
-
-  @override
-  State<StoriesPreview> createState() => _StoriesPreviewState();
-}
-
-class _StoriesPreviewState extends State<StoriesPreview> {
-  @override
-  void initState() {
-    Provider.of<StoriesViewModel>(context, listen: false).loadStories();
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {

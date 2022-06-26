@@ -6,6 +6,7 @@ class AppRouteNames {
   static const search = '/search';
   static const createPost = '/createPost';
   static const calendar = '/calendar';
-  static const profile = '/profile';
+  static const user = '/user';
+  static const account = '/account';
   static const group = '/group';
 }

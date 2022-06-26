@@ -1,6 +1,8 @@
+import '../../../data/providers/api_provider.dart';
 import '../../group/mutual_group_model.dart';
 import '../../user/user_model.dart';
 import '../../../data/providers/api_provider_interface.dart';
+import '../../user/user_repository.dart';
 import 'fetch_users_strategy.dart';
 
 class AllUsers implements FetchUsersStrategy {
@@ -10,6 +12,7 @@ class AllUsers implements FetchUsersStrategy {
       const Duration(seconds: 1),
       () => [
         UserModel(
+          UserRepository(ApiProvider()),
           username: 'Sarah Cameronnnnnnnnnnnnnnnnn',
           mutualGroups: [
             MutualGroupModel(id: '2', name: 'Coding Club'),
@@ -20,6 +23,7 @@ class AllUsers implements FetchUsersStrategy {
               'https://e7.pngegg.com/pngimages/122/453/png-clipart-computer-icons-user-profile-avatar-female-profile-heroes-head.png',
         ),
         UserModel(
+          UserRepository(ApiProvider()),
           username: 'Sarah Cameron',
           mutualGroups: [
             MutualGroupModel(id: '2', name: 'Coding Club'),
@@ -30,6 +34,7 @@ class AllUsers implements FetchUsersStrategy {
               'https://e7.pngegg.com/pngimages/122/453/png-clipart-computer-icons-user-profile-avatar-female-profile-heroes-head.png',
         ),
         UserModel(
+          UserRepository(ApiProvider()),
           username: 'Sarah Cameron',
           mutualGroups: [
             MutualGroupModel(id: '2', name: 'Coding Club'),
@@ -40,6 +45,7 @@ class AllUsers implements FetchUsersStrategy {
               'https://e7.pngegg.com/pngimages/122/453/png-clipart-computer-icons-user-profile-avatar-female-profile-heroes-head.png',
         ),
         UserModel(
+          UserRepository(ApiProvider()),
           username: 'Sarah Cameron',
           mutualGroups: [
             MutualGroupModel(id: '2', name: 'Coding Club'),

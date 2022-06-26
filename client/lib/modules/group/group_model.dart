@@ -1,14 +1,18 @@
+import 'group_repository_interface.dart';
+
 class GroupModel {
   final String _id;
   final String _name;
   final String _summary;
   final String _groupPic;
   final String _backgroundPic;
+  final int _numPosts;
+  final IGroupRepository _repository;
+
   bool _joined;
   int _numMembers;
-  final int _numPosts;
 
-  GroupModel(
+  GroupModel(this._repository,
       {required String id,
       required String name,
       required String summary,
@@ -35,18 +39,21 @@ class GroupModel {
   int get numMembers => _numMembers;
   int get numPosts => _numPosts;
 
-  void join() {
+  void join() async {
     _joined = true;
     _numMembers++;
+    await _repository.join();
   }
 
-  void unjoin() {
+  void unjoin() async {
     _joined = false;
     _numMembers--;
+    await _repository.unjoin();
   }
 
-  GroupModel.fromJson(Map<String, dynamic> json)
-      : _id = json['id'],
+  GroupModel.fromJson(Map<String, dynamic> json, IGroupRepository repository)
+      : _repository = repository,
+        _id = json['id'],
         _name = json['name'],
         _summary = json['summary'],
         _groupPic = json['groupPic'],

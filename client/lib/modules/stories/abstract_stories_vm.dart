@@ -8,11 +8,14 @@ abstract class StoriesViewModel with ViewModel {
   List<StoryModel>? _stories;
   bool _mounted = true;
 
-  StoriesViewModel(this._repository);
+  StoriesViewModel(this._repository) {
+    _loadStories();
+  }
 
   List<StoryModel>? get stories => _stories;
+  bool get storiesLoaded => _stories != null;
 
-  Future<void> loadStories() async {
+  Future<void> _loadStories() async {
     _stories = await _repository.stories();
     if (_mounted) notifyListeners();
   }
@@ -22,6 +25,4 @@ abstract class StoriesViewModel with ViewModel {
     super.dispose();
     _mounted = false;
   }
-
-  bool get storiesLoaded => _stories != null;
 }

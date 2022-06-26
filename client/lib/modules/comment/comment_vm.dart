@@ -1,12 +1,10 @@
 import '../../core/types/view_model.dart';
 import 'comment_model.dart';
-import 'comment_repository_interface.dart';
 
 class CommentViewModel with ViewModel {
-  final ICommentRepository _repository;
   final CommentModel _model;
 
-  CommentViewModel(this._repository, this._model);
+  CommentViewModel(this._model);
 
   String get username => _model.username;
   String get profilePic => _model.profilePic;
@@ -16,13 +14,11 @@ class CommentViewModel with ViewModel {
   String get timeSincePost => _model.timeSincePost;
 
   void like() {
-    _repository.like();
     _model.like();
     notifyListeners();
   }
 
   void unlike() {
-    _repository.unlike();
     _model.unlike();
     notifyListeners();
   }

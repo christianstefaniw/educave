@@ -8,19 +8,20 @@ abstract class PostsViewModel with ViewModel {
   bool _mounted = true;
   List<PostModel>? _posts;
 
-  PostsViewModel(this._repository);
+  PostsViewModel(this._repository) {
+    _loadPosts();
+  }
 
-  Future<void> loadPosts() async {
+  bool get postsLoaded => _posts != null;
+  List<PostModel>? get posts => _posts;
+
+  Future<void> _loadPosts() async {
     _posts = await _repository.posts();
 
     if (_mounted) {
       notifyListeners();
     }
   }
-
-  bool get postsLoaded => _posts != null;
-
-  List<PostModel>? get posts => _posts;
 
   @override
   void dispose() {
