@@ -1,5 +1,7 @@
+import '../../../core/value_objects/value_objects.dart';
 import '../../../data/providers/api_provider_interface.dart';
 import '../../account/account_model.dart';
+import 'login_dto.dart';
 import 'login_repository_interface.dart';
 
 class LoginRepository implements ILoginRepository {
@@ -8,7 +10,12 @@ class LoginRepository implements ILoginRepository {
   LoginRepository(this._client);
 
   @override
-  Future<AccountModel> login(AccountModel account) async {
-    return account;
+  Future<AccountModel> login(LoginDto loginDto) async {
+    return AccountModel(
+        id: 'id',
+        email: EmailAddress('test@gmail.com'),
+        profilePic: 'profilePic',
+        firstName: 'firstName',
+        lastName: 'lastName');
   }
 }

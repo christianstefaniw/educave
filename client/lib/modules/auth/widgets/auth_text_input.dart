@@ -4,14 +4,10 @@ import '../../../core/theme/theme.dart';
 
 class AuthTextInput extends StatelessWidget {
   final String hintText;
-  final String? errorText;
   final TextEditingController controller;
 
   const AuthTextInput(
-      {required this.hintText,
-      required this.errorText,
-      required this.controller,
-      Key? key})
+      {required this.hintText, required this.controller, Key? key})
       : super(key: key);
 
   @override
@@ -23,7 +19,6 @@ class AuthTextInput extends StatelessWidget {
         filled: true,
         fillColor: AppColors.light,
         hintText: hintText,
-        errorText: errorText,
         contentPadding: const EdgeInsets.all(17),
         border: OutlineInputBorder(
           borderSide: BorderSide.none,

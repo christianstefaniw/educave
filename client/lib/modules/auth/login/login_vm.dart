@@ -1,26 +1,27 @@
 import '../../../core/types/view_model.dart';
 import '../../account/account_model.dart';
+import 'login_dto.dart';
 import 'login_model.dart';
 
 class LoginViewModel with ViewModel {
   final LoginModel _model;
-  Map<String, String> _validationErrors = {};
+  String? _validationError;
 
   LoginViewModel(this._model);
 
-  Map<String, String> get validationErrors => _validationErrors;
+  String? get validationError => _validationError;
 
   Future<AccountModel?> login(String email, String password) async {
-    AccountModel account;
+    LoginDto loginDto;
 
     try {
-      account = AccountModel.create(email, password);
+      loginDto = LoginDto(email, password);
     } catch (e) {
-      _validationErrors = e as Map<String, String>;
+      _validationError = e as String;
       notifyListeners();
       return null;
     }
 
-    return await _model.login(account);
+    return await _model.login(loginDto);
   }
 }

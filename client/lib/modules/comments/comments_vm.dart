@@ -1,4 +1,5 @@
 import '../../core/types/view_model.dart';
+import '../../core/value_objects/text.dart';
 import '../../data/providers/api_provider.dart';
 import '../comment/comment_repository.dart';
 import 'account_data.dart';
@@ -30,9 +31,9 @@ class CommentsViewModel with ViewModel {
     }
   }
 
-  void validateComment(String content) {
+  void validate(String content) {
     try {
-      CommentModel.validate(content);
+      Text(content);
       _newCommentValid = true;
     } catch (e) {
       _newCommentValid = false;
@@ -41,16 +42,16 @@ class CommentsViewModel with ViewModel {
     notifyListeners();
   }
 
-  void addComment(String content) {
+  void add(String content) {
     CommentModel newComment;
 
     try {
       newComment = CommentModel.create(
         CommentRepository(ApiProvider()),
-        content,
-        _accountCommentData.id,
-        _accountCommentData.profilePic,
-        _accountCommentData.name,
+        content: Text(content),
+        userId: _accountCommentData.id,
+        profilePic: _accountCommentData.profilePic,
+        username: _accountCommentData.name,
       );
     } catch (e) {
       return;

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../../core/value_objects/value_objects.dart';
 import '../../widgets/safearea.dart';
 import '../account/account_model.dart';
 import '../account/account_provider.dart';
@@ -13,8 +14,8 @@ class OnBoardControl extends StatelessWidget {
   Widget build(BuildContext context) {
     Provider.of<AccountProvider>(context, listen: false).setAccount(
       AccountModel(
-        id: '2',
-        email: 'christian@uwaterloo.ca',
+        id: '1',
+        email: EmailAddress('christian@uwaterloo.ca'),
         firstName: 'Christian',
         lastName: 'Stefaniw',
         profilePic:

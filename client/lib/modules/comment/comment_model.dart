@@ -1,4 +1,4 @@
-import '../../core/validators/text.dart';
+import '../../core/value_objects/text.dart';
 import 'comment_repository_interface.dart';
 
 class CommentModel {
@@ -6,7 +6,7 @@ class CommentModel {
   final String _userId;
   final String _username;
   final String _profilePic;
-  final String _content;
+  final Text _content;
   final String _timeSincePost;
   final ICommentRepository _repository;
 
@@ -18,7 +18,7 @@ class CommentModel {
       required String userId,
       required String username,
       required String profilePic,
-      required String content,
+      required Text content,
       required int likeCount,
       required bool liked,
       required String timeSincePost})
@@ -29,17 +29,15 @@ class CommentModel {
         _content = content,
         _likeCount = likeCount,
         _liked = liked,
-        _timeSincePost = timeSincePost {
-    validate(content);
-  }
+        _timeSincePost = timeSincePost;
 
   factory CommentModel.create(
-    ICommentRepository repository,
-    String content,
-    String userId,
-    String profilePic,
-    String username,
-  ) {
+    ICommentRepository repository, {
+    required Text content,
+    required String userId,
+    required String profilePic,
+    required String username,
+  }) {
     return CommentModel(
       repository,
       id: 'id',
@@ -53,20 +51,10 @@ class CommentModel {
     );
   }
 
-  static void validate(String content) {
-    Map<String, String> validationErrors = {};
-
-    final contentError = validateText(content, minLength: 1);
-
-    if (contentError != null) validationErrors['content'] = contentError;
-
-    if (validationErrors.isNotEmpty) throw validationErrors;
-  }
-
   String get id => _id;
   String get username => _username;
   String get profilePic => _profilePic;
-  String get content => _content;
+  String get content => _content.toString();
   int get likeCount => _likeCount;
   bool get liked => _liked;
   String get timeSincePost => _timeSincePost;

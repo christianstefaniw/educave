@@ -1,7 +1,7 @@
-import '../../core/validators/validators.dart';
+import '../../core/value_objects/value_objects.dart';
 
 class AccountModel {
-  final String _email;
+  final EmailAddress _email;
   final String _profilePic;
   final String _id;
   final String _firstName;
@@ -9,7 +9,7 @@ class AccountModel {
 
   AccountModel(
       {required String id,
-      required String email,
+      required EmailAddress email,
       required String profilePic,
       required String firstName,
       required String lastName})
@@ -23,30 +23,9 @@ class AccountModel {
   String get id => _id;
   String get name => '$_firstName $_lastName';
 
-  factory AccountModel.create(String email, String password) {
-    Map<String, String> validationErrors = {};
-
-    final emailError = validateEmail(email);
-    final passwordError = validatePassword(password);
-
-    if (emailError != null) validationErrors['email'] = emailError;
-    if (passwordError != null) validationErrors['password'] = passwordError;
-
-    if (validationErrors.isNotEmpty) throw validationErrors;
-
-    return AccountModel(
-      id: '1',
-      email: email,
-      firstName: 'Christian',
-      lastName: 'Stefaniw',
-      profilePic:
-          'https://www.business2community.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640.png',
-    );
-  }
-
   AccountModel.fromJson(Map<String, dynamic> json)
       : _id = json['id'],
-        _email = json['email'],
+        _email = EmailAddress(json['email']),
         _profilePic = json['profilePic'],
         _firstName = json['firstName'],
         _lastName = json['lastName'];

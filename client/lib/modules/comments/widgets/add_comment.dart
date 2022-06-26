@@ -41,7 +41,7 @@ class _AddCommentState extends State<AddComment> {
           child: Form(
             key: formKey,
             child: TextFormField(
-              onChanged: (value) => vm.validateComment(commentController.text),
+              onChanged: (value) => vm.validate(commentController.text),
               controller: commentController,
               style: AppTextTheme.commentStyle.merge(
                 const TextStyle(fontSize: 15),
@@ -80,7 +80,7 @@ class _AddCommentState extends State<AddComment> {
                       ? Theme.of(context).colorScheme.primary
                       : AppColors.muted,
                   onPressed: () {
-                    vm.addComment(commentController.text);
+                    vm.add(commentController.text);
                     commentController.clear();
                   },
                 ),

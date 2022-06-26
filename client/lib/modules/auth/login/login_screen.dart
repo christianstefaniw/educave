@@ -57,7 +57,6 @@ class _LoginState extends State<Login> {
                   AuthTextInput(
                     controller: emailController,
                     hintText: 'Email',
-                    errorText: vm.validationErrors['email'],
                   ),
                   const SizedBox(
                     height: 15,
@@ -65,7 +64,6 @@ class _LoginState extends State<Login> {
                   AuthTextInput(
                     controller: passwordController,
                     hintText: 'Password',
-                    errorText: vm.validationErrors['password'],
                   ),
                   const SizedBox(
                     height: 40,
@@ -83,7 +81,7 @@ class _LoginState extends State<Login> {
                     padding: const EdgeInsets.symmetric(vertical: 15),
                     width: double.infinity,
                   ),
-                  ErrorText(text: vm.validationErrors['error'])
+                  ErrorText(text: vm.validationError)
                 ],
               ),
             )
