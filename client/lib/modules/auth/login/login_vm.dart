@@ -1,12 +1,12 @@
 import '../../../core/types/view_model.dart';
 import '../../account/account_model.dart';
-import 'login_repository_interface.dart';
+import 'login_model.dart';
 
 class LoginViewModel with ViewModel {
-  final ILoginRepository _repository;
+  final LoginModel _model;
   Map<String, String> _validationErrors = {};
 
-  LoginViewModel(this._repository);
+  LoginViewModel(this._model);
 
   Map<String, String> get validationErrors => _validationErrors;
 
@@ -21,6 +21,6 @@ class LoginViewModel with ViewModel {
       return null;
     }
 
-    return await _repository.login(account);
+    return await _model.login(account);
   }
 }
