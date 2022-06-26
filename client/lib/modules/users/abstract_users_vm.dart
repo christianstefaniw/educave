@@ -1,20 +1,19 @@
 import '../../core/types/view_model.dart';
 import '../user/user_model.dart';
-import 'users_repository_interface.dart';
+import 'users_model.dart';
 
-abstract class UsersViewModel with ViewModel {
-  final IUsersRepository _repository;
-  List<UserModel>? _users;
+class UsersViewModel with ViewModel {
+  final UsersModel _model;
 
-  UsersViewModel(this._repository) {
+  UsersViewModel(this._model) {
     _loadUsers();
   }
 
-  List<UserModel>? get users => _users;
-  bool get usersLoaded => _users != null;
+  List<UserModel>? get users => _model.users;
+  bool get usersLoaded => _model.users != null;
 
   Future<void> _loadUsers() async {
-    _users = await _repository.users();
+    await _model.loadUsers();
     notifyListeners();
   }
 }

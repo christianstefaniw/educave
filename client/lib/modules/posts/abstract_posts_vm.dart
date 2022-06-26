@@ -1,22 +1,20 @@
 import '../../core/types/view_model.dart';
 import '../post/post_model.dart';
-import 'posts_repository_interface.dart';
+import 'posts_model.dart';
 
 abstract class PostsViewModel with ViewModel {
-  final IPostsRepository _repository;
-
+  final PostsModel _model;
   bool _mounted = true;
-  List<PostModel>? _posts;
 
-  PostsViewModel(this._repository) {
+  PostsViewModel(this._model) {
     _loadPosts();
   }
 
-  bool get postsLoaded => _posts != null;
-  List<PostModel>? get posts => _posts;
+  bool get postsLoaded => _model.posts != null;
+  List<PostModel>? get posts => _model.posts;
 
   Future<void> _loadPosts() async {
-    _posts = await _repository.posts();
+    await _model.load();
 
     if (_mounted) {
       notifyListeners();

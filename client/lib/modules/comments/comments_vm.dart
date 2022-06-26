@@ -3,28 +3,27 @@ import '../../data/providers/api_provider.dart';
 import '../comment/comment_repository.dart';
 import 'account_data.dart';
 import '../comment/comment_model.dart';
-import 'comments_repository_interface.dart';
+import 'comments_model.dart';
 
 class CommentsViewModel with ViewModel {
-  final ICommentsRepository _repository;
+  final CommentsModel _model;
   final AccountCommentData _accountCommentData;
-  List<CommentModel>? _comments;
 
   bool _newCommentValid = false;
   bool _mounted = true;
 
-  CommentsViewModel(this._repository,
+  CommentsViewModel(this._model,
       {required AccountCommentData accountCommentData})
       : _accountCommentData = accountCommentData {
     _loadComments();
   }
 
   bool get commentBeingAddedIsValid => _newCommentValid;
-  List<CommentModel>? get comments => _comments;
-  bool get commentsLoaded => _comments != null;
+  List<CommentModel>? get comments => _model.comments;
+  bool get commentsLoaded => _model.comments != null;
 
   Future<void> _loadComments() async {
-    _comments = await _repository.comments();
+    await _model.load();
 
     if (_mounted) {
       notifyListeners();
@@ -57,7 +56,8 @@ class CommentsViewModel with ViewModel {
       return;
     }
 
-    _comments!.add(newComment);
+    _model.add(newComment);
+
     _newCommentValid = false;
     notifyListeners();
   }

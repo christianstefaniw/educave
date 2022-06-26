@@ -6,6 +6,7 @@ import '../../core/theme/theme.dart';
 import '../../data/providers/api_provider.dart';
 import '../account/account_provider.dart';
 import '../comments/account_data.dart';
+import '../comments/comments_model.dart';
 import '../comments/comments_repository.dart';
 import '../comments/comments_vm.dart';
 import '../comments/widgets/comments.dart';
@@ -125,9 +126,8 @@ class _PostState extends State<Post> {
                                 ),
                                 child: ChangeNotifierProvider(
                                   create: (_) => CommentsViewModel(
-                                    CommentsRepository(
-                                      ApiProvider(),
-                                      vm.id,
+                                    CommentsModel(
+                                      CommentsRepository(ApiProvider(), vm.id),
                                     ),
                                     accountCommentData: AccountCommentData(
                                       account.id,

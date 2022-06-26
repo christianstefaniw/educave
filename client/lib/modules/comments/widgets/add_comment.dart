@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../../core/theme/colors.dart';
-import '../../../core/theme/text.dart';
+import '../../../../core/theme/colors.dart';
+import '../../../../core/theme/text.dart';
 import '../../account/account_provider.dart';
 import '../comments_vm.dart';
 

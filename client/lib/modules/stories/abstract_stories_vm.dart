@@ -1,22 +1,20 @@
 import '../../core/types/view_model.dart';
-import 'stories_repository_interface.dart';
+import 'stories_model.dart';
 import 'story_model.dart';
 
 abstract class StoriesViewModel with ViewModel {
-  final IStoriesRepository _repository;
-
-  List<StoryModel>? _stories;
+  final StoriesModel _model;
   bool _mounted = true;
 
-  StoriesViewModel(this._repository) {
+  StoriesViewModel(this._model) {
     _loadStories();
   }
 
-  List<StoryModel>? get stories => _stories;
-  bool get storiesLoaded => _stories != null;
+  List<StoryModel>? get stories => _model.stories;
+  bool get storiesLoaded => _model.stories != null;
 
   Future<void> _loadStories() async {
-    _stories = await _repository.stories();
+    await _model.load();
     if (_mounted) notifyListeners();
   }
 
