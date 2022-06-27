@@ -27,16 +27,12 @@ class CommentEntity {
   bool get liked => _liked;
 
   void like() {
-    if (!_liked) {
-      _likeCount++;
-      _liked = true;
-    }
+    _likeCount++;
+    _liked = true;
   }
 
   void unlike() {
-    if (_liked) {
-      _likeCount--;
-      _liked = false;
-    }
+    _likeCount--;
+    _liked = false;
   }
 }

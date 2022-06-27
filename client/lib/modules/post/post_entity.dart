@@ -35,29 +35,21 @@ class PostEntity {
   bool get saved => _saved;
 
   void like() {
-    if (!_liked) {
-      _liked = true;
-      _likeCount++;
-    }
+    _liked = true;
+    _likeCount++;
   }
 
   void unlike() {
-    if (liked) {
-      _liked = false;
-      _likeCount--;
-    }
+    _liked = false;
+    _likeCount--;
   }
 
   void save() {
-    if (!_saved) {
-      _saved = true;
-    }
+    _saved = true;
   }
 
   void unsave() {
-    if (_saved) {
-      _saved = false;
-    }
+    _saved = false;
   }
 
   PostEntity.fromJson(Map<String, dynamic> json)

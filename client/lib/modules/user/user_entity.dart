@@ -16,15 +16,11 @@ class UserEntity {
   bool get isFollowing => _isFollowing;
 
   void follow() {
-    if (!_isFollowing) {
-      _isFollowing = true;
-    }
+    _isFollowing = true;
   }
 
   void unfollow() {
-    if (_isFollowing) {
-      _isFollowing = false;
-    }
+    _isFollowing = false;
   }
 
   UserEntity.fromJson(Map<String, dynamic> json)

@@ -35,16 +35,12 @@ class GroupEntity {
   int get numMembers => _numMembers;
 
   void join() {
-    if (!_joined) {
-      _joined = true;
-      _numMembers++;
-    }
+    _joined = true;
+    _numMembers++;
   }
 
   void leave() {
-    if (_joined) {
-      _joined = false;
-      _numMembers--;
-    }
+    _joined = false;
+    _numMembers--;
   }
 }

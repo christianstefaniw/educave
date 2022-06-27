@@ -17,7 +17,7 @@ class OnBoardControl extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    /*Provider.of<AccountProvider>(context, listen: false).setAccount(
+    Provider.of<AccountProvider>(context, listen: false).setAccount(
       AccountEntity(
         id: '1',
         email: EmailAddress('christian@uwaterloo.ca'),
@@ -27,8 +27,8 @@ class OnBoardControl extends StatelessWidget {
             'https://media-exp1.licdn.com/dms/image/C5603AQHLtS1MARQqOg/profile-displayphoto-shrink_400_400/0/1653073727247?e=1658361600&v=beta&t=NWLMe2E2VwZnFpVktFFlRbQeWS1AAyrAiZoPoPlnt8s',
       ),
     );
-    */
-    return ChangeNotifierProvider(
+
+    /*return ChangeNotifierProvider(
       create: (_) => LoginViewModel(
         LoginModel(
           LoginRepository(
@@ -38,10 +38,10 @@ class OnBoardControl extends StatelessWidget {
       ),
       child: const Login(),
     );
+    */
 
-    /*return const MySafeArea(
+    return const MySafeArea(
       child: AppControl(),
     );
-    */
   }
 }

@@ -21,7 +21,8 @@ class Classes implements FetchGroupsStrategy {
                 'The official Educave room for Humberside Collegiate Institute',
             groupPic:
                 'https://schoolweb.tdsb.on.ca/portals/humbersideci/images/crest03.gif',
-            backgroundPic: '',
+            backgroundPic:
+                'https://thumbs.dreamstime.com/b/back-to-school-background-copy-space-121767227.jpg',
             joined: true,
             numMembers: 432,
             numPosts: 153,
@@ -51,7 +52,8 @@ class Classes implements FetchGroupsStrategy {
                 'The official Educave room for Humberside Collegiate Institute',
             groupPic:
                 'https://schoolweb.tdsb.on.ca/portals/humbersideci/images/crest03.gif',
-            backgroundPic: '',
+            backgroundPic:
+                'https://thumbs.dreamstime.com/b/back-to-school-background-copy-space-121767227.jpg',
             joined: true,
             numMembers: 432,
             numPosts: 153,

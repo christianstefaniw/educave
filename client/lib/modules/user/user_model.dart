@@ -22,7 +22,7 @@ class UserModel {
 
   void unfollow() async {
     if (_entity.isFollowing) {
-      _entity.follow();
+      _entity.unfollow();
       await _repository.unfollow();
     }
   }
