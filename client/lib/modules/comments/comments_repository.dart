@@ -1,8 +1,10 @@
 import '../../core/value_objects/text.dart';
 import '../../data/providers/api_provider.dart';
 import '../../data/providers/api_provider_interface.dart';
+import '../comment/comment_dto.dart';
 import '../comment/comment_model.dart';
 import '../comment/comment_repository.dart';
+import 'account_data_dto.dart';
 import 'comments_repository_interface.dart';
 
 class CommentsRepository implements ICommentsRepository {
@@ -16,25 +18,24 @@ class CommentsRepository implements ICommentsRepository {
 
   @override
   Future<List<CommentModel>> comments() async {
-    const id = '1';
     return await Future.delayed(
         const Duration(seconds: 1),
         () => [
               CommentModel.create(
+                CommentDto('Great post wow super interesting etc whatever'),
                 CommentRepository(ApiProvider()),
-                content: Text('Great post wow super interesting etc whatever'),
-                userId: '1',
-                profilePic:
+                AccountCommentDataDto(
+                    '1',
                     'https://www.business2community.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640.png',
-                username: 'Bob Smith',
+                    'Bob Smith'),
               ),
               CommentModel.create(
+                CommentDto('Great post wow super interesting etc whatever'),
                 CommentRepository(ApiProvider()),
-                content: Text('Great post wow super interesting etc whatever'),
-                userId: '1',
-                profilePic:
+                AccountCommentDataDto(
+                    '1',
                     'https://www.business2community.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640.png',
-                username: 'Bob Smith',
+                    'Bob Smith'),
               ),
             ]);
   }

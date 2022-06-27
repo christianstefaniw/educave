@@ -14,8 +14,8 @@ class PostViewModel with ViewModel {
   DateTime get dateTime => _model.dateTime;
   int get commentCount => _model.commentCount;
   int get likeCount => _model.likeCount;
-  bool get isLiked => _model.isLiked;
-  bool get isSaved => _model.isSaved;
+  bool get liked => _model.liked;
+  bool get saved => _model.saved;
   List<PostFeature> get features => _model.features;
 
   void like() {

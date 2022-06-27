@@ -1,5 +1,5 @@
 import '../../core/types/view_model.dart';
-import '../group/mutual_group_model.dart';
+import '../group/mutual_group_entity.dart';
 import 'user_model.dart';
 
 class UserViewModel with ViewModel {
@@ -9,7 +9,7 @@ class UserViewModel with ViewModel {
 
   String get username => _model.username;
   String get profilePic => _model.profilePic;
-  List<MutualGroupModel> get mutualGroups => _model.mutualGroups;
+  List<MutualGroupEntity> get mutualGroups => _model.mutualGroups;
   bool get isFollowing => _model.isFollowing;
 
   void follow() {

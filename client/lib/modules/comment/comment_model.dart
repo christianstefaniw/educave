@@ -1,77 +1,54 @@
 import '../../core/value_objects/text.dart';
+import '../comments/account_data_dto.dart';
+import 'comment_dto.dart';
+import 'comment_entity.dart';
 import 'comment_repository_interface.dart';
 
 class CommentModel {
-  final String _id;
-  final String _userId;
-  final String _username;
-  final String _profilePic;
-  final Text _content;
-  final String _timeSincePost;
+  final CommentEntity _entity;
   final ICommentRepository _repository;
 
-  int _likeCount;
-  bool _liked;
-
-  CommentModel(this._repository,
-      {required String id,
-      required String userId,
-      required String username,
-      required String profilePic,
-      required Text content,
-      required int likeCount,
-      required bool liked,
-      required String timeSincePost})
-      : _id = id,
-        _userId = userId,
-        _username = username,
-        _profilePic = profilePic,
-        _content = content,
-        _likeCount = likeCount,
-        _liked = liked,
-        _timeSincePost = timeSincePost;
+  CommentModel(this._repository, this._entity);
 
   factory CommentModel.create(
-    ICommentRepository repository, {
-    required Text content,
-    required String userId,
-    required String profilePic,
-    required String username,
-  }) {
+    CommentDto commentDto,
+    ICommentRepository repository,
+    AccountCommentDataDto accountCommentDataDto,
+  ) {
     return CommentModel(
       repository,
-      id: 'id',
-      userId: userId,
-      username: username,
-      profilePic: profilePic,
-      content: content,
-      likeCount: 0,
-      liked: false,
-      timeSincePost: 'now',
+      CommentEntity(
+        id: 'id',
+        userId: accountCommentDataDto.id,
+        username: accountCommentDataDto.name,
+        profilePic: accountCommentDataDto.profilePic,
+        content: commentDto.content,
+        likeCount: 0,
+        liked: false,
+        timeSincePost: 'now',
+      ),
     );
   }
 
-  String get id => _id;
-  String get username => _username;
-  String get profilePic => _profilePic;
-  String get content => _content.toString();
-  int get likeCount => _likeCount;
-  bool get liked => _liked;
-  String get timeSincePost => _timeSincePost;
+  String get id => _entity.id;
+  String get username => _entity.username;
+  String get profilePic => _entity.profilePic;
+  String get content => _entity.content.toString();
+  int get likeCount => _entity.likeCount;
+  bool get liked => _entity.liked;
+  String get timeSincePost => _entity.timeSincePost;
 
   void like() async {
-    if (_liked) return;
-    _likeCount++;
-    _liked = true;
+    if (_entity.liked) return;
 
+    _entity.like();
     await _repository.like();
   }
 
   void unlike() async {
-    if (!_liked) return;
-    _likeCount--;
-    _liked = false;
+    if (!_entity.liked) return;
 
+    _entity.unlike();
     await _repository.unlike();
   }
 }

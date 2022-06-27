@@ -21,7 +21,7 @@ class GroupViewModel with ViewModel {
   }
 
   void unjoin() {
-    _model.unjoin();
+    _model.leave();
     notifyListeners();
   }
 }

@@ -1,8 +1,8 @@
-class MutualGroupModel {
+class MutualGroupEntity {
   final String _id;
   final String _name;
 
-  MutualGroupModel({required String id, required String name})
+  MutualGroupEntity({required String id, required String name})
       : _id = id,
         _name = name;
 

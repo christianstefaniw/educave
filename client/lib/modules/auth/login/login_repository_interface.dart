@@ -1,6 +1,6 @@
-import '../../account/account_model.dart';
+import '../../account/account_entity.dart';
 import 'login_dto.dart';
 
 abstract class ILoginRepository {
-  Future<AccountModel> login(LoginDto loginDto);
+  Future<AccountEntity> login(LoginDto loginDto);
 }

@@ -1,5 +1,5 @@
 import '../../../core/types/view_model.dart';
-import '../../account/account_model.dart';
+import '../../account/account_entity.dart';
 import 'login_dto.dart';
 import 'login_model.dart';
 
@@ -8,7 +8,7 @@ class LoginViewModel with ViewModel {
 
   LoginViewModel(this._model);
 
-  Future<AccountModel> login(String email, String password) async {
+  Future<AccountEntity> login(String email, String password) async {
     LoginDto loginDto;
 
     loginDto = LoginDto(email, password);

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../abstract_stories_vm.dart';
+import '../story_vm.dart';
 import 'story_preview.dart';
 
 class StoriesPreview extends StatelessWidget {
@@ -21,7 +22,10 @@ class StoriesPreview extends StatelessWidget {
           itemBuilder: (context, index) {
             return Container(
               margin: const EdgeInsets.symmetric(horizontal: 9),
-              child: StoryPreview(vm.stories![index]),
+              child: ChangeNotifierProvider(
+                create: (_) => StoryViewModel(vm.stories![index]),
+                child: const StoryPreview(),
+              ),
             );
           },
         ),

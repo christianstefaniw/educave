@@ -1,13 +1,13 @@
 import '../../core/value_objects/value_objects.dart';
 
-class AccountModel {
+class AccountEntity {
   final EmailAddress _email;
   final String _profilePic;
   final String _id;
   final String _firstName;
   final String _lastName;
 
-  AccountModel(
+  AccountEntity(
       {required String id,
       required EmailAddress email,
       required String profilePic,
@@ -23,7 +23,7 @@ class AccountModel {
   String get id => _id;
   String get name => '$_firstName $_lastName';
 
-  AccountModel.fromJson(Map<String, dynamic> json)
+  AccountEntity.fromJson(Map<String, dynamic> json)
       : _id = json['id'],
         _email = EmailAddress(json['email']),
         _profilePic = json['profilePic'],

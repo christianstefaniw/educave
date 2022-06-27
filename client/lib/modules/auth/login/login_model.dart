@@ -1,4 +1,4 @@
-import '../../account/account_model.dart';
+import '../../account/account_entity.dart';
 import 'login_dto.dart';
 import 'login_repository_interface.dart';
 
@@ -7,7 +7,7 @@ class LoginModel {
 
   LoginModel(this._repository);
 
-  Future<AccountModel> login(LoginDto loginDto) async {
+  Future<AccountEntity> login(LoginDto loginDto) async {
     return await _repository.login(loginDto);
   }
 }

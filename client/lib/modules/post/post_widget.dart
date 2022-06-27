@@ -5,7 +5,7 @@ import '../../core/helpers/date_time_format.dart';
 import '../../core/theme/theme.dart';
 import '../../data/providers/api_provider.dart';
 import '../account/account_provider.dart';
-import '../comments/account_data.dart';
+import '../comments/account_data_dto.dart';
 import '../comments/comments_model.dart';
 import '../comments/comments_repository.dart';
 import '../comments/comments_vm.dart';
@@ -86,10 +86,10 @@ class _PostState extends State<Post> {
                     IconButton(
                       constraints: const BoxConstraints(),
                       padding: EdgeInsets.zero,
-                      onPressed: vm.isLiked ? vm.unlike : vm.like,
+                      onPressed: vm.liked ? vm.unlike : vm.like,
                       splashRadius: 1,
                       iconSize: 23,
-                      icon: vm.isLiked
+                      icon: vm.liked
                           ? const Icon(
                               Icons.favorite,
                               color: Colors.red,
@@ -129,7 +129,7 @@ class _PostState extends State<Post> {
                                     CommentsModel(
                                       CommentsRepository(ApiProvider(), vm.id),
                                     ),
-                                    accountCommentData: AccountCommentData(
+                                    accountCommentData: AccountCommentDataDto(
                                       account.id,
                                       account.profilePic,
                                       account.name,
@@ -170,13 +170,11 @@ class _PostState extends State<Post> {
                 IconButton(
                   constraints: const BoxConstraints(),
                   padding: EdgeInsets.zero,
-                  onPressed: vm.isSaved ? vm.unsave : vm.save,
+                  onPressed: vm.saved ? vm.unsave : vm.save,
                   splashRadius: 1,
                   iconSize: 25,
                   icon: Icon(
-                    vm.isSaved
-                        ? Icons.bookmark
-                        : Icons.bookmark_outline_outlined,
+                    vm.saved ? Icons.bookmark : Icons.bookmark_outline_outlined,
                   ),
                 ),
               ],

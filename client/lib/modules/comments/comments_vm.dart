@@ -1,20 +1,21 @@
 import '../../core/types/view_model.dart';
 import '../../core/value_objects/text.dart';
 import '../../data/providers/api_provider.dart';
+import '../comment/comment_dto.dart';
 import '../comment/comment_repository.dart';
-import 'account_data.dart';
+import 'account_data_dto.dart';
 import '../comment/comment_model.dart';
 import 'comments_model.dart';
 
 class CommentsViewModel with ViewModel {
   final CommentsModel _model;
-  final AccountCommentData _accountCommentData;
+  final AccountCommentDataDto _accountCommentData;
 
   bool _newCommentValid = false;
   bool _mounted = true;
 
   CommentsViewModel(this._model,
-      {required AccountCommentData accountCommentData})
+      {required AccountCommentDataDto accountCommentData})
       : _accountCommentData = accountCommentData {
     _loadComments();
   }
@@ -33,7 +34,7 @@ class CommentsViewModel with ViewModel {
 
   void validate(String content) {
     try {
-      Text(content);
+      CommentDto(content);
       _newCommentValid = true;
     } catch (e) {
       _newCommentValid = false;
@@ -47,11 +48,9 @@ class CommentsViewModel with ViewModel {
 
     try {
       newComment = CommentModel.create(
+        CommentDto(content),
         CommentRepository(ApiProvider()),
-        content: Text(content),
-        userId: _accountCommentData.id,
-        profilePic: _accountCommentData.profilePic,
-        username: _accountCommentData.name,
+        _accountCommentData,
       );
     } catch (e) {
       return;

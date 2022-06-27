@@ -5,7 +5,7 @@ import '../../../core/util/error.dart';
 import '../../../routes/routes.dart';
 import '../../../widgets/cta_button.dart';
 import '../../../widgets/error_text.dart';
-import '../../account/account_model.dart';
+import '../../account/account_entity.dart';
 import '../../account/account_provider.dart';
 import '../widgets/auth_text_input.dart';
 import 'login_vm.dart';
@@ -73,7 +73,7 @@ class _LoginState extends State<Login> {
                   ),
                   CtaButton(
                     onPressed: () async {
-                      AccountModel account;
+                      AccountEntity account;
                       try {
                         account = await vm.login(
                           emailController.text,

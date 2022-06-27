@@ -4,7 +4,7 @@ import 'package:provider/provider.dart';
 import '../../core/value_objects/value_objects.dart';
 import '../../data/providers/api_provider.dart';
 import '../../widgets/safearea.dart';
-import '../account/account_model.dart';
+import '../account/account_entity.dart';
 import '../account/account_provider.dart';
 import '../app/app_control.dart';
 import '../auth/login/login_model.dart';
@@ -18,7 +18,7 @@ class OnBoardControl extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     /*Provider.of<AccountProvider>(context, listen: false).setAccount(
-      AccountModel(
+      AccountEntity(
         id: '1',
         email: EmailAddress('christian@uwaterloo.ca'),
         firstName: 'Christian',

@@ -9,5 +9,5 @@ class CommentDto {
     return CommentDto._(Text(content));
   }
 
-  String get content => _content.toString();
+  Text get content => _content;
 }

@@ -1,20 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
-import '../story_model.dart';
+import '../story_vm.dart';
 
 class StoryPreview extends StatelessWidget {
-  final StoryModel _story;
-  const StoryPreview(this._story, {Key? key}) : super(key: key);
+  const StoryPreview({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final vm = Provider.of<StoryViewModel>(context);
     return Stack(
       alignment: Alignment.topLeft,
       children: [
         ClipRRect(
           borderRadius: BorderRadius.circular(15),
           child: Image.network(
-            _story.url,
+            vm.url,
             height: double.infinity,
             width: 135,
             fit: BoxFit.cover,
@@ -25,7 +26,7 @@ class StoryPreview extends StatelessWidget {
           child: CircleAvatar(
             backgroundColor: Colors.white,
             radius: 18,
-            backgroundImage: NetworkImage(_story.profilePic),
+            backgroundImage: NetworkImage(vm.profilePic),
           ),
         ),
       ],
